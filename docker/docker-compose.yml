@@ -158,8 +158,12 @@ services:
       depends_on:
         - php-fpm
       networks:
-        - frontend
-        - backend
+        frontend:
+          aliases:
+          - slides.local
+        backend:
+          aliases:
+          - slides.local
 
 ### MySQL ################################################
     mysql:
