@@ -1,0 +1,4 @@
+services:
+#    p5_administration.example:
+#        class: P5\AdministrationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
