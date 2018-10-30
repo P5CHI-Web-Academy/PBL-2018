@@ -1,3 +1,0 @@
-p5_administration_homepage:
-    path:     /
-    defaults: { _controller: P5AdministrationBundle:Default:index }
