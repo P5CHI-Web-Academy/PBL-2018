@@ -1,3 +1,7 @@
-app:
-    resource: '@AppBundle/Controller/'
+administration:
+    resource: "@AdministrationBundle/Controller/"
+    type: annotation
+
+display:
+    resource: "@DisplayBundle/Controller/"
     type: annotation
