@@ -5,12 +5,12 @@ namespace AdministrationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Location
+ * Tag
  *
- * @ORM\Table(name="location", uniqueConstraints={@ORM\UniqueConstraint(name="location_UNIQUE", columns={"location"})})
+ * @ORM\Table(name="tag", uniqueConstraints={@ORM\UniqueConstraint(name="tag_UNIQUE", columns={"tag"})})
  * @ORM\Entity
  */
-class Location
+class Tag
 {
     /**
      * @var integer
@@ -24,14 +24,14 @@ class Location
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=45, nullable=false)
+     * @ORM\Column(name="tag", type="string", length=45, nullable=false)
      */
-    private $location;
+    private $tag;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Slide", mappedBy="idLocation")
+     * @ORM\ManyToMany(targetEntity="Slide", mappedBy="idTag")
      */
     private $slides;
 
@@ -54,18 +54,18 @@ class Location
     /**
      * @return string
      */
-    public function getLocation(): string
+    public function getTag(): string
     {
-        return $this->location;
+        return $this->tag;
     }
 
     /**
-     * @param string $location
-     * @return Location
+     * @param string $tag
+     * @return Tag
      */
-    public function setLocation(string $location): Location
+    public function setTag(string $tag): Tag
     {
-        $this->location = $location;
+        $this->tag = $tag;
 
         return $this;
     }
@@ -80,13 +80,14 @@ class Location
 
     /**
      * @param \Doctrine\Common\Collections\Collection $slides
-     * @return Location
+     * @return Tag
      */
-    public function setSlides(\Doctrine\Common\Collections\Collection $slides): Location
+    public function setSlides(\Doctrine\Common\Collections\Collection $slides): Tag
     {
         $this->slides = $slides;
 
         return $this;
     }
+
 }
 
