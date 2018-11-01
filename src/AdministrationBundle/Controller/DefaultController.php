@@ -2,6 +2,7 @@
 
 namespace AdministrationBundle\Controller;
 
+use AdministrationBundle\Entity\Location;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,6 +13,13 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        die('admin');
+        $locations = $this->getDoctrine()
+            ->getRepository(Location::class)
+            ->findAll();
+
+        return $this->render(
+            'default/index.html.twig',
+            array('location' => $locations)
+        );
     }
 }
