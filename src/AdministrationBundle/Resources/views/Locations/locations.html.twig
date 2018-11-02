@@ -5,6 +5,14 @@
 
 {% block body %}
 
+    {% for loc in locations %}
+        {{ loc.location }}
+        {%  for sl in loc.slides %}
+            {{ sl.name }}
+        {% endfor %}
+        <br/>
+    {% endfor %}
+
     {{ dump(locations) }}
 
 {% endblock %}
