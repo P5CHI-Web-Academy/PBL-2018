@@ -4,6 +4,7 @@ namespace AdministrationBundle\Controller;
 
 use AdministrationBundle\AdministrationBundle;
 use AdministrationBundle\Entity\Location;
+use AdministrationBundle\Entity\Slide;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 

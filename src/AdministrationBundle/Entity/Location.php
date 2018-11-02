@@ -31,7 +31,7 @@ class Location
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Slide", mappedBy="idLocation")
+     * @ORM\ManyToMany(targetEntity="Slide", mappedBy="locations")
      */
     private $slides;
 
