@@ -2,7 +2,6 @@
 
 namespace AdministrationBundle\Controller;
 
-use AdministrationBundle\Entity\Location;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
