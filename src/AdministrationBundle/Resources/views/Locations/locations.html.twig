@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Locations index{% endblock %}
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+    {% for loc in locations %}
+        {{ loc.location }}
+        {%  for sl in loc.slides %}
+            {{ sl.name }}
+        {% endfor %}
+        <br/>
+    {% endfor %}
+
+    {{ dump(locations) }}
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

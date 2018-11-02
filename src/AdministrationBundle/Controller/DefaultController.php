@@ -2,7 +2,6 @@
 
 namespace AdministrationBundle\Controller;
 
-use AdministrationBundle\Entity\Location;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,6 +12,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-
+        return $this->render(
+          '@Administration/Default/index.html.twig',
+          array()
+        );
     }
 }

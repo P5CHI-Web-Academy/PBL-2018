@@ -100,7 +100,7 @@ class Slide
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Location", inversedBy="idSlide")
+     * @ORM\ManyToMany(targetEntity="Location", inversedBy="slides")
      * @ORM\JoinTable(name="slide_location",
      *   joinColumns={
      *     @ORM\JoinColumn(name="id_slide", referencedColumnName="id")
@@ -115,7 +115,7 @@ class Slide
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="idSlide")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="slides")
      * @ORM\JoinTable(name="slide_tag",
      *   joinColumns={
      *     @ORM\JoinColumn(name="id_slide", referencedColumnName="id")
