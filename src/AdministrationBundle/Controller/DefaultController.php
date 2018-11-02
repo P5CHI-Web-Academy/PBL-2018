@@ -13,13 +13,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $locations = $this->getDoctrine()
-            ->getRepository(Location::class)
-            ->findAll();
 
-        return $this->render(
-            'default/index.html.twig',
-            array('location' => $locations)
-        );
     }
 }
