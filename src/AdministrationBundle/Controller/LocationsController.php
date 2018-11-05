@@ -17,11 +17,28 @@ class LocationsController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $locations =  $entityManager->getRepository(Location::class)->findAll();
 
-        if(!$locations) die('error while finding locations');
+        if(!$locations) die('error while fetching locations');
 
         return $this->render(
             '@Administration/Locations/locations.html.twig',
             array('locations' => $locations)
         );
+    }
+
+    /**
+     * @Route("/admin/locations/deletion/{id}", name="location_delete")
+     */
+    public function deleteLocation($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $location = $this->getDoctrine()
+            ->getRepository(Location::class)
+            ->find($id);
+
+        $entityManager->remove($location);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('locations');
     }
 }

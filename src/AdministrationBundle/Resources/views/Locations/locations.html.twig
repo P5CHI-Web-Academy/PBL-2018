@@ -5,13 +5,15 @@
 
 {% block body %}
 
-    {% for location in locations %}
-        {{ location.id }}
-        {{ location.location }}
-        {% for slide in location.slides %}
-            {{ slide }}
+    {% for loc in locations %}
+        {{ loc.location }}
+        {%  for sl in loc.slides %}
+            {{ sl.name }}
         {% endfor %}
+        <br/>
     {% endfor %}
+
+    {{ dump(locations) }}
 
 {% endblock %}
 
