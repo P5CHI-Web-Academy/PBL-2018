@@ -31,7 +31,7 @@ class Tag
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Slide", mappedBy="idTag")
+     * @ORM\ManyToMany(targetEntity="Slide", mappedBy="tags")
      */
     private $slides;
 
