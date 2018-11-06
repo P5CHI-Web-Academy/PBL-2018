@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: filpatterson
+ * Date: 11/6/18
+ * Time: 12:02 PM
+ */
 
 namespace AdministrationBundle\Controller;
 
@@ -8,21 +14,22 @@ use AdministrationBundle\Entity\Slide;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LocationsController extends Controller
+
+class TagsController extends Controller
 {
     /**
-     * @Route("/admin/locations", name="locations")
+     * @Route("/admin/tags", name = "tags")
      */
     public function indexAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $locations =  $entityManager->getRepository(Location::class)->findAll();
+        $tags =  $entityManager->getRepository(Tag::class)->findAll();
 
-        if(!$locations) die('error while finding locations');
+        if(!$tags) die('error while finding tags');
 
         return $this->render(
-            '@Administration/Locations/locations.html.twig',
-            array('locations' => $locations)
+            '@Administration/Tags/tags.html.twig',
+            array('tags' => $tags)
         );
     }
 }

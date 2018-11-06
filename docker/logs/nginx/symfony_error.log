@@ -64,3 +64,33 @@ Stack trace:
 #3 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(429): Doctrine\DBAL\Connection->connect()
 #4 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(389): Doctrine\DBAL\Connection->getDatabasePlatformVersion()
 #5 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(328): Doctrine\DBAL\Connection->detectDatabasePlatform()" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/11/05 12:17:10 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app.php on line 5
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app.php on line 5
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "localhost"
+2018/11/05 12:17:15 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app.php on line 5
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app.php on line 5
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "localhost"
+2018/11/05 12:19:13 [error] 8#8: *5 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET /app_dev.php/admin HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/11/05 12:19:14 [error] 8#8: *5 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET /app_dev.php/admin HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/11/05 12:19:23 [error] 8#8: *5 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET /app_dev.php/display HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
