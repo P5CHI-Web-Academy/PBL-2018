@@ -5,11 +5,11 @@
 
 {% block body %}
 
+    <br/>
+
     {% for loc in locations %}
         {{ loc.location }}
-        {%  for sl in loc.slides %}
-            {{ sl.name }}
-        {% endfor %}
+        <a href="{{ path('location_delete', {'id': loc.id}) }}">Delete</a>
         <br/>
     {% endfor %}
 
