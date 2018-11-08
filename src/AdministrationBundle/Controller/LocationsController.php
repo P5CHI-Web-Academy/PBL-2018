@@ -11,13 +11,16 @@ class LocationsController extends Controller
 {
     /**
      * @Route("/admin/locations", name="locations")
+     * @throws \Exception
      */
     public function indexAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
         $locations =  $entityManager->getRepository(Location::class)->findAll();
 
-        if(!$locations) die('error while fetching locations');
+        if(!$locations){
+            throw new \Exception("error while fetching locations");
+        }
 
         return $this->render(
             '@Administration/Locations/locations.html.twig',

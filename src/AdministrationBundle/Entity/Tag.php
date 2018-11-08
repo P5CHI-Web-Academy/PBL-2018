@@ -36,6 +36,13 @@ class Tag
     private $slides;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * ManyToMany(targetEntity="Location", mappedBy="tags")
+     */
+    private $locations;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -89,5 +96,23 @@ class Tag
         return $this;
     }
 
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLocations(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->locations;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $locations
+     * @return Tag
+     */
+    public function setLocation(\Doctrine\Common\Collections\Collection $locations): Tag
+    {
+        $this->locations = $locations;
+
+        return $this;
+    }
 }
 

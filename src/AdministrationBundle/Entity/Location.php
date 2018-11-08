@@ -36,6 +36,14 @@ class Location
     private $slides;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="locations")
+     * @ORM\JoinTable(name="locations_tags")
+     */
+    private $tags;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -85,6 +93,25 @@ class Location
     public function setSlides(\Doctrine\Common\Collections\Collection $slides): Location
     {
         $this->slides = $slides;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $tags
+     * @return Location
+     */
+    public function setTags(\Doctrine\Common\Collections\Collection $tags): Location
+    {
+        $this->tags = $tags;
 
         return $this;
     }
