@@ -301,6 +301,16 @@ class Slide
     }
 
     /**
+     * @param \User $updatedBy
+     * @return Slide
+     */
+    public function setUpdatedBy(\User $updatedBy): Slide
+    {
+        $this->updatedBy = $updatedBy;
+        return $this;
+    }
+
+    /**
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getTags(): \Doctrine\Common\Collections\Collection
