@@ -48,6 +48,7 @@ class Tag
     public function __construct()
     {
         $this->slides = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -108,7 +109,7 @@ class Tag
      * @param \Doctrine\Common\Collections\Collection $locations
      * @return Tag
      */
-    public function setLocation(\Doctrine\Common\Collections\Collection $locations): Tag
+    public function setLocations(\Doctrine\Common\Collections\Collection $locations): Tag
     {
         $this->locations = $locations;
 

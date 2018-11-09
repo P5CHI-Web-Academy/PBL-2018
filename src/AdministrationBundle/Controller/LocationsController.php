@@ -4,6 +4,7 @@ namespace AdministrationBundle\Controller;
 
 use AdministrationBundle\AdministrationBundle;
 use AdministrationBundle\Entity\Location;
+use AdministrationBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,16 +16,28 @@ class LocationsController extends Controller
      */
     public function indexAction()
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $locations =  $entityManager->getRepository(Location::class)->findAll();
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $locations =  $entityManager->getRepository(Location::class)->findAll();
+//
+//        if(!$locations){
+//            throw new \Exception("error while fetching locations");
+//        }
+//
+//        return $this->render(
+//            '@Administration/Locations/locations.html.twig',
+//            array('locations' => $locations)
+//        );
 
-        if(!$locations){
-            throw new \Exception("error while fetching locations");
+        $entityManager = $this->getDoctrine()->getManager();
+        $tags =  $entityManager->getRepository(Tag::class)->findAll();
+
+        if(!$tags){
+            throw new \Exception("error while fetching tags");
         }
 
         return $this->render(
             '@Administration/Locations/locations.html.twig',
-            array('locations' => $locations)
+            array('tags' => $tags)
         );
     }
 
