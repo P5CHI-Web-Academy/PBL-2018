@@ -7,18 +7,18 @@
 
     <br/>
 
-    {% for tg in tags %}
-        {{ tg.tag }}
-        {#<a href="{{ path('location_delete', {'id': tg.id}) }}">Delete</a>#}
+    {% for location in locations %}
+        {{ location.location }}
 
-        {% for lc in tg.locations %}
-            {{ lc.location }}
+        <a href="{{ path('location_delete', {'id': location.id}) }}">Delete</a>
+
+        {% for tag in location.tags %}
+            {{ tag.tag }}
         {% endfor %}
 
         <br/>
     {% endfor %}
 
-    {{ dump(tags) }}
 
 {% endblock %}
 

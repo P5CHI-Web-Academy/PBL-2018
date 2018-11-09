@@ -38,7 +38,7 @@ class Tag
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * ManyToMany(targetEntity="Location", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Location", mappedBy="tags")
      */
     private $locations;
 
