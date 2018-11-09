@@ -27,10 +27,12 @@ html,body,#main{
     position: absolute;
     background-color: white;
     top:50%;
+    left: 40%;
     border-radius: 10px;
     transform: translateY(-50%);
     height: 400px;
     width: 400px;
+    margin: 0 auto;
 
 }
 
@@ -90,6 +92,9 @@ html,body,#main{
 
 }
 
+.error{
+    color: red;
+}
 
 
 

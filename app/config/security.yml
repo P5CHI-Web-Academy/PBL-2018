@@ -1,36 +1,18 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
-
 security:
-
-  # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
-  # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
   providers:
     our_db_provider:
       entity:
-        class: AppBundle:User
+        class: AdministrationBundle:User
         property: username
 
-
-
-
-          #      chain_provider:
-          #        chain:
-          #          providers: [in_memory, user_db]
-          #          in_memory:
-          #          memory: ~
-          #          users:
-          #            foo: { password: test}
-          #              user_db:
-          #                entity: { class: AppBundle\Entity\User, property: username}
 
         #Encoding the User's Password
   encoders:
     #No encoder has been configured for account "Symfony\Component\Security\Core\User\User"
     #we need to add an encoders key:
-    Symfony\Component\Security\Core\User\User:
+    AdministrationBundle\Entity\User:
       algorithm: plaintext
-#      cost: 12
+  #      cost: 12
 
   role_hierarchy:
     ROLE_USER:      ROLE_USER
@@ -42,55 +24,22 @@ security:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
-#    login:
-#      pattern: ^/login$
-#      security: false
-    #    admin:
-    #      pattern:      /admin(.*)
-    #      form_login:
-    #        provider:   fos_userbundle
-    #        login_path:    /login
-    #        check_path:   /login_check
-    #        default_target_path:  /admin/
-    ##    logout:
-    #      path:       /admin/logout
-    #      target:     /admin/login
-    #      anonymous:      true
 
     main:
       anonymous: ~
-      #pattern:    ^/
-      #http_basic: ~
-      #provider: our_db_provider
       form_login:
-        login_path: /login
-        check_path: /login_check
+        login_path: login
+        check_path: login
         default_target_path: /
-        #LOGOUT:
-#        secured_area:
-#          #...
-#          logout:
-#            path:   /logout
-#            target: /
-#            security: true
-#            anonymous: true
-#
+      logout:
+        path:   /logout
+        target: /
 
 
 
 
   access_control:
-  # require ROLE_ADMIN for /admin*
-  #- { path: ^/admin, roles: ROLE_ADMIN }
-    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/users, roles: ROLE_SUPERVISOR }
-    - { path: ^/, roles: ROLE_USER }
+  - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/users, roles: ROLE_SUPERVISOR }
+  - { path: ^/admin, roles: ROLE_USER }
 
-
-      # activate different ways to authenticate
-
-      # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-      #http_basic: ~
-
-      # https://symfony.com/doc/current/security/form_login_setup.html
-      #form_login: ~

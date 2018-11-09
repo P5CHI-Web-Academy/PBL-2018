@@ -3,6 +3,7 @@
 namespace AdministrationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="supervisorname_UNIQUE", columns={"user_name"})})
  * @ORM\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -26,7 +27,7 @@ class User
      *
      * @ORM\Column(name="user_name", type="string", length=45, nullable=false)
      */
-    private $userName;
+    private $username;
 
     /**
      * @var string
@@ -53,18 +54,18 @@ class User
     /**
      * @return string
      */
-    public function getUserName(): string
+    public function getUsername(): string
     {
-        return $this->userName;
+        return $this->username;
     }
 
     /**
-     * @param string $userName
+     * @param string $username
      * @return User
      */
-    public function setUserName(string $userName): User
+    public function setUsername(string $username): User
     {
-        $this->userName = $userName;
+        $this->username = $username;
 
         return $this;
     }
@@ -105,6 +106,22 @@ class User
         $this->isSupervisor = $isSupervisor;
 
         return $this;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials()
+    {
     }
 }
 
