@@ -12,17 +12,57 @@ class SlidesController extends Controller
 {
     /**
      * @Route("/admin/slides", name="slides")
+     * @throws \Exception
      */
     public function indexAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
         $slides =  $entityManager->getRepository(Slide::class)->findAll();
 
-        if(!$slides) die('error while finding fetching');
+        if(!$slides){
+            throw new \Exception('error while fetching slides');
+        }
 
         return $this->render(
             '@Administration/Slides/slides.html.twig',
             array('slides' => $slides)
+        );
+    }
+
+    /**
+     * @Route("/admin/slides/preview/{id}", name="slide_preview")
+     * @throws \Exception
+     */
+    public function previewSlide($id){
+        $entityManager = $this->getDoctrine()->getManager();
+        $slide = $entityManager->getRepository(Slide::class)->find($id);
+
+        if(!$slide){
+            throw new \Exception('Slide with this id not found');
+        }
+
+
+        return $this->render(
+            '@Administration/Slides/preview.html.twig',
+            array('slide' => $slide)
+        );
+    }
+
+    /**
+     * @Route("/admin/slides/edit/{id}", name="slide_edit")
+     * @throws \Exception
+     */
+    public function editSlide($id){
+        $entityManager = $this->getDoctrine()->getManager();
+        $slide = $entityManager->getRepository(Slide::class)->find($id);
+
+        if(!$slide){
+            throw new \Exception('Slide with this id not found.');
+        }
+
+        return $this->render(
+            '@Administration/Slides/edit.html.twig',
+            array('slide' => $slide)
         );
     }
 

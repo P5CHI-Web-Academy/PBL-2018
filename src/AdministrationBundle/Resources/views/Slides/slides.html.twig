@@ -5,7 +5,14 @@
 
 {% block body %}
 
-    {{ dump(slides) }}
+    {% for slide in slides %}
+        {{ slide.name }}
+
+        <a href="{{ path('slide_preview', {'id': slide.id}) }}">Preview</a>
+        <a href="{{ path('slide_edit', {'id': slide.id}) }}">Edit</a>
+        <a href="{{ path('slide_delete', {'id': slide.id}) }}">Delete</a>
+
+    {% endfor %}
 
 {% endblock %}
 
