@@ -10,6 +10,7 @@
     {% for location in locations %}
         {{ location.location }}
 
+        <a href="{{ path('location_edit', {'id': location.id}) }}">Edit</a>
         <a href="{{ path('location_delete', {'id': location.id}) }}">Delete</a>
 
         {% for tag in location.tags %}

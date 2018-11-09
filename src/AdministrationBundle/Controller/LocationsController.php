@@ -30,6 +30,17 @@ class LocationsController extends Controller
     }
 
     /**
+     * @Route("/admin/locations/edit/{id}", name="location_edit")
+     */
+    public function editLocation($id){
+
+        return $this->render(
+            '@Administration/Locations/edit.html.twig',
+            array()
+        );
+    }
+
+    /**
      * @Route("/admin/locations/deletion/{id}", name="location_delete")
      */
     public function deleteLocation($id)
