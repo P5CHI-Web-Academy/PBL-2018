@@ -1,0 +1,9 @@
+tag_show:
+  path: /{id}/show
+  defaults: {__controller: "AdministrationBundle:Tag:show"}
+  methods: GET
+
+tag_new:
+  path:
+  defaults:
+  methods: GET

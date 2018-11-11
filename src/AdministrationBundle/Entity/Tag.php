@@ -2,6 +2,7 @@
 
 namespace AdministrationBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,6 +20,7 @@ class Tag
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+
     private $id;
 
     /**
@@ -42,11 +44,10 @@ class Tag
     {
         $this->slides = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -54,7 +55,7 @@ class Tag
     /**
      * @return string
      */
-    public function getTag(): string
+    public function getTag(): ?string
     {
         return $this->tag;
     }
@@ -63,7 +64,7 @@ class Tag
      * @param string $tag
      * @return Tag
      */
-    public function setTag(string $tag): Tag
+    public function setTag(string $tag): self
     {
         $this->tag = $tag;
 
@@ -71,18 +72,18 @@ class Tag
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getSlides(): \Doctrine\Common\Collections\Collection
+    public function getSlides(): Collection
     {
         return $this->slides;
     }
 
     /**
-     * @param \Doctrine\Common\Collections\Collection $slides
+     * @param Collection $slides
      * @return Tag
      */
-    public function setSlides(\Doctrine\Common\Collections\Collection $slides): Tag
+    public function setSlides(Collection $slides): Tag
     {
         $this->slides = $slides;
 
