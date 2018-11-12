@@ -12,6 +12,10 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        die('admin');
+
+        return $this->render(
+          '@Administration/Default/index.html.twig',
+          array()
+        );
     }
 }
