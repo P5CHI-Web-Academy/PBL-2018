@@ -41,6 +41,14 @@ class LocationsController extends Controller
     }
 
     /**
+     * @Route("/admin/locations/new", name="location_new")
+     */
+    public function newLocation(){
+
+        return $this->render('@Administration/Locations/new.html.twig');
+    }
+
+    /**
      * @Route("/admin/locations/deletion/{id}", name="location_delete")
      */
     public function deleteLocation($id)
