@@ -67,6 +67,16 @@ class SlidesController extends Controller
     }
 
     /**
+     * @Route("/admin/slides/new", name="slide_new")
+     */
+    public function newSlide(){
+
+        return $this->render(
+            '@Administration/Slides/new.html.twig'
+        );
+    }
+
+    /**
      * @Route("/admin/slides/deletion/{id}", name="slide_delete")
      */
     public function deleteSlide($id){
