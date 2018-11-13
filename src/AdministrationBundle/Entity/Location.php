@@ -90,4 +90,3 @@ class Location
         return $this;
     }
 }
-

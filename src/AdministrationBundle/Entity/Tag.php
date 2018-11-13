@@ -116,4 +116,3 @@ class Tag
         return $this;
     }
 }
-

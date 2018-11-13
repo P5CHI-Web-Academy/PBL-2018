@@ -18,3 +18,4 @@
 /.idea
 /docker/.env
 /docker/logs/*
+/docker
