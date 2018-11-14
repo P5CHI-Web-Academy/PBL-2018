@@ -14,6 +14,7 @@ use AdministrationBundle\Entity\Tag;
 use AdministrationBundle\Form\TagType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,7 @@ class TagsController extends Controller
     /**
      *  Lists all tags
      *
-     *  @Route("/admin/listOfTags", name="tag.list")
+     *  @Route("/tag/listOfTags", name="tag.list")
      *
      *  @return Response
      */
@@ -40,24 +41,27 @@ class TagsController extends Controller
     /**
      *  Finds and displays a job entity.
      *
-     *  @Route("/{id}/show", name="tag.show")
+     *  @Route("/tag/{id}/show", name="tag.show")
      *
-     *  @param Tag $tag
+     *  @param Tag $someTag
      *
      *  @return Response
      */
-    public function show(Tag $tag) : Response {
+    public function show(Tag $someTag) : Response {
+        $deleteForm = $this->deleteForm($someTag);
+
         return $this->render('@Administration/Tags/showTag.html.twig', [
-            'tag' => $tag,
+            'someTag' => $someTag,
+            'deleteForm' => $deleteForm->createView(),
         ]);
     }
 
     /**
      *  Creates a new Tag in system
      *
-     *  @Route("/Tag/Create", name = "tag.create", methods={"GET", "POST"})
+     *  @Route("/tag/create", name = "tag.create", methods={"GET", "POST"})
      *
-     *  @param Request @request
+     *  @param Request $request
      *  @param EntityManagerInterface $em
      *
      *  @return RedirectResponse|Response
@@ -81,9 +85,9 @@ class TagsController extends Controller
     }
 
     /**
-     * Edit existing job entity
+     * Edit existing tag entity
      *
-     * @Route("/Tag/{id}/edit", name="tag.edit", methods={"GET", "POST"})
+     * @Route("/tag/{id}/edit", name="tag.edit", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Tag $tag
@@ -93,7 +97,7 @@ class TagsController extends Controller
      */
     public function edit(Request $request, Tag $tag, EntityManagerInterface $em) : Response
     {
-        $form = $this->createForm(JobType::class, $tag);
+        $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -105,5 +109,40 @@ class TagsController extends Controller
         return $this->render('@Administration/Tags/editTag.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * Creates a form to delete Tag
+     *
+     * @return FormInterface
+     */
+    private function deleteForm(Tag $tag) : FormInterface{
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('tag.delete', ['id' => $tag->getId()]))
+            ->setMethod('DELETE')
+            ->getForm();
+    }
+
+    /**
+     * Delete a tag functionality
+     *
+     * @Route("/tag/{id}/delete", name="tag.delete", methods="DELETE")
+     *
+     * @param Request $request
+     * @param Tag $tag
+     * @param EntityManagerInterface $em
+     *
+     * @return Response
+     */
+    public function delete(Request $request, Tag $tag, EntityManagerInterface $em) : Response{
+        $form = $this->deleteForm($tag);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em->remove($tag);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('tag.list');
     }
 }

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table text-center">
+        <tr>
+            <th class="active text-center">ID of tag</th>
+            <th class="active text-center">Name of tag</th>
+            <th class="active text-center">Slides connected to tag</th>
+        </tr>
+
+        <tr>
+            <td>{{ someTag.id }}</td>
+            <td>{{ someTag.tag }}</td>
+            <td>
+                {% for sl in someTag.slides %}
+                    {{ sl.name }}
+                {% endfor %}
+            </td>
+        </tr>
+        {{ form_start(deleteForm, {'attr': {'class': 'navbar-form navbar-left'}}) }}
+        {{ form_widget(deleteForm) }}
+
+        <button type="submit" class="btn btn-default" onclick="return confirm('Are you sure?')">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            Delete
+        </button>
+        {{ form_end(deleteForm) }}
+    </table>
+{% endblock %}
