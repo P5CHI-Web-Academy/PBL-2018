@@ -1,0 +1,2 @@
+172.21.0.1 - - [14/Nov/2018:08:44:43 +0000] "HEAD / HTTP/1.1" 500 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+172.21.0.1 - - [14/Nov/2018:08:44:49 +0000] "GET / HTTP/1.1" 404 308 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
