@@ -6,7 +6,7 @@
 
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <link rel="stylesheet" href="../../../../src/js/AdministrationBundle/Resources/public/css/styles.css">
+            <link rel="stylesheet" href="{{ asset('bundles/administration/css/styles.css') }}">
             <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         {% endblock %}
 
@@ -30,7 +30,7 @@
             </div>
         {% endblock %}
         {% block javascripts %}
-            <script src="../../../../src/js/AdministrationBundle/Resources/public/js/layout.js"></script>
+            <script src="{{ asset('bundles/administration/js/layout.js') }}"></script>
         {% endblock %}
     </body>
 </html>
