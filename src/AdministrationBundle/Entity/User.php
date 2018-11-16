@@ -27,7 +27,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="user_name", type="string", length=45, nullable=false)
      */
-    private $username;
+    private $userName;
 
     /**
      * @var string
@@ -54,18 +54,18 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUserName(): string
     {
-        return $this->username;
+        return $this->userName;
     }
 
     /**
-     * @param string $username
+     * @param string $userName
      * @return User
      */
-    public function setUsername(string $username): User
+    public function setUserName(string $userName): User
     {
-        $this->username = $username;
+        $this->userName = $userName;
 
         return $this;
     }

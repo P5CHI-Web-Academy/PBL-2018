@@ -64,3 +64,10 @@ Stack trace:
 #3 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(429): Doctrine\DBAL\Connection->connect()
 #4 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(389): Doctrine\DBAL\Connection->getDatabasePlatformVersion()
 #5 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(328): Doctrine\DBAL\Connection->detectDatabasePlatform()" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/11/16 13:10:00 [error] 7#7: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Doctrine\Common\Proxy\Exception\UnexpectedValueException: The return type of method "getCreatedBy" in class "AdministrationBundle\Entity\Slide" is invalid. in /var/www/vendor/doctrine/common/lib/Doctrine/Common/Proxy/Exception/UnexpectedValueException.php:78
+Stack trace:
+#0 /var/www/vendor/doctrine/common/lib/Doctrine/Common/Proxy/ProxyGenerator.php(1077): Doctrine\Common\Proxy\Exception\UnexpectedValueException::invalidReturnTypeHint('AdministrationB...', 'getCreatedBy')
+#1 /var/www/vendor/doctrine/common/lib/Doctrine/Common/Proxy/ProxyGenerator.php(1026): Doctrine\Common\Proxy\ProxyGenerator->formatType(Object(ReflectionNamedType), Object(ReflectionMethod))
+#2 /var/www/vendor/doctrine/common/lib/Doctrine/Common/Proxy/ProxyGenerator.php(781): Doctrine\Common\Proxy\ProxyGenerator->getMethodReturnType(Object(ReflectionMethod))
+#3 [internal function]: Doctrine\Common\Proxy\ProxyGenerator->generateMethods(Object(Doctrine\ORM\Mapping\ClassMetadata))
+#4 /var/www/vendor/d" while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.21.0.4:9000", host: "slides.local"
