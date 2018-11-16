@@ -64,3 +64,11 @@ Stack trace:
 #3 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(429): Doctrine\DBAL\Connection->connect()
 #4 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(389): Doctrine\DBAL\Connection->getDatabasePlatformVersion()
 #5 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(328): Doctrine\DBAL\Connection->detectDatabasePlatform()" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/11/14 08:44:43 [error] 9#9: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php:43
+Stack trace:
+#0 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOConnection.php(43): PDO->__construct('mysql:host=mysq...', 'root', 'root', Array)
+#1 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOMySql/Driver.php(44): Doctrine\DBAL\Driver\PDOConnection->__construct('mysql:host=mysq...', 'root', 'root', Array)
+#2 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(360): Doctrine\DBAL\Driver\PDOMySql\Driver->connect(Array, 'root', 'root', Array)
+#3 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(429): Doctrine\DBAL\Connection->connect()
+#4 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(389): Doctrine\DBAL\Connection->getDatabasePlatformVersion()
+#5 /var/www/vendor/doctrine/dbal/lib/Doctrine/DBAL/Connection.php(328): Doctrine" while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "HEAD / HTTP/1.1", upstream: "fastcgi://172.21.0.4:9000", host: "slides.local"
