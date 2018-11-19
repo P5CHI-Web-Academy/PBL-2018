@@ -2,7 +2,6 @@
 
 namespace AdministrationBundle\Entity;
 
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,7 +19,6 @@ class Tag
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-
     private $id;
 
     /**
@@ -38,12 +36,21 @@ class Tag
     private $slides;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Location", mappedBy="tags")
+     */
+    private $locations;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->slides = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
     /**
      * @return int
      */
@@ -64,7 +71,7 @@ class Tag
      * @param string $tag
      * @return Tag
      */
-    public function setTag(string $tag): self
+    public function setTag(string $tag): Tag
     {
         $this->tag = $tag;
 
@@ -72,23 +79,40 @@ class Tag
     }
 
     /**
-     * @return Collection
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getSlides(): Collection
+    public function getSlides(): \Doctrine\Common\Collections\Collection
     {
         return $this->slides;
     }
 
     /**
-     * @param Collection $slides
+     * @param \Doctrine\Common\Collections\Collection $slides
      * @return Tag
      */
-    public function setSlides(Collection $slides): Tag
+    public function setSlides(\Doctrine\Common\Collections\Collection $slides): Tag
     {
         $this->slides = $slides;
 
         return $this;
     }
 
-}
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLocations(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->locations;
+    }
 
+    /**
+     * @param \Doctrine\Common\Collections\Collection $locations
+     * @return Tag
+     */
+    public function setLocations(\Doctrine\Common\Collections\Collection $locations): Tag
+    {
+        $this->locations = $locations;
+
+        return $this;
+    }
+}

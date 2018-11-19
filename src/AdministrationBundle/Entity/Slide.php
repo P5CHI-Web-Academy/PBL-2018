@@ -100,30 +100,8 @@ class Slide
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Location", inversedBy="slides")
-     * @ORM\JoinTable(name="slide_location",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="id_slide", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="id_location", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $locations;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="slides")
-     * @ORM\JoinTable(name="slide_tag",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="id_slide", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="id_tag", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\JoinTable(name="slides_tags")
      */
     private $tags;
 
@@ -132,7 +110,6 @@ class Slide
      */
     public function __construct()
     {
-        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -330,26 +307,6 @@ class Slide
     public function setUpdatedBy(\User $updatedBy): Slide
     {
         $this->updatedBy = $updatedBy;
-
-        return $this;
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLocations(): \Doctrine\Common\Collections\Collection
-    {
-        return $this->locations;
-    }
-
-    /**
-     * @param \Doctrine\Common\Collections\Collection $locations
-     * @return Slide
-     */
-    public function setLocations(\Doctrine\Common\Collections\Collection $locations): Slide
-    {
-        $this->locations = $locations;
-
         return $this;
     }
 
@@ -362,7 +319,7 @@ class Slide
     }
 
     /**
-     * @param \Doctrine\Common\Collections\Collection $idTag
+     * @param \Doctrine\Common\Collections\Collection $tags
      * @return Slide
      */
     public function setTags(\Doctrine\Common\Collections\Collection $tags): Slide
@@ -373,4 +330,3 @@ class Slide
     }
 
 }
-
