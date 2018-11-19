@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/administration/css/login_form.css') }}">
+
+
+</head>
+<body>
+
+
+<div>
+
+    <form action="{{ path('login') }}" method="post" id="myForm"><br/>
+        <!--Create a container -->
+
+
+        <center><input type="image" src="https://pbs.twimg.com/profile_images/649233120269631488/-c7t1Wjw_400x400.jpg"
+                       alt="Submit" width="60" height="60"></center>
+        <br/>
+
+        <div class="wrap-input100 validate-input m-b-10" data-validate="Username is required">
+            <center><input class="input100" name="_username" type="text" placeholder="Username"
+                           value="{{ last_username }}"/></center>
+        </div>
+
+        <br/>
+        <br/>
+
+        <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
+            <center><input class="input100" name="_password" type="password" placeholder="Password"/></center>
+        </div>
+        <!--When authentication fails, the browser is redirected to /login?error
+               so we can display an error message by detecting if the parameter error is non-null.-->
+        {% if error %}
+            <div class="error">
+                <center>{{ error.messageKey|trans(error.messageData, 'security') }}</center>
+            </div>
+        {% endif %}
+
+        <br/>
+        <br/>
+
+
+        <div class="container"><span class="password">
+
+
+
+
+            <div class="container-login100-form-btn">
+               <center> <input type="submit" class="btn light-orange btn-rounded" value="Login">
+
+                </center>
+            </div>
+
+
+
+             <div class="forgot">
+                <a href="reset.html">Forgot password?<a>
+             </div>
+
+
+
+
+        </span>
+            <!--The main use of anchor tags - <a></a> - is as hyperlinks.
+            That basically means that they take you somewhere.
+            Hyperlinks require the href property, because it specifies a location. -->
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
