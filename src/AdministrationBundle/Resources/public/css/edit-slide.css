@@ -1,0 +1,72 @@
+/* start slides options edit  */
+
+.slide-options-container {
+    display: flex;
+
+}
+
+.slide-title-form {
+    width: 23.5%;
+}
+
+.tags-dropdown {
+    width: 30%;
+}
+
+.btn {
+    width: 100%;
+}
+
+.slide-option {
+    margin-right: 1%;
+}
+
+.dropdown-tags {
+    padding: 3px 20px;
+    font-weight: bold;
+}
+
+.label {
+    padding: .5em 1.5em .5em;
+    margin: 2px;
+}
+
+.title-tag { 
+    margin: 2px 0;
+}
+
+.dropdown-menu {
+    height: auto;
+    max-height: 250px;
+    overflow-x: hidden;
+}
+
+/* -----schedule */
+.drop-schedule-line {
+    padding: 3px 20px;
+}
+
+/* start end date */
+
+.start-date-form {
+    width: 20%;
+}
+
+
+
+/* start ckeditor and tags container */
+
+.editor-tags-block {
+    display: flex;
+}
+
+.ckeditor {
+    width: 80%;
+    height: 600px;
+    background-color: white;
+    margin: 30px 2% 0 0;
+}
+
+.active-tags-list {
+    width: 18%;
+}
