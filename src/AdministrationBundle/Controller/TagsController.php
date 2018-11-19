@@ -25,7 +25,7 @@ class TagsController extends Controller
     /**
      *  Lists all tags
      *
-     *  @Route("/tag/listOfTags", name="tag.list")
+     *  @Route("/admin/tag/listOfTags", name="tag.list")
      *
      *  @return Response
      */
@@ -41,7 +41,7 @@ class TagsController extends Controller
     /**
      *  Finds and displays a job entity.
      *
-     *  @Route("/tag/{id}/show", name="tag.show")
+     *  @Route("/admin/tag/{id}/show", name="tag.show")
      *
      *  @param Tag $someTag
      *
@@ -59,7 +59,7 @@ class TagsController extends Controller
     /**
      *  Creates a new Tag in system
      *
-     *  @Route("/tag/create", name = "tag.create", methods={"GET", "POST"})
+     *  @Route("/admin/tag/create", name = "tag.create", methods={"GET", "POST"})
      *
      *  @param Request $request
      *  @param EntityManagerInterface $em
@@ -87,7 +87,7 @@ class TagsController extends Controller
     /**
      * Edit existing tag entity
      *
-     * @Route("/tag/{id}/edit", name="tag.edit", methods={"GET", "POST"})
+     * @Route("/admin/tag/{id}/edit", name="tag.edit", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Tag $tag
@@ -126,7 +126,7 @@ class TagsController extends Controller
     /**
      * Delete a tag functionality
      *
-     * @Route("/tag/{id}/delete", name="tag.delete", methods="DELETE")
+     * @Route("/admin/tag/{id}/delete", name="tag.delete", methods="DELETE")
      *
      * @param Request $request
      * @param Tag $tag
