@@ -1,0 +1,30 @@
+{% extends '@Administration/base.html.twig' %}
+
+{% block body %}
+    <table class="table text-center">
+        <tr>
+            <th class="active text-center">ID</th>
+            <th class="active text-center">Tag</th>
+            <th class="active text-center">Slides</th>
+        </tr>
+
+        {% for tag in tags %}
+            <tr>
+                <td>{{ tag.id }}</td>
+                <td>
+                    <a href="{{ path('tag.show', {id: tag.id}) }}">
+                        {{ tag.tag }}
+                    </a>
+                </td>
+                <td>
+                    {% for sl in tag.slides %}
+                        {{ sl.name }}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="{{path('tag.create')}}">Create</a>
+
+{% endblock %}
