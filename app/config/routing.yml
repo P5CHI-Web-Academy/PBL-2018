@@ -1,7 +1,0 @@
-administration:
-    resource: "@AdministrationBundle/Controller/"
-    type: annotation
-
-display:
-    resource: "@DisplayBundle/Controller/"
-    type: annotation
