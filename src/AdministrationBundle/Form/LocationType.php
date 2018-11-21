@@ -2,11 +2,10 @@
 
 namespace AdministrationBundle\Form;
 
-use Doctrine\DBAL\Types\ArrayType;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class LocationType extends AbstractType
 {
@@ -18,8 +17,7 @@ class LocationType extends AbstractType
         $builder
             ->add('location', TextType::class, array(
                 'constraints' => array()
-            ))
-            ->add('tags');
+            ));
     }
 
     /**

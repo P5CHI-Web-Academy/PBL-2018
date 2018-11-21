@@ -2,8 +2,12 @@
 
 namespace AdministrationBundle\Controller;
 
-use AdministrationBundle\AdministrationBundle;
 use AdministrationBundle\Entity\Location;
+use AdministrationBundle\Form\LocationType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,13 +43,32 @@ class LocationsController extends Controller
         );
     }
 
-    /**
-     * @Route("/admin/locations/new", name="location_new")
-     */
-    public function newLocation(){
 
-        return $this->render('@Administration/Locations/new.html.twig');
+    /**
+     * @Route("/admin/locations/new", name="location_new", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     *
+     * @return RedirectResponse|Response
+     */
+    public function newLocation(Request $request, EntityManagerInterface $em) : Response {
+        $location = new Location();
+        $form = $this->createForm(LocationType::class, $location);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($location);
+            $em->flush();
+
+            return $this->redirectToRoute('locations');
+        }
+
+        return $this->render('@Administration/Locations/new.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
+
 
     /**
      * @Route("/admin/locations/deletion/{id}", name="location_delete")
