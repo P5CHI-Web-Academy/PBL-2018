@@ -33,14 +33,31 @@ class LocationsController extends Controller
     }
 
     /**
-     * @Route("/admin/locations/edit/{id}", name="location_edit")
+     * @Route("/admin/locations/edit/{id}", name="location_edit", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
-    public function editLocation($id){
+    public function editLocation($id, Request $request) : Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $location = $this->getDoctrine()
+            ->getRepository(Location::class)
+            ->find($id);
 
-        return $this->render(
-            '@Administration/Locations/edit.html.twig',
-            array()
-        );
+        $form = $this->createForm(LocationType::class, $location);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+//            $entityManager->persist($location);
+            $entityManager->flush();
+            return $this->redirectToRoute('locations');
+        }
+
+        return $this->render('@Administration/Locations/edit.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
 
