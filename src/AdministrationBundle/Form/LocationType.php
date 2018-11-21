@@ -17,7 +17,8 @@ class LocationType extends AbstractType
         $builder
             ->add('location', TextType::class, array(
                 'constraints' => array()
-            ));
+            ))
+            ->add('tags');
     }
 
     /**
