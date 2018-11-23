@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '@Administration/base.html.twig' %}
 
 {% block title %}Locations index{% endblock %}
 {% block stylesheets %}{% endblock %}
@@ -12,9 +12,9 @@
 
         <a href="{{ path('location_edit', {'id': location.id}) }}">Edit</a>
         <a href="{{ path('location_delete', {'id': location.id}) }}">Delete</a>
-
+        tags:
         {% for tag in location.tags %}
-            {{ tag.tag }}
+            {{ tag.tag }},
         {% endfor %}
     
         <br/>

@@ -3,12 +3,19 @@
 namespace AdministrationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Location
  *
  * @ORM\Table(name="location", uniqueConstraints={@ORM\UniqueConstraint(name="location_UNIQUE", columns={"location"})})
  * @ORM\Entity
+ *
+ * @UniqueEntity(
+ *      fields={"location"},
+ *      errorPath="location",
+ *      message="It appears this location already exists."
+ *)
  */
 class Location
 {
@@ -55,7 +62,7 @@ class Location
     /**
      * @return string
      */
-    public function getLocation(): string
+    public function getLocation(): ?string
     {
         return $this->location;
     }
