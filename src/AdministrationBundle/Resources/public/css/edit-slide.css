@@ -2,15 +2,13 @@
 
 .slide-options-container {
     display: flex;
-
+    padding-top: 30px;
+    font-size: 20px;
 }
 
 .slide-title-form {
     width: 23.5%;
-}
-
-.tags-dropdown {
-    width: 30%;
+    height: 37px;
 }
 
 .btn {
@@ -21,10 +19,12 @@
     margin-right: 1%;
 }
 
+/* dropdown tags*/
 .dropdown-tags {
     padding: 3px 20px;
     font-weight: bold;
 }
+
 
 .label {
     padding: .5em 1.5em .5em;
@@ -35,22 +35,144 @@
     margin: 2px 0;
 }
 
-.dropdown-menu {
+.mydropdown-menu {
     height: auto;
     max-height: 250px;
     overflow-x: hidden;
+    font-size: 14px;
+    width: 350px;
+}
+
+.text-dropdown {
+    font-size: 16px;
+    margin: 3px;
+}
+
+
+
+.button-title {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn .caret {
+    margin-left: 10px;
 }
 
 /* -----schedule */
 .drop-schedule-line {
     padding: 3px 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
 }
+
+.dropdown-occurs {
+
+
+}
+
+.text-schedule {
+    padding-right: 7px;
+    font-size: 14px;
+}
+
+.text-weeks {
+    padding-left: 10px;
+}
+
+.text-till {
+    padding-left: 10px;
+}
+
+.frequency-drop {
+    width: 80px;
+}
+
+.counter-drop {
+    width: 40px;
+    margin-right: 7px;
+}
+
+#container-schedule-drop {
+    overflow: visible;
+}
+
+#texton {
+    display: none;
+}
+
+.daysweek {
+    width: 150px;
+}
+
+/*here for week*/
+
+#daysweek_div {
+    /*width: 150px;*/
+    display: none;
+}
+
+#daysweek_div span {
+    width: auto!important;
+}
+
+
+#datemonth_div {
+}
+
+#datemonth_div span {
+    width: auto!important;
+}
+
+
+/*here for month*/
+
+#month_div {
+    display: none;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+#select_custom_def {
+}
+
+
+#custom_div {
+    display: none;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+#defined_div {
+    display: none;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.icon-time {
+    font-size: 22px;
+    padding-left: 20px;
+    fill: #565464!important;
+}
+
+
+
 
 /* start end date */
 
 .start-date-form {
     width: 20%;
 }
+
+
+
 
 
 
@@ -70,3 +192,4 @@
 .active-tags-list {
     width: 18%;
 }
+

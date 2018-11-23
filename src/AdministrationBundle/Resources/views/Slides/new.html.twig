@@ -1,12 +1,186 @@
-{% extends 'base.html.twig' %}
+{% extends '@Administration/base.html.twig' %}
 
 {% block title %}Locations index{% endblock %}
-{% block stylesheets %}{% endblock %}
+
 
 {% block body %}
 
-    add new slide
+    <div class="body main">
+        <div class="slide-options-container">
+            <input type="text" class="form-control slide-option slide-title-form" placeholder="Insert Slide Name" id="slide-edit-title-form">
+            <div class="dropdown slide-option slide-dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <div class="button-title">
+                        <h6 class="text-dropdown">Pick Tags</h6>
+                        <span class="caret"></span>
+                    </div>
+                </button>
+                <ul class="dropdown-menu mydropdown-menu">
+                    <li class="dropdown-tags title-tag">locations</li>
+                    <li class="dropdown-tags"><span class="label label-primary">Pentalog-CHI</span></li>
+                    <li class="dropdown-tags"><span class="label label-primary">Pentalog-CHI</span></li>
+                    <li class="dropdown-tags"><span class="label label-primary">Pentalog-CHI</span></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-tags title-tag">office</li>
+                    <li class="dropdown-tags"><span class="label label-success">CHI-202</span></li>
+                    <li class="dropdown-tags"><span class="label label-success">CHI-202</span></li>
+                    <li class="dropdown-tags"><span class="label label-success">CHI-202</span></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-tags title-tag">kind</li>
+                    <li class="dropdown-tags"><span class="label label-info">Kitchen</span></li>
+                    <li class="dropdown-tags"><span class="label label-info">Meeting-Room</span></li>
+                    <li class="divider"></li>
+                    <li class="title-tag"><a href="#">fetchers</a></li>
+                </ul>
+            </div>
+            <div class="dropdown slide-option schedule-dropdown slide-dropdown">
+                <button class="btn btn-default dropdown-toggle btn-drop" type="button" data-toggle="dropdown">
+                    <div class="button-title">
+                        <h6 class="text-dropdown">Schedule</h6>
+                        <span class="caret"></span>
+                    </div>
+                </button>
+
+                <div id="container-schedule-drop" class="dropdown-menu mydropdown-menu">
+                    <div class="dropdown-schedule drop-schedule-line">
+                        <h5 class="text-schedule">occurs</h5>
+                        <h5 class="text-schedule">every</h5>
+                        <select name="sel-count" class="form-control counter-drop" id="sel2">
+                            <option value="d">1</option>
+                            <option value="s">2</option>
+                            <option value="s">3</option>
+                            <option value="s">4</option>
+                            <option value="s">5</option>
+                            <option value="s">6</option>
+                            <option value="s">7</option>
+                            <option value="s">8</option>
+                            <option value="s">9</option>
+                            <option value="s">10</option>
+                        </select>
+                        <select name="sel-dayweek" class="form-control frequency-drop" id="sel1">
+                            <option class="day" value="day">day</option>
+                            <option class="week" value="week">week</option>
+                            <option class="month" value="month">month</option>
+                        </select>
+                    </div>
+                    <div class="dropdown-tags drop-schedule-line">
+
+                        {#week/ month#}
+                        <h5 class="text-schedule texton" id="texton">on</h5>
+
+                        {#week#}
+                        <div id="daysweek_div">
+                            <select id="daysweek" multiple="multiple" class="daysweek">
+                                <option value="Mo">Monday</option>
+                                <option value="Tu">Tuesday</option>
+                                <option value="We">Wednesday</option>
+                                <option value="Th">Thursday</option>
+                                <option value="Fr">Friday</option>
+                            </select>
+                        </div>
+
+                        {#month#}
+                        <div class="month-div" id="month_div">
+                            <select name="custom-defined" class="form-control frequency-drop" id="select_custom_def">
+                                <option value="custom-select">selected</option>
+                                <option value="pre-defined-select">pre-defined</option>
+                            </select>
+                            <h5 class="text-schedule texton" id="datemonth_text">day(s) of month:</h5>
+                        </div>
+                    </div>
+
+                    <div class="dropdown-tags drop-schedule-line">
+                        <div class="defined-div" id="defined_div">
+                            <select name="month-custom-first-last" class="form-control frequency-drop" id="select_custom">
+                                <option value="custom-select">the first</option>
+                                <option value="pre-defined-select">the last</option>
+                            </select>
+
+                            <select name="sel-count-2" class="form-control counter-drop" id="sel2_month_count">
+                                <option value="d">1</option>
+                                <option value="s">2</option>
+                                <option value="s">3</option>
+                                <option value="s">4</option>
+                                <option value="s">5</option>
+                            </select>
+
+                            <h5 class="text-schedule business-text" id="business_text">business</h5>
+
+                            <select name="month-custom-days-weeks" class="form-control frequency-drop" id="sel1-days-weeks">
+                                <option class="day" value="days">days</option>
+                                <option class="week" value="weeks">weeks</option>
+                            </select>
+                        </div>
+
+                        <div class="custom-div" id="custom_div">
+                            <h5 class="text-schedule select-days-text" id="select_days_text">Select days:</h5>
+                            <div id="datemonth_div">
+                                <select id="datemonth" multiple="multiple" class="datemonth">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                    <option>13</option>
+                                    <option>14</option>
+                                    <option>15</option>
+                                    <option>16</option>
+                                    <option>17</option>
+                                    <option>18</option>
+                                    <option>19</option>
+                                    <option>20</option>
+                                    <option>21</option>
+                                    <option>22</option>
+                                    <option>23</option>
+                                    <option>24</option>
+                                    <option>25</option>
+                                    <option>26</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>29</option>
+                                    <option>30</option>
+                                    <option>31</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="dropdown-tags drop-schedule-line">
+                        <h5 class="text-schedule">from</h5>
+                        <input type="time" id="appt" name="appt" min="9:00" max="18:00" required>
+                        <h5 class="text-schedule text-till">till</h5>
+                        <input type="time" id="appt" name="appt" min="9:00" max="18:00" required>
+                        <a href="#" data-toggle="tooltip" data-placement="right" title="time"><ion-icon name="time" class="icons icon-time"></ion-icon></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="input-group date" data-provide="datepicker">
+                <input type="text" class="form-control" id="data-date">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="editor-tags-block">
+            <div class="ckeditor">
+                Here the CKEditor
+            </div>
+            <div class="active-tags-list">
+                <h6>Active tags:</h6>
+                <li>Here tags</li>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
-
-{% block javascripts %}{% endblock %}
