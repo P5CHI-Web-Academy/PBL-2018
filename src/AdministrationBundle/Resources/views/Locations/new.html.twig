@@ -1,14 +1,16 @@
 {% extends '@Administration/base.html.twig' %}
 
-{% block title %}Location edit{% endblock %}
+{% block title %}Location new{% endblock %}
 {% block stylesheets %}{% endblock %}
 
 {% block body %}
 
-   {{ form_start(form) }}
+    {{ form_start(form) }}
     {{ form_widget(form) }}
         <button type="submit">Add</button>
     {{ form_end(form) }}
+
+    <a href="{{ path('locations') }}">Back</a>
 
 {% endblock %}
 
