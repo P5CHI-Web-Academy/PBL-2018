@@ -3,6 +3,7 @@
 namespace AdministrationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Time;
 
 /**
  * Slide
@@ -27,13 +28,6 @@ class Slide
      * @ORM\Column(name="name", type="string", length=45, nullable=false)
      */
     private $name;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="activetime", type="integer", nullable=false)
-     */
-    private $activetime;
 
     /**
      * @var \DateTime
@@ -106,6 +100,35 @@ class Slide
     private $tags;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="step", type="integer", nullable=false)
+     */
+    private $step;
+
+    /**
+     * @var Time
+     *
+     * @ORM\Column(name="active_time_start", type="time", nullable=false)
+     */
+    private $activeTimeStart;
+
+    /**
+     * @var Time
+     *
+     * @ORM\Column(name="active_time_end", type="time", nullable=false)
+     */
+    private $activeTimeEnd;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="slideId")
+     *
+     */
+    private $schedule;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -136,25 +159,6 @@ class Slide
     public function setName(string $name): Slide
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getActivetime(): int
-    {
-        return $this->activetime;
-    }
-
-    /**
-     * @param int $activetime
-     * @return Slide
-     */
-    public function setActivetime(int $activetime): Slide
-    {
-        $this->activetime = $activetime;
 
         return $this;
     }
@@ -329,4 +333,82 @@ class Slide
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getStep(): int
+    {
+        return $this->step;
+    }
+
+    /**
+     * @param int $step
+     *
+     * @return Slide
+     */
+    public function setStep(int $step): Slide
+    {
+        $this->step = $step;
+
+        return $this;
+    }
+
+    /**
+     * @return Time
+     */
+    public function getActiveTimeStart(): Time
+    {
+        return $this->activeTimeStart;
+    }
+
+    /**
+     * @param Time $active_time_start
+     *
+     * @return Slide
+     */
+    public function setActiveTimeStart(Time $active_time_start): Slide
+    {
+        $this->activeTimeStart = $active_time_start;
+
+        return $this;
+    }
+
+    /**
+     * @return Time
+     */
+    public function getActiveTimeEnd(): Time
+    {
+        return $this->activeTimeEnd;
+    }
+
+    /**
+     * @param Time $active_time_end
+     *
+     * @return Slide
+     */
+    public function setActiveTimeEnd(Time $active_time_end): Slide
+    {
+        $this->activeTimeStart = $active_time_end;
+
+        return $this;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSchedule(): \Doctrine\Common\Collections\Collection
+    {
+        return $this->schedule;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $schedule
+     * @return Slide
+     */
+    public function setSchedule(\Doctrine\Common\Collections\Collection $schedule): Slide
+    {
+        $this->tags = $schedule;
+
+        return $this;
+    }
 }
