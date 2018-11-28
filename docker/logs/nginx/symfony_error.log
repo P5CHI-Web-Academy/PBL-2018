@@ -1,0 +1,1 @@
+2018/11/28 12:43:43 [error] 8#8: *48 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "GET /app_dev.php/admin/users HTTP/1.1", upstream: "fastcgi://172.21.0.4:9000", host: "slides.local"

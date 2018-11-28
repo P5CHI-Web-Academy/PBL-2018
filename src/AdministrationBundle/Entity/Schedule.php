@@ -22,14 +22,12 @@ class Schedule
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="slide_id", type="integer", nullable=false)
+     * @var Slide
      *
      * @ORM\ManyToOne(targetEntity="Slide", inversedBy="schedule")
      * @ORM\JoinColumn(name="slide_id", referencedColumnName="id")
      */
-    private $slideId;
+    private $slide;
 
     /**
      * @var int
@@ -71,27 +69,22 @@ class Schedule
     }
 
     /**
-     * Set slideId
-     *
-     * @param integer $slideId
-     *
-     * @return Schedule
+     * @return Slide
      */
-    public function setSlideId($slideId) : Schedule
+    public function getSlide(): Slide
     {
-        $this->slideId = $slideId;
-
-        return $this;
+        return $this->slide;
     }
 
     /**
-     * Get slideId
-     *
-     * @return int
+     * @param Slide $slide
+     * @return Schedule
      */
-    public function getSlideId() : int
+    public function setSlide(Slide $slide): Schedule
     {
-        return $this->slideId;
+        $this->slide = $slide;
+
+        return $this;
     }
 
     /**

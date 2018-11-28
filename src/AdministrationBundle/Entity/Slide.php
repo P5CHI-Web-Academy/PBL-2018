@@ -72,7 +72,7 @@ class Slide
     private $updatedAt;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -82,7 +82,7 @@ class Slide
     private $createdBy;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumns({
@@ -107,24 +107,23 @@ class Slide
     private $step;
 
     /**
-     * @var Time
+     * @var \DateTime
      *
-     * @ORM\Column(name="active_time_start", type="time", nullable=false)
+     * @ORM\Column(name="active_time_start", type="datetime", nullable=false)
      */
     private $activeTimeStart;
 
     /**
-     * @var Time
+     * @var \DateTime
      *
-     * @ORM\Column(name="active_time_end", type="time", nullable=false)
+     * @ORM\Column(name="active_time_end", type="datetime", nullable=false)
      */
     private $activeTimeEnd;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="slideId")
-     *
+     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="slide")
      */
     private $schedule;
 
@@ -134,6 +133,7 @@ class Slide
     public function __construct()
     {
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->schedule = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -278,18 +278,18 @@ class Slide
     }
 
     /**
-     * @return \User
+     * @return User
      */
-    public function getCreatedBy(): \User
+    public function getCreatedBy(): User
     {
         return $this->createdBy;
     }
 
     /**
-     * @param \User $createdBy
+     * @param User $createdBy
      * @return Slide
      */
-    public function setCreatedBy(\User $createdBy): Slide
+    public function setCreatedBy(User $createdBy): Slide
     {
         $this->createdBy = $createdBy;
 
@@ -297,18 +297,18 @@ class Slide
     }
 
     /**
-     * @return \User
+     * @return User
      */
-    public function getUpdatedBy(): \User
+    public function getUpdatedBy(): User
     {
         return $this->updatedBy;
     }
 
     /**
-     * @param \User $updatedBy
+     * @param User $updatedBy
      * @return Slide
      */
-    public function setUpdatedBy(\User $updatedBy): Slide
+    public function setUpdatedBy(User $updatedBy): Slide
     {
         $this->updatedBy = $updatedBy;
         return $this;
@@ -354,9 +354,9 @@ class Slide
     }
 
     /**
-     * @return Time
+     * @return \DateTime
      */
-    public function getActiveTimeStart(): Time
+    public function getActiveTimeStart(): \DateTime
     {
         return $this->activeTimeStart;
     }
@@ -374,9 +374,9 @@ class Slide
     }
 
     /**
-     * @return Time
+     * @return \DateTime
      */
-    public function getActiveTimeEnd(): Time
+    public function getActiveTimeEnd(): \DateTime
     {
         return $this->activeTimeEnd;
     }
@@ -407,7 +407,7 @@ class Slide
      */
     public function setSchedule(\Doctrine\Common\Collections\Collection $schedule): Slide
     {
-        $this->tags = $schedule;
+        $this->schedule = $schedule;
 
         return $this;
     }

@@ -1,0 +1,37 @@
+{% extends '@Administration/base.html.twig' %}
+
+{% block body %}
+
+    {%  for slide in slides %}
+        {{ slide.name }} <br/>
+        {{ slide.periodOfValidity|date() }} <br/>
+        {{ slide.expirationDate|date() }} <br/>
+        {{ slide.enabled }} <br/>
+        {{ slide.content }} <br/>
+        {{ slide.createdAt|date() }} <br/>
+        {{ slide.updatedAt|date() }} <br/>
+        {#{{ slide.createdBy }} <br/>#}
+        {#{{ slide.updatedBy }} <br/>#}
+        {% for tag in slide.tags %}
+            {{ tag }},
+        {% endfor %} <br/>
+        {{ slide.step }} <br/>
+        {{ slide.activeTimeStart|date }} <br/>
+        {{ slide.activeTimeEnd|date }} <br/>
+        schedule:
+        {% for schedule in slide.schedule %}
+            {{ schedule.type }},
+            {{ schedule.week }},
+            {{ schedule.month }},
+            {{ schedule.day }} <br/>
+        {% endfor %}
+
+        {% for sch in slide.schedule %}
+            {{ dump(sch) }}
+        {% endfor %}
+
+        <br/>
+        <br/>
+    {% endfor %}
+
+{% endblock %}
