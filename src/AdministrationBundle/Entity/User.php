@@ -39,7 +39,7 @@ class User implements UserInterface
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_supervisor", type="boolean", nullable=false)
+     * @ORM\Column(name="is_supervisor", type="boolean", nullable=false, options={"default" : 0})
      */
     private $isSupervisor;
 
@@ -54,7 +54,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -73,7 +73,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -92,7 +92,7 @@ class User implements UserInterface
     /**
      * @return bool
      */
-    public function isSupervisor(): bool
+    public function isSupervisor(): ?bool
     {
         return $this->isSupervisor;
     }

@@ -2,6 +2,11 @@
 
 {% block body %}
 
-    new user
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+        <button type="submit">Add</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('users') }}">Back</a>
 
 {% endblock %}
