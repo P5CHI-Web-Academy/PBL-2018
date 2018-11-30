@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends '@Administration/base.html.twig' %}
 
 {% block title %}Locations index{% endblock %}
 {% block stylesheets %}{% endblock %}
 
 {% block body %}
 
-    preview {{ slide.name }}
+    preview {{ slide.name }} <bt/>
+    {{ slide.content }}
 
 {% endblock %}
 

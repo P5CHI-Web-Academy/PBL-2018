@@ -3,6 +3,7 @@
 namespace AdministrationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -10,6 +11,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="supervisorname_UNIQUE", columns={"user_name"})})
  * @ORM\Entity
+ *
+ * @UniqueEntity(
+ *      fields={"username"},
+ *      errorPath="username",
+ *      message="It appears this username already exists."
+ *)
  */
 class User implements UserInterface
 {
