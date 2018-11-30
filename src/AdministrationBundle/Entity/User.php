@@ -3,6 +3,7 @@
 namespace AdministrationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -10,6 +11,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="supervisorname_UNIQUE", columns={"user_name"})})
  * @ORM\Entity
+ *
+ * @UniqueEntity(
+ *      fields={"username"},
+ *      errorPath="username",
+ *      message="It appears this username already exists."
+ *)
  */
 class User implements UserInterface
 {
@@ -39,7 +46,7 @@ class User implements UserInterface
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_supervisor", type="boolean", nullable=false)
+     * @ORM\Column(name="is_supervisor", type="boolean", nullable=false, options={"default" : 0})
      */
     private $isSupervisor;
 
@@ -54,7 +61,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -73,7 +80,7 @@ class User implements UserInterface
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -92,7 +99,7 @@ class User implements UserInterface
     /**
      * @return bool
      */
-    public function isSupervisor(): bool
+    public function isSupervisor(): ?bool
     {
         return $this->isSupervisor;
     }

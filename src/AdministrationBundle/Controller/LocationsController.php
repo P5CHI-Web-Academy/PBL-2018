@@ -17,13 +17,13 @@ class LocationsController extends Controller
      * @Route("/admin/locations", name="locations")
      * @throws \Exception
      */
-    public function indexAction()
+    public function listLocations(): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $locations =  $entityManager->getRepository(Location::class)->findAll();
 
         if(!$locations){
-            throw new \Exception("error while fetching locations");
+            throw new \RuntimeException('error while fetching locations');
         }
 
         return $this->render(
@@ -35,6 +35,7 @@ class LocationsController extends Controller
     /**
      * @Route("/admin/locations/edit/{id}", name="location_edit", methods={"GET", "POST"})
      *
+     * @param $id
      * @param Request $request
      *
      * @return Response
@@ -89,8 +90,10 @@ class LocationsController extends Controller
 
     /**
      * @Route("/admin/locations/deletion/{id}", name="location_delete")
+     * @param $id
+     * @return RedirectResponse
      */
-    public function deleteLocation($id)
+    public function deleteLocation($id): RedirectResponse
     {
         $entityManager = $this->getDoctrine()->getManager();
 

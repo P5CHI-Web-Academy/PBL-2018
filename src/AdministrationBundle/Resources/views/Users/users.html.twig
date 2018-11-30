@@ -1,0 +1,17 @@
+{% extends '@Administration/base.html.twig' %}
+
+{% block body %}
+
+    {% for user in users %}
+
+        usersname: {{ user.username }},
+        password: {{ user.password }},
+        isSupervisor: {{ user.isSupervisor }},
+        <a href="{{ path('user_delete', {'id': user.id}) }}" onclick="return confirm('Are you sure?')">Delete</a>
+        <br/>
+    {% endfor %}
+
+    <br/>
+    <a href="{{ path('users_new') }}">Add new user</a>
+
+{% endblock %}
