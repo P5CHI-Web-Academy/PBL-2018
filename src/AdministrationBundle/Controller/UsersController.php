@@ -48,7 +48,7 @@ class UsersController extends Controller
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($user);
             $em->flush();
-
+            
             return $this->redirectToRoute('users');
         }
 

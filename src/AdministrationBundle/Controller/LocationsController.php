@@ -70,7 +70,7 @@ class LocationsController extends Controller
      *
      * @return RedirectResponse|Response
      */
-    public function newUser(Request $request, EntityManagerInterface $em) : Response {
+    public function newLocation(Request $request, EntityManagerInterface $em) : Response {
         $location = new Location();
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
