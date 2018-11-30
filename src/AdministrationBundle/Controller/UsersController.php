@@ -17,7 +17,7 @@ class UsersController extends Controller
      * @Route("/admin/users", name="users")
      *
      */
-    public function indexAction(): Response
+    public function listUsers(): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $users =  $entityManager->getRepository(User::class)->findAll();
@@ -40,7 +40,7 @@ class UsersController extends Controller
      *
      * @return RedirectResponse|Response
      */
-    public function newLocation(Request $request, EntityManagerInterface $em) : Response {
+    public function newUser(Request $request, EntityManagerInterface $em) : Response {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);

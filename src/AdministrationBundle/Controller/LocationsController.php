@@ -17,7 +17,7 @@ class LocationsController extends Controller
      * @Route("/admin/locations", name="locations")
      * @throws \Exception
      */
-    public function indexAction(): Response
+    public function listLocations(): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         $locations =  $entityManager->getRepository(Location::class)->findAll();
@@ -70,7 +70,7 @@ class LocationsController extends Controller
      *
      * @return RedirectResponse|Response
      */
-    public function newLocation(Request $request, EntityManagerInterface $em) : Response {
+    public function newUser(Request $request, EntityManagerInterface $em) : Response {
         $location = new Location();
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
