@@ -48,7 +48,7 @@ class UsersController extends Controller
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($user);
             $em->flush();
-            
+
             return $this->redirectToRoute('users');
         }
 
@@ -56,7 +56,7 @@ class UsersController extends Controller
             'form' => $form->createView()
         ));
     }
-
+    
     /**
      * @Route("/admin/users/deletion/{id}", name="user_delete")
      * @param $id
