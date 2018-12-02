@@ -6,7 +6,12 @@
 {% block body %}
 
     <div class="body main">
-        <div class="slide-options-container">
+        <div class="title-create-slide">
+            <h3 class="title-create-slide-text">Create Your Slide Here</h3>
+            <ion-icon name="create" class="icon-create-title"></ion-icon>
+        </div>
+        <div class="line-under-title"></div>
+        <div class="slide-options-container" id="slide_options">
             <input type="text" class="form-control slide-option slide-title-form" placeholder="Insert Slide Name" id="slide-edit-title-form">
             <div class="dropdown slide-option slide-dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
@@ -15,22 +20,17 @@
                         <span class="caret"></span>
                     </div>
                 </button>
-                <ul class="dropdown-menu mydropdown-menu">
-                    <li class="dropdown-tags title-tag">locations</li>
-                    <li class="dropdown-tags"><span class="label label-primary">Pentalog-CHI</span></li>
-                    <li class="dropdown-tags"><span class="label label-primary">Pentalog-CHI</span></li>
-                    <li class="dropdown-tags"><span class="label label-primary">Pentalog-CHI</span></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-tags title-tag">office</li>
-                    <li class="dropdown-tags"><span class="label label-success">CHI-202</span></li>
-                    <li class="dropdown-tags"><span class="label label-success">CHI-202</span></li>
-                    <li class="dropdown-tags"><span class="label label-success">CHI-202</span></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-tags title-tag">kind</li>
-                    <li class="dropdown-tags"><span class="label label-info">Kitchen</span></li>
-                    <li class="dropdown-tags"><span class="label label-info">Meeting-Room</span></li>
-                    <li class="divider"></li>
-                    <li class="title-tag"><a href="#">fetchers</a></li>
+                <ul class="dropdown-menu mydropdown-menu-tags">
+                    {#<a href="#" data-toggle="tooltip" class="question-tags-icon" data-placement="top" title="Tags will help you manage the locations where your slide will show up"><ion-icon name="help"></ion-icon></a>#}
+
+                    {#{% for id in tag %}#}
+                        {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ tag.id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>#}
+                    {#{% endfor %}#}
+
+                    {#here some examples/ clear when done#}
+                    <a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id2" onclick="selectTag(this.id)">Name Tag</button></a>
+                    <a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id3" onclick="selectTag(this.id)">Name Tag</button></a>
+                    <a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id4" onclick="selectTag(this.id)">Name Tag Long Here</button></a>
                 </ul>
             </div>
             <div class="dropdown slide-option schedule-dropdown slide-dropdown">
@@ -40,8 +40,32 @@
                         <span class="caret"></span>
                     </div>
                 </button>
-
                 <div id="container-schedule-drop" class="dropdown-menu mydropdown-menu">
+                    {#here icon check violet#}
+                    <div class="icon-check-div">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#565464" d="M186.301 339.893L96 249.461l-32 30.507L186.301 402 448 140.506 416 110z"/></svg>
+                    </div>
+                    <div class="dropdown-tags drop-schedule-first-line">
+                        <h5 class="text-schedule text-start-date" style="margin-right: 85px" id="startdate_text">Start Date</h5>
+                        <div id="div_checkbox" class="div-checkbox">
+                            <input type="checkbox" class="form-check-input checkbox-datepicker" id="checkbox_datepicker">
+                        </div>
+                        <h5 class="text-schedule text-end-date opacity-datepicker" id="enddate_text">End Date</h5>
+                    </div>
+                    <div class="dropdown-tags drop-schedule-line">
+                        <div class="input-group date ex1" style="margin-right: 17px" id="picker" data-provide="datepicker">
+                            <input type="text" placeholder="Start date" class="form-control" id="startdate_datepicker">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                        <div class="input-group date ex1 datepicker-disable" id="picker2" data-provide="datepicker" onclick="endDateOnclick()">
+                            <input type="text" placeholder="End date" class="form-control opacity-datepicker" id="end_datepicker_input">
+                            <div class="input-group-addon opacity-datepicker" onclick="endDateOnclick()">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="dropdown-schedule drop-schedule-line">
                         <h5 class="text-schedule">occurs</h5>
                         <h5 class="text-schedule">every</h5>
@@ -63,11 +87,9 @@
                             <option class="month" value="month">month</option>
                         </select>
                     </div>
-                    <div class="dropdown-tags drop-schedule-line">
-
+                    <div class="dropdown-tags drop-schedule-line drop-hidden-line-when-days">
                         {#week/ month#}
                         <h5 class="text-schedule texton" id="texton">on</h5>
-
                         {#week#}
                         <div id="daysweek_div">
                             <select id="daysweek" multiple="multiple" class="daysweek">
@@ -78,25 +100,23 @@
                                 <option value="Fr">Friday</option>
                             </select>
                         </div>
-
                         {#month#}
                         <div class="month-div" id="month_div">
                             <select name="custom-defined" class="form-control frequency-drop" id="select_custom_def">
                                 <option value="custom-select">selected</option>
                                 <option value="pre-defined-select">pre-defined</option>
                             </select>
-                            <h5 class="text-schedule texton" id="datemonth_text">day(s) of month:</h5>
+                            <h5 class="text-schedule texton" id="datemonth_text" style="margin-left: 6px">day(s) of month:</h5>
                         </div>
                     </div>
-
-                    <div class="dropdown-tags drop-schedule-line">
+                    <div class="dropdown-tags drop-schedule-line drop-hidden-line-when-days">
                         <div class="defined-div" id="defined_div">
                             <select name="month-custom-first-last" class="form-control frequency-drop" id="select_custom">
                                 <option value="custom-select">the first</option>
                                 <option value="pre-defined-select">the last</option>
                             </select>
 
-                            <select name="sel-count-2" class="form-control counter-drop" id="sel2_month_count">
+                            <select name="sel-count-2" class="form-control counter-drop" style="margin-left: 6px;" id="sel2_month_count">
                                 <option value="d">1</option>
                                 <option value="s">2</option>
                                 <option value="s">3</option>
@@ -150,25 +170,26 @@
                                 </select>
                             </div>
                         </div>
-
-
-
                     </div>
                     <div class="dropdown-tags drop-schedule-line">
                         <h5 class="text-schedule">from</h5>
-                        <input type="time" id="appt" name="appt" min="9:00" max="18:00" required>
-                        <h5 class="text-schedule text-till">till</h5>
-                        <input type="time" id="appt" name="appt" min="9:00" max="18:00" required>
-                        <a href="#" data-toggle="tooltip" data-placement="right" title="time"><ion-icon name="time" class="icons icon-time"></ion-icon></a>
+                        <input type="time" id="appt" name="appt" value="09:00" required>
+                        <h5 class="text-schedule" style="margin-left: 10px">to</h5>
+                        <input type="time" id="appt" name="appt" value="18:00" required>
+                        {#<a href="#" data-toggle="tooltip" data-placement="right" title="time"><ion-icon name="time" class="icons icon-time"></ion-icon></a>#}
                     </div>
-
                 </div>
             </div>
-            <div class="input-group date" data-provide="datepicker">
-                <input type="text" class="form-control" id="data-date">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
+            <div class="save-emergency emergency-checkbox-text">
+                <div class="checkbox-emergency">
+                    <input type="checkbox" class="form-check-input" id="checkbox_datepicker">
                 </div>
+                <a href="#" data-toggle="tooltip" data-placement="top" class="emergency-text-tooltip" title="Emergency Slide discards all others and will appear alone until is deleted or Emergency label is removed">
+                    <h5>Emergency</h5>
+                </a>
+                <h5 class="text-slide"> Slide</h5>
+                <button type="button" class="btn btn-success btn-save-slide">Save</button>
+
             </div>
         </div>
 
@@ -177,8 +198,15 @@
                 Here the CKEditor
             </div>
             <div class="active-tags-list">
-                <h6>Active tags:</h6>
-                <li>Here tags</li>
+                {#<h5 id="no_active_tags">No active tags</h5>#}
+                {#<h5 id="active_tags_text">Active tags:</h5>#}
+                <div class="list-active-tags" id="active_tags">
+                    {#{% for tag_id in slides_tags %}#}
+                        {#{% if slides_tags.slide_id == id.slide %}#}
+                            {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ slides_tags.tag_id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>#}
+                        {#{% endif %}#}
+                    {#{% endfor %}#}
+                </div>
             </div>
         </div>
     </div>
