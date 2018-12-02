@@ -2,56 +2,48 @@
 
 {% block title %}Locations index{% endblock %}
 
-{#<link rel="stylesheet" href="{{ asset('bundles/administration/css/list-locations.css') }}">#}
-
 {% block body %}
 
     <div class="body main">
         <div class="title-create-slide">
-            <h3 class="title-create-slide-text">Create Your Slide Here</h3>
-            <ion-icon name="create" class="icon-create-title"></ion-icon>
+            <h3 class="title-create-slide-text">Discover All the Locations Here</h3>
+            <ion-icon name="globe" class="icon-create-title"></ion-icon>
         </div>
         <div class="line-under-title"></div>
         <div class="table-locations-div">
-            <a href="{{ path('location_new') }}">Add new</a>
-            <table class="table-locations">
-
+            <table class="table table-locations">
                 <thead>
                 <tr>
                     <th scope="col">Nr/o</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Location Name</th>
                     <th scope="col">Tags</th>
-                    <th scope="col">Edit/Delete</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
-
                 <tbody>
                 {% for location in locations %}
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{ location.id }}</th>
                         <td>{{ location.location }}</td>
                         <td>
-                            {% for tag in location.tags %}
-                                {{ tag.tag }},
-                            {% endfor %}
+                            <div class="line-tags">
+                                {% for tag in location.tags %}
+                                    <a href="#" class="no-decoration-tags"><button class="tag-id-list-locations" id="{{ tag.id }}">{{ tag.tag }}</button></a>
+                                {% endfor %}
+                            </div>
                         </td>
                         <td>
-                            <a href="{{ path('location_edit', {'id': location.id}) }}" data-toggle="tooltip" data-placement="top" title="Edit"><ion-icon name="create" class="icons icon-create"></ion-icon></a>
-                            <a href="{{ path('location_delete', {'id': location.id}) }}" onclick="return confirm('Are you sure?')" data-toggle="tooltip" data-placement="top" title="Delete"><ion-icon name="trash" class="icons icon-trash"></ion-icon></a>
-
+                            <a href="{{ path('location_edit', {'id': location.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
+                            <a href="{{ path('location_delete', {'id': location.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
                         </td>
                     </tr>
-
                 {% endfor %}
                 </tbody>
             </table>
-
+            <div class="button-add-new-location">
+                <a href="{{ path('location_new') }}"><button class="btn btn-primary">Add New Location</button></a>
+            </div>
         </div>
-
-
-        <br/><br/>
-
     </div>
-    <script src="{{ asset('bundles/administration/js/list-locations.js') }}"></script>
 {% endblock %}
 
