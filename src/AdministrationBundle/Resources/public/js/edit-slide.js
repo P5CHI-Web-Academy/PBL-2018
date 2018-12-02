@@ -142,7 +142,7 @@ $('#picker2').datepicker({
 
 //preview modal
 
-var span = document.getElementsByClassName("close")[0];
+// var span = document.getElementsByClassName("close")[0];
 var modal = document.getElementById('myModal');
 
 $('#preview_icon').on('click', function (e) {
@@ -151,7 +151,7 @@ $('#preview_icon').on('click', function (e) {
     // captionText.innerHTML = this.alt;
 });
 
-span.onclick = function() {
+$(".close").onclick = function() {
     modal.style.display = "none";
 };
 
