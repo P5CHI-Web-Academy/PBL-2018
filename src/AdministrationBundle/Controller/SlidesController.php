@@ -14,7 +14,7 @@ class SlidesController extends Controller
      * @Route("/admin/slides", name="slides")
      * @throws \Exception
      */
-    public function indexAction()
+    public function listSlides()
     {
         $entityManager = $this->getDoctrine()->getManager();
         $slides =  $entityManager->getRepository(Slide::class)->findAll();

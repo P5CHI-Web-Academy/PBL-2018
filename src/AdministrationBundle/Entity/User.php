@@ -3,14 +3,22 @@
 namespace AdministrationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="supervisorname_UNIQUE", columns={"user_name"})})
  * @ORM\Entity
+ *
+ * @UniqueEntity(
+ *      fields={"username"},
+ *      errorPath="username",
+ *      message="It appears this username already exists."
+ *)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var integer
@@ -26,7 +34,7 @@ class User
      *
      * @ORM\Column(name="user_name", type="string", length=45, nullable=false)
      */
-    private $userName;
+    private $username;
 
     /**
      * @var string
@@ -38,7 +46,7 @@ class User
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_supervisor", type="boolean", nullable=false)
+     * @ORM\Column(name="is_supervisor", type="boolean", nullable=false, options={"default" : 0})
      */
     private $isSupervisor;
 
@@ -53,18 +61,18 @@ class User
     /**
      * @return string
      */
-    public function getUserName(): string
+    public function getUsername(): ?string
     {
-        return $this->userName;
+        return $this->username;
     }
 
     /**
      * @param string $userName
      * @return User
      */
-    public function setUserName(string $userName): User
+    public function setUsername(string $username): User
     {
-        $this->userName = $userName;
+        $this->username = $username;
 
         return $this;
     }
@@ -72,7 +80,7 @@ class User
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -91,7 +99,7 @@ class User
     /**
      * @return bool
      */
-    public function isSupervisor(): bool
+    public function isSupervisor(): ?bool
     {
         return $this->isSupervisor;
     }
@@ -105,5 +113,21 @@ class User
         $this->isSupervisor = $isSupervisor;
 
         return $this;
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function eraseCredentials()
+    {
     }
 }
