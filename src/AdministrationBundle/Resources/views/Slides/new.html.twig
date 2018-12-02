@@ -23,7 +23,7 @@
                 <ul class="dropdown-menu mydropdown-menu-tags">
                     {#<a href="#" data-toggle="tooltip" class="question-tags-icon" data-placement="top" title="Tags will help you manage the locations where your slide will show up"><ion-icon name="help"></ion-icon></a>#}
 
-                    {#{% for id in tag %}#}
+                    {#{% for tag in tags %}#}
                         {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ tag.id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>#}
                     {#{% endfor %}#}
 
@@ -188,6 +188,7 @@
                     <h5>Emergency</h5>
                 </a>
                 <h5 class="text-slide"> Slide</h5>
+                <a href="#" class="icon-preview-a" data-toggle="tooltip" data-placement="top" title="Preview Slide" id="preview_icon"><ion-icon name="eye" class="icons icon-preview"></ion-icon></a>
                 <button type="button" class="btn btn-success btn-save-slide">Save</button>
 
             </div>
@@ -208,6 +209,18 @@
                     {#{% endfor %}#}
                 </div>
             </div>
+        </div>
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <div class="container modal-container">
+                <div class="slide-modal-content" id="slide-template-modal">
+                    <div style="height: 600px; width: 800px; background-color: white">
+                        {#{{ slide.content }}#}
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 

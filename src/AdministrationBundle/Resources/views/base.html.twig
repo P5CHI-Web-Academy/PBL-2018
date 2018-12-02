@@ -8,8 +8,6 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
             <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
-
-
             <link href="https://rawgit.com/select2/select2/master/dist/css/select2.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="{{ asset('bundles/administration/css/styles.css') }}">
             <link rel="stylesheet" href="{{ asset('bundles/administration/css/bootstrap-multiselect.css') }}" type="text/css"/>
@@ -29,24 +27,19 @@
                 <a href="#" data-toggle="tooltip" data-placement="right" title="Create Slide"><ion-icon name="create" class="icons icon-create"></ion-icon></a>
                 <a href="#" data-toggle="tooltip" data-placement="right" title="Tags"><ion-icon name="pricetags" class="icons icon-tags"></ion-icon></a>
                 <a href="#" data-toggle="tooltip" data-placement="right" title="Settings"><ion-icon name="settings" class="icons icon-settings"></ion-icon></a>
-
             </div>
-            <div class="top-bar">
-                <a href="#" onclick="return confirm('Are you sure to logout?');" data-toggle="tooltip" data-placement="bottom" title="Exit"><ion-icon name="exit" class="icons icon-exit"></ion-icon></a>
-            </div>
+        <div class="top-bar">
+            <a href="#" onclick="return confirm('Are you sure to logout?');" data-toggle="tooltip" data-placement="bottom" title="Exit"><ion-icon name="exit" class="icons icon-exit"></ion-icon></a>
+        </div>
         {% endblock %}
 
         {% block body %}{% endblock %}
-
 
     </body>
     {% block javascripts %}
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-
-
         <script type="text/javascript" src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>

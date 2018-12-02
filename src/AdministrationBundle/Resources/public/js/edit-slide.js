@@ -138,6 +138,29 @@ $('#picker2').datepicker({
 });
 
 
+
+
+//preview modal
+
+var span = document.getElementsByClassName("close")[0];
+var modal = document.getElementById('myModal');
+
+$('#preview_icon').on('click', function (e) {
+    modal.style.display = "block";
+    // modalImg.src = this.src;
+    // captionText.innerHTML = this.alt;
+});
+
+span.onclick = function() {
+    modal.style.display = "none";
+};
+
+modal.onclick = function() {
+    modal.style.display = "none";
+};
+
+
+
 //checkbox
 
 function endDateOnclick() {
