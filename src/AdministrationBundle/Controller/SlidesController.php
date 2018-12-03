@@ -5,6 +5,7 @@ namespace AdministrationBundle\Controller;
 use AdministrationBundle\AdministrationBundle;
 use AdministrationBundle\Entity\Location;
 use AdministrationBundle\Entity\Slide;
+use AdministrationBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -70,9 +71,12 @@ class SlidesController extends Controller
      * @Route("/admin/slides/new", name="slide_new")
      */
     public function newSlide(){
+        $entityManaget = $this->getDoctrine()->getManager();
+        $tags = $this->getDoctrine()->getRepository(Tag::class)->findAll();
 
         return $this->render(
-            '@Administration/Slides/new.html.twig'
+            '@Administration/Slides/new.html.twig',
+            array('tags' => $tags)
         );
     }
 
