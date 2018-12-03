@@ -33,7 +33,7 @@
                             {% endif %}
                         </td>
                         <td>
-                            {#<a href="{{ path('location_edit', {'id': location.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>#}
+                            <a href="{{ path('user_edit', {'id': user.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
                             <a href="{{ path('user_delete', {'id': user.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
                         </td>
                     </tr>

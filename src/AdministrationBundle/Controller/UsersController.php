@@ -40,7 +40,8 @@ class UsersController extends Controller
      *
      * @return RedirectResponse|Response
      */
-    public function newUser(Request $request, EntityManagerInterface $em) : Response {
+    public function newUser(Request $request, EntityManagerInterface $em) : Response
+    {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -53,6 +54,33 @@ class UsersController extends Controller
         }
 
         return $this->render('@Administration/Users/new.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/admin/users/edit/{id}", name="user_edit", methods={"GET", "POST"})
+     *
+     * @param $id
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function editUser($id, Request $request) : Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+//            $entityManager->persist($location);
+            $entityManager->flush();
+            return $this->redirectToRoute('users');
+        }
+
+        return $this->render('@Administration/Users/edit.html.twig', array(
             'form' => $form->createView()
         ));
     }

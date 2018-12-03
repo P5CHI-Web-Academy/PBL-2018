@@ -21,16 +21,15 @@
                     </div>
                 </button>
                 <ul class="dropdown-menu mydropdown-menu-tags">
-                    {#<a href="#" data-toggle="tooltip" class="question-tags-icon" data-placement="top" title="Tags will help you manage the locations where your slide will show up"><ion-icon name="help"></ion-icon></a>#}
 
-                    {#{% for tag in tags %}#}
-                        {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ tag.id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>#}
-                    {#{% endfor %}#}
+                    {% for tag in tags %}
+                        <a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ tag.id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>
+                    {% endfor %}
 
                     {#here some examples/ clear when done#}
-                    <a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id2" onclick="selectTag(this.id)">Name Tag</button></a>
-                    <a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id3" onclick="selectTag(this.id)">Name Tag</button></a>
-                    <a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id4" onclick="selectTag(this.id)">Name Tag Long Here</button></a>
+                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id2" onclick="selectTag(this.id)">Name Tag</button></a>#}
+                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id3" onclick="selectTag(this.id)">Name Tag</button></a>#}
+                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id4" onclick="selectTag(this.id)">Name Tag Long Here</button></a>#}
                 </ul>
             </div>
             <div class="dropdown slide-option schedule-dropdown slide-dropdown">
