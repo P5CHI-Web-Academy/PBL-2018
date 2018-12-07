@@ -1,1 +1,15 @@
 2018/11/28 12:43:43 [error] 8#8: *48 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "GET /app_dev.php/admin/users HTTP/1.1", upstream: "fastcgi://172.21.0.4:9000", host: "slides.local"
+2018/12/07 11:37:33 [error] 7#7: *67 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught Symfony\Component\Debug\Exception\ContextErrorException: Notice: Array to string conversion in /var/www/src/DisplayBundle/Controller/DisplayController.php:31
+Stack trace:
+#0 /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php(151): DisplayBundle\Controller\DisplayController->fetchSlides()
+#1 /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php(68): Symfony\Component\HttpKernel\HttpKernel->handleRaw(Object(Symfony\Component\HttpFoundation\Request), 1)
+#2 /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php(200): Symfony\Component\HttpKernel\HttpKernel->handle(Object(Symfony\Component\HttpFoundation\Request), 1, true)
+#3 /var/www/web/app_dev.php(29): Symfony\Component\HttpKernel\Kernel->handle(Object(Symfony\Component\HttpFoundation\Request))
+#4 {main}
+  thrown in /var/www/src/DisplayBundle/Controller/DisplayController.php on line 31
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP   2. AppKernel->handle() /var/www/web/app_dev.php:29
+PHP message: PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:200
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:68
+PHP message: PHP   5. DisplayBundle\Controller\DisplayController->fetchSlides() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:151" while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "GET /app_dev.php/fetch HTTP/1.1", upstream: "fastcgi://172.21.0.4:9000", host: "slides.local"

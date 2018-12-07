@@ -9,9 +9,9 @@ use Symfony\Component\Validator\Constraints\Time;
  * Slide
  *
  * @ORM\Table(name="slide", indexes={@ORM\Index(name="fk_updated_by_idx", columns={"updated_by"}), @ORM\Index(name="fk_created_by_idx", columns={"created_by"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\AdministrationBundle\Repository\SlideRepository")
  */
-class Slide
+class Slide implements \JsonSerializable
 {
     /**
      * @var integer
@@ -163,6 +163,8 @@ class Slide
         return $this;
     }
 
+//        $entityManager = $this->getDoctrine()->getManager();
+//        $slides = $entityManager->createQuery();
     /**
      * @return \DateTime
      */
@@ -410,5 +412,12 @@ class Slide
         $this->schedule = $schedule;
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'content' => $this->content
+        ];
     }
 }
