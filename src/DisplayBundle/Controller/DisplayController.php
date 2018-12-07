@@ -25,24 +25,22 @@ class DisplayController extends Controller
 
     /**
      * @Route("/fetch/{location}", name="fetch")
-     * @param string $location
+     * @param $location
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function fetchSlides($location): \Symfony\Component\HttpFoundation\Response
     {
-        $location = $this->getDoctrine()->getRepository(Location::class)
-            ->findOneBy(
-                array('location' => $location)
-            );
+//        $location = $this->getDoctrine()->getRepository(Location::class)
+//            ->findOneBy(
+//                array('location' => $location)
+//            );
 
-        $tags = $location->getTags();
+//        $tags = $location->getTags();
 
-
+//        return $this->render('@Display/Display/display.html.twig',array(
+//            'tags' => $tags
+//        ));
 
 //        return $this->json($tags);
-
-        return $this->render('@Display/Display/display.html.twig',array(
-            'tags' => $tags
-        ));
     }
 }

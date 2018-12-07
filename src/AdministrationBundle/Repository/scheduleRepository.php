@@ -10,4 +10,5 @@ namespace AdministrationBundle\Repository;
  */
 class scheduleRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }
