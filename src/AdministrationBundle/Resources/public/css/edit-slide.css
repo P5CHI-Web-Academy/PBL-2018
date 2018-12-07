@@ -1,0 +1,500 @@
+/* save and emergency */
+
+
+.h5 {
+    white-space: nowrap!important;
+}
+
+.emergency-checkbox-text {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
+    margin-left: auto;
+}
+
+.checkbox-emergency {
+    margin-right: 7px;
+}
+
+.emergency-text-tooltip {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.emergency-text-tooltip:hover {
+    color: black;
+    font-weight: bold;
+}
+
+.btn-success:active {
+    /*box-shadow: none;*/
+    background-color: #5eb5e0;
+}
+
+.text-click-for {
+    margin-right: 3px;
+}
+
+.text-slide {
+    margin-left: 3px;
+}
+
+.btn-save-slide {
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+/* start slides options edit  */
+
+.title-create-slide {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.title-create-slide-text {
+    font-weight: bold;
+}
+
+.icon-create-title {
+    margin-left: 20px;
+    font-size: 28px;
+}
+
+.line-under-title {
+    margin-top: 10px;
+    height: 1px;
+    width: 80%;
+    background-color: grey;
+}
+
+
+
+/*start option bar*/
+.slide-options-container {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 30px;
+    font-size: 20px;
+    width: auto;
+    height: 67px;
+    max-width: 80%;
+}
+
+.slide-title-form {
+    width: 23.5%;
+    height: 37px;
+}
+
+.btn {
+    width: 100%;
+}
+
+.slide-option {
+    margin-right: 1%;
+    justify-content: flex-start;
+}
+
+
+
+
+/* dropdown tags*/
+
+.dropdown-tags {
+    padding: 3px 20px;
+    /*font-weight: bold;*/
+}
+
+.question-tags-icon {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-size: 20px;
+    color: #222222;
+    z-index: 1;
+}
+
+.label {
+    padding: .5em 1.5em .5em;
+    margin: 2px;
+}
+
+.title-tag { 
+    margin: 2px 0;
+}
+
+.label-primary:active {
+    background-color: #71A5C1;
+}
+
+.mydropdown-menu-tags {
+    min-width: 120px!important;
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+    font-size: 14px;
+    width: auto;
+}
+
+.mydropdown-menu {
+    height: auto;
+    max-height: 300px;
+    overflow-x: hidden;
+    font-size: 14px;
+    width: 350px;
+}
+
+
+.text-dropdown {
+    font-size: 16px;
+    margin: 3px;
+}
+
+
+
+.button-title {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn .caret {
+    margin-left: 10px;
+}
+
+
+.tag-id {
+    width: auto;
+    background-color: #F4835B;
+    border: none;
+    outline: none;
+    text-decoration-color: white;
+    border-radius: 5px;
+    padding: 2px 10px;
+    margin: 4px 13px 1px 12px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.no-decoration-tags {
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.no-decoration-tags:hover {
+    color: white;
+}
+
+/*#tag_id:hover {*/
+    /*background-color: #71A5C1;*/
+    /*text-decoration: none;*/
+    /*text-decoration-color: black;*/
+/*}*/
+
+
+/* -----schedule */
+
+.drop-schedule-line {
+    padding: 5px 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.drop-schedule-first-line {
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.drop-hidden-line-when-days {
+    display: none;
+}
+
+.text-start-date {
+    margin-bottom: 7px;
+}
+
+.text-end-date {
+    margin-bottom: 7px;
+}
+
+.text-schedule {
+    padding-right: 7px;
+    font-size: 14px;
+}
+
+.text-weeks {
+    padding-left: 10px;
+}
+
+.text-till {
+    padding-left: 10px;
+}
+
+.frequency-drop {
+    width: 100px;
+}
+
+.counter-drop {
+    width: 40px;
+    margin-right: 7px;
+}
+
+#container-schedule-drop {
+    overflow: visible;
+}
+
+#texton {
+    display: none;
+}
+
+.daysweek {
+    width: 150px;
+}
+
+.icon-check-div {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+/*here for week*/
+
+#daysweek_div {
+    /*width: 150px;*/
+    display: none;
+}
+
+#daysweek_div span {
+    width: auto!important;
+}
+
+
+#datemonth_div {
+}
+
+#datemonth_div span {
+    width: auto!important;
+}
+
+
+/*here for month*/
+
+#month_div {
+    display: none;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+#select_custom_def {
+}
+
+
+#custom_div {
+    display: none;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+#defined_div {
+    display: none;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+/* datepicker */
+.div-checkbox {
+    margin: 0 5px 0 11px;
+}
+
+.icon-time {
+    font-size: 18px;
+    padding-left: 20px;
+    fill: #565464!important;
+}
+
+
+
+
+/* start end date */
+
+.start-date-form {
+    width: 20%;
+}
+
+.datepicker {
+    top: 271px!important;
+}
+
+.opacity-datepicker {
+    opacity: 0.4;
+}
+
+
+/*outside tool bar */
+
+.editor-tags-block {
+    display: flex;
+}
+
+.ckeditor {
+    width: 85%;
+    height: 600px;
+    background-color: white;
+    margin: 30px 2% 0 0;
+}
+
+.active-tags-list {
+    width: 18%;
+}
+
+#no_active_tags {
+    display: block;
+}
+
+#active_tags_text {
+    display: none;
+}
+
+.list-active-tags {
+    display: block;
+}
+
+.active-tag {
+    margin: 5px 0;
+}
+
+.active-tag-div {
+    margin: 10px 0;
+}
+
+.close-active-tags {
+    margin-right: 5px;
+}
+
+.close-icon-grey {
+    color: grey;
+    font-size: 12px;
+}
+
+.icon-preview-a {
+    display: block;
+    margin: 0 15px 0 25px;
+}
+
+.icon-preview {
+    display: block;
+    font-size: 30px;
+    color: #4c4c4c;
+}
+
+/*.preview-div {*/
+    /*display: block;*/
+    /*height: 40px;*/
+/*}*/
+
+
+/*preview button*/
+
+.modal-container {
+    position: relative;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+
+.slide-modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    -webkit-transition: width 2s linear 1s;
+    transition: width 2s linear 1s;
+}
+
+/* #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+} */
+
+.slide-modal-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.35s;
+    animation-name: zoom;
+    animation-duration: 0.35s;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.try-it-btn {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.slide-modal-content:hover {
+    opacity: 0.8;
+}
+
+.modal-container:hover .try-it-btn {
+    display: block;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
