@@ -31,10 +31,6 @@ class DisplayController extends Controller
 
         $slides = $slideRepository->getSlidesByLocationName($location);
 
-        dump($slides);
-
-        return $this->render('@Display/Display/display.html.twig',array(
-            'slides' => $slides
-        ));
+        return $this->json($slides);
     }
 }

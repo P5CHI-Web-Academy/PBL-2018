@@ -2,8 +2,6 @@
 
 namespace AdministrationBundle\Repository;
 
-use Doctrine\ORM\Query\Expr\Join;
-
 /**
  * SlideRepository
  *
