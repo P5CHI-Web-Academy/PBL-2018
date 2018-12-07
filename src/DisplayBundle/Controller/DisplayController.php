@@ -2,10 +2,6 @@
 
 namespace DisplayBundle\Controller;
 
-use AdministrationBundle\Entity\Location;
-use AdministrationBundle\Entity\Slide;
-use AdministrationBundle\Entity\Tag;
-use Doctrine\ORM\PersistentCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -30,17 +26,15 @@ class DisplayController extends Controller
      */
     public function fetchSlides($location): \Symfony\Component\HttpFoundation\Response
     {
-//        $location = $this->getDoctrine()->getRepository(Location::class)
-//            ->findOneBy(
-//                array('location' => $location)
-//            );
+        $entityManager = $this->getDoctrine()->getManager();
+        $slideRepository =  $entityManager->getRepository('AdministrationBundle:Slide');
 
-//        $tags = $location->getTags();
+        $slides = $slideRepository->getSlidesByLocationName($location);
 
-//        return $this->render('@Display/Display/display.html.twig',array(
-//            'tags' => $tags
-//        ));
+        dump($slides);
 
-//        return $this->json($tags);
+        return $this->render('@Display/Display/display.html.twig',array(
+            'slides' => $slides
+        ));
     }
 }
