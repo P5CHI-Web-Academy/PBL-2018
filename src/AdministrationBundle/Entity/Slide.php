@@ -364,11 +364,11 @@ class Slide implements \JsonSerializable
     }
 
     /**
-     * @param Time $active_time_start
+     * @param \DateTime $active_time_start
      *
      * @return Slide
      */
-    public function setActiveTimeStart(Time $active_time_start): Slide
+    public function setActiveTimeStart(\DateTime $active_time_start): Slide
     {
         $this->activeTimeStart = $active_time_start;
 
@@ -384,11 +384,11 @@ class Slide implements \JsonSerializable
     }
 
     /**
-     * @param Time $active_time_end
+     * @param \DateTime $active_time_end
      *
      * @return Slide
      */
-    public function setActiveTimeEnd(Time $active_time_end): Slide
+    public function setActiveTimeEnd(\DateTime $active_time_end): Slide
     {
         $this->activeTimeStart = $active_time_end;
 

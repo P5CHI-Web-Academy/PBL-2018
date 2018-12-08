@@ -4,6 +4,7 @@ namespace DisplayBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class DisplayController extends Controller
 {
@@ -26,10 +27,19 @@ class DisplayController extends Controller
      */
     public function fetchSlides($location): \Symfony\Component\HttpFoundation\Response
     {
-        $entityManager = $this->getDoctrine()->getManager();
-        $slideRepository =  $entityManager->getRepository('AdministrationBundle:Slide');
+        $slideRepository =  $this->getDoctrine()->getManager()
+            ->getRepository('AdministrationBundle:Slide');
+        $slides = $slideRepository->getEnabledSlidesByLocationName($location);
 
-        $slides = $slideRepository->getSlidesByLocationName($location);
+        date_default_timezone_set('Europe/Chisinau');
+        $current_time = date('H:i');
+        for($i = 0, $iMax = count($slides); $i < $iMax; $i++){
+            $activeTimeStart = $slides[$i]['activeTimeStart']->format('H:i');
+            $activeTimeEnd = $slides[$i]['activeTimeEnd']->format('H:i');
+            if($current_time < $activeTimeStart || $current_time > $activeTimeEnd){
+                unset($slides[$i]);
+            }
+        }
 
         return $this->json($slides);
     }
