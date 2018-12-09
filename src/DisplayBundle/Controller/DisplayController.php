@@ -4,7 +4,6 @@ namespace DisplayBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class DisplayController extends Controller
 {
@@ -31,16 +30,48 @@ class DisplayController extends Controller
             ->getRepository('AdministrationBundle:Slide');
         $slides = $slideRepository->getEnabledSlidesByLocationName($location);
 
+        $slides = $this->filterSlides($slides);
+
+        return $this->json($slides);
+    }
+
+    private function filterSlides($slides) : array
+    {
         date_default_timezone_set('Europe/Chisinau');
-        $current_time = date('H:i');
+        $currentTime = date('H:i');
+        $currentDate = new \DateTime(date('Y-m-d'));
+
+        dump($currentDate);
+
+
         for($i = 0, $iMax = count($slides); $i < $iMax; $i++){
             $activeTimeStart = $slides[$i]['activeTimeStart']->format('H:i');
             $activeTimeEnd = $slides[$i]['activeTimeEnd']->format('H:i');
-            if($current_time < $activeTimeStart || $current_time > $activeTimeEnd){
+            if($currentTime < $activeTimeStart || $currentTime > $activeTimeEnd){
                 unset($slides[$i]);
+                continue;
+            }
+
+            $type = $slides[$i]['schedule'][0]['type'];
+            $step = $slides[$i]['step'];
+            $createdAtDate = $slides[$i]['createdAt'];
+            $timeDiff = $currentDate->diff($createdAtDate);
+            dump($timeDiff);
+
+            if($type === 1) {
+                if($timeDiff->days % $step !== 0){
+                    unset($slides[$i]);
+                    continue;
+                }
+            }
+            else if($type === 2) {
+
+            }
+            else if($type === 3) {
+
             }
         }
 
-        return $this->json($slides);
+        return $slides;
     }
 }

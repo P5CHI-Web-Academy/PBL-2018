@@ -163,8 +163,6 @@ class Slide implements \JsonSerializable
         return $this;
     }
 
-//        $entityManager = $this->getDoctrine()->getManager();
-//        $slides = $entityManager->createQuery();
     /**
      * @return \DateTime
      */
