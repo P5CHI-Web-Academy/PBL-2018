@@ -1,1 +1,43 @@
-{{ location }}
+<div id="slide_content">
+    dasdasd
+</div>
+
+
+<script>
+    const getJSON = function(url, callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function() {
+            let status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
+            }
+        };
+        xhr.send();
+    };
+
+    const loop = function(){
+        getJSON('{{ path('fetch', {'location' : location}) }}', (err, data) => {
+            if (err !== null) {
+                alert('Something went wrong: ' + err);
+            } else {
+                for(let i = 0; i < data.length; i++){
+                    let date_time = new Date(data[0]['periodOfValidity']['date']);
+                    let date_no_time = new Date(data[0]['periodOfValidity']['date']);
+                    date_no_time.setHours(0, 0, 0, 0);
+                    let milliseconds = date_time - date_no_time;
+                    console.log(milliseconds);
+                    setTimeout(()=>{
+                        console.log(1);
+                    }, milliseconds);
+                }
+            }
+        });
+        loop();
+    };
+
+    loop();
+</script>

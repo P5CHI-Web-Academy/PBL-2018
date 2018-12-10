@@ -22,9 +22,9 @@ class DisplayController extends Controller
     /**
      * @Route("/fetch/{location}", name="fetch")
      * @param $location
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function fetchSlides($location): \Symfony\Component\HttpFoundation\Response
+    public function fetchSlides($location): \Symfony\Component\HttpFoundation\JsonResponse
     {
         $slideRepository =  $this->getDoctrine()->getManager()
             ->getRepository('AdministrationBundle:Slide');

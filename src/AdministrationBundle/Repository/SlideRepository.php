@@ -39,7 +39,6 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
             $step = $slides[$i]['step'];
             $createdAtDate = $slides[$i]['createdAt'];
             $timeDiff = $currentDate->diff($createdAtDate);
-            dump($timeDiff);
 
             // every # days
             if($type === 1) {
