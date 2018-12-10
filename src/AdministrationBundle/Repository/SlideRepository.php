@@ -52,21 +52,33 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
                 if(($timeDiff->days / 7 + 1) % $step !== 0){
                     unset($slides[$i]);
                 }
-            }
-            // every # month, predefined days
-            else if($type === 31) {
-                if($timeDiff->m % $step !== 0){
+                $actual = false;
+                foreach($slides[$i]['schedule'] as $schedule){
+                    if($schedule['day'] == date('N')){
+                        $actual = true;
+                    }
+                }
+                if(!$actual){
                     unset($slides[$i]);
                 }
             }
-            // every # month, selected days
-            else if($type === 32) {
+            // every # month
+            else if($type === 3) {
                 if($timeDiff->m % $step !== 0){
+                    unset($slides[$i]);
+                }
+                $actual = false;
+                foreach($slides[$i]['schedule'] as $schedule){
+                    if($schedule['day'] == date('j')){
+                        $actual = true;
+                    }
+                }
+                if(!$actual){
                     unset($slides[$i]);
                 }
             }
         }
-        
+
         return $slides;
     }
 }
