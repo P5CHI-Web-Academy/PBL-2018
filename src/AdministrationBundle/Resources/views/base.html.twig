@@ -29,7 +29,7 @@
                 <a href="#" data-toggle="tooltip" data-placement="right" title="Settings"><ion-icon name="settings" class="icons icon-settings"></ion-icon></a>
             </div>
         <div class="top-bar">
-            <a href="#" onclick="return confirm('Are you sure to logout?');" data-toggle="tooltip" data-placement="bottom" title="Exit"><ion-icon name="exit" class="icons icon-exit"></ion-icon></a>
+            <a href="{{ path('logout') }}" onclick="return confirm('Are you sure to logout?');" data-toggle="tooltip" data-placement="bottom" title="Exit"><ion-icon name="exit" class="icons icon-exit"></ion-icon></a>
         </div>
         {% endblock %}
 

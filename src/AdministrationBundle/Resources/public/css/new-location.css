@@ -1,0 +1,73 @@
+.body-location {
+
+}
+
+.icon-back-div {
+    margin-top: 10px;
+    font-size: 26px;
+}
+
+.icon-arrow-back {
+    font-size: 26px;
+    color: #222222;
+}
+
+.location-name-div {
+    display: flex;
+}
+
+.tags-form {
+    background-color: #66dd66;
+    width: 330px;
+    margin-bottom: 10px;
+}
+
+.div-tags {
+    display: flex;
+}
+
+.location-tags-text {
+    flex: 1 1 30%;
+    font-size: 16px;
+}
+
+.form-tags-div {
+    display: block;
+}
+
+.div-location-name {
+    display: flex;
+}
+
+.div-form {
+    margin-top: 50px;
+    width: 580px;
+}
+
+.location-name-text {
+    flex: 1 1 30%;
+    font-size: 16px;
+}
+
+.form-location-name-div {
+    margin-bottom: 10px;
+
+}
+
+.location-form {
+    width: 330px;
+    flex: 1 1 66%;
+}
+
+.map-image-div {
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    z-index: -1;
+}
+
+.map-image {
+    opacity: 0.05;
+    height: 644px;
+
+}
