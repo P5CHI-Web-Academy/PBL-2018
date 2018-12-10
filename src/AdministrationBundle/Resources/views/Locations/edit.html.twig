@@ -1,17 +1,60 @@
 {% extends '@Administration/base.html.twig' %}
 
-{% block title %}Location edit{% endblock %}
-{% block stylesheets %}{% endblock %}
+{% block title %}Location new{% endblock %}
 
 {% block body %}
+    <div class="body main body-location">
+        <div class="title-create-slide">
+            <h3 class="title-create-slide-text">Edit Your Location Here</h3>
+            <ion-icon name="pin" class="icon-create-title"></ion-icon>
+        </div>
+        <div class="line-under-title"></div>
+        <div class="icon-back-div">
+            <a href="{{ path('locations') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
+        </div>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-        <button type="submit">Submit</button>
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+        <div class="div-form">
 
-    <a href="{{ path('locations') }}">Back</a>
+            <div class="div-location-name">
+                <p class="location-name-text">
+                    Location Name
+                </p>
+                <div class="form-location-name-div">
+                    {{ form_widget(form.location, { 'attr': {'class': 'location-form form-control'} }) }}
+                    <small id="name-location-help" class="form-text text-muted">Edit the name for your location.</small>
+                </div>
+            </div>
+            <div class="div-tags">
+                <h5 class="location-tags-text">
+                    Location Tags
+                </h5>
+                <div class="form-tags-div">
+                    {{ form_widget(form.tags, { 'attr': {'class': 'tags-form select2'} }) }}
+                    {#<small id="tags-help" class="form-text text-muted">Pick at least one related tag. Create tag</small>#}
+                </div>
 
+            </div>
+
+            {#<button type="submit">Add</button>#}
+        </div>
+        <div class="button-add-new-location" style="margin-top: 70px">
+            <a><button class="btn btn-primary" type="submit">Save Changes</button></a>
+        </div>
+        {{ form_end(form) }}
+
+
+
+    </div>
+    <div class="map-image-div">
+        <img class="map-image" src="{{ asset('bundles/administration/img/map-location.png') }}">
+    </div>
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+{% block javascript_custom %}
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

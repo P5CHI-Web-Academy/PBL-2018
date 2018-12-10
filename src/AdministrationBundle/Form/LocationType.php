@@ -2,6 +2,8 @@
 
 namespace AdministrationBundle\Form;
 
+use AdministrationBundle\Entity\Tag;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +20,11 @@ class LocationType extends AbstractType
             ->add('location', TextType::class, array(
                 'constraints' => array()
             ))
-            ->add('tags');
+            ->add('tags', EntityType::class, [
+                'class' => Tag::class,
+                'multiple' => true,
+            ])
+        ;
     }
 
     /**
