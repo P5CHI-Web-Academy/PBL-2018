@@ -28,50 +28,10 @@ class DisplayController extends Controller
     {
         $slideRepository =  $this->getDoctrine()->getManager()
             ->getRepository('AdministrationBundle:Slide');
-        $slides = $slideRepository->getEnabledSlidesByLocationName($location);
 
-        $slides = $this->filterSlides($slides);
+        $slides = $slideRepository->getEnabledSlidesByLocationName($location);
+        $slides = $slideRepository->filterSlides($slides);
 
         return $this->json($slides);
-    }
-
-    private function filterSlides($slides) : array
-    {
-        date_default_timezone_set('Europe/Chisinau');
-        $currentTime = date('H:i');
-        $currentDate = new \DateTime(date('Y-m-d'));
-
-        dump($currentDate);
-
-
-        for($i = 0, $iMax = count($slides); $i < $iMax; $i++){
-            $activeTimeStart = $slides[$i]['activeTimeStart']->format('H:i');
-            $activeTimeEnd = $slides[$i]['activeTimeEnd']->format('H:i');
-            if($currentTime < $activeTimeStart || $currentTime > $activeTimeEnd){
-                unset($slides[$i]);
-                continue;
-            }
-
-            $type = $slides[$i]['schedule'][0]['type'];
-            $step = $slides[$i]['step'];
-            $createdAtDate = $slides[$i]['createdAt'];
-            $timeDiff = $currentDate->diff($createdAtDate);
-            dump($timeDiff);
-
-            if($type === 1) {
-                if($timeDiff->days % $step !== 0){
-                    unset($slides[$i]);
-                    continue;
-                }
-            }
-            else if($type === 2) {
-
-            }
-            else if($type === 3) {
-
-            }
-        }
-
-        return $slides;
     }
 }
