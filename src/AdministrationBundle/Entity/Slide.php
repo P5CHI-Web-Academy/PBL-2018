@@ -3,7 +3,6 @@
 namespace AdministrationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Time;
 
 /**
  * Slide
@@ -30,9 +29,9 @@ class Slide implements \JsonSerializable
     private $name;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="period_of_validity", type="datetime", nullable=false)
+     * @ORM\Column(name="period_of_validity", type="integer", nullable=false)
      */
     private $periodOfValidity;
 
@@ -164,18 +163,18 @@ class Slide implements \JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return integer
      */
-    public function getPeriodOfValidity(): \DateTime
+    public function getPeriodOfValidity(): int
     {
         return $this->periodOfValidity;
     }
 
     /**
-     * @param \DateTime $periodOfValidity
+     * @param integer $periodOfValidity
      * @return Slide
      */
-    public function setPeriodOfValidity(\DateTime $periodOfValidity): Slide
+    public function setPeriodOfValidity($periodOfValidity): Slide
     {
         $this->periodOfValidity = $periodOfValidity;
 
