@@ -1,5 +1,5 @@
 <div id="slide_content">
-    dasdasd
+    Slide ....
 </div>
 
 
@@ -22,10 +22,12 @@
 
     const callback = function(data) {
         if (data.length) {
-            let element = data[0];
-            let millisec = element.periodOfValidity;
-            console.log(element.id);
-            //lucru cu slide
+            let slide = data[0];
+            let millisec = slide['periodOfValidity'];
+            console.log(slide.id);
+
+            document.getElementById('slide_content').innerText = slide['content'];
+
             setTimeout(() => {
                 data.shift();
                 callback(data);
