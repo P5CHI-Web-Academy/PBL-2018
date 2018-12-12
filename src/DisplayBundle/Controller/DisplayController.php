@@ -14,6 +14,11 @@ class DisplayController extends Controller
      */
     public function displaySlides($location): \Symfony\Component\HttpFoundation\Response
     {
+        $slideRepository =  $this->getDoctrine()->getManager()
+            ->getRepository('AdministrationBundle:Slide');
+
+        $slideRepository->deleteExpiredSlides();
+
         return $this->render('@Display/Display/display.html.twig', array(
             'location' => $location
         ));

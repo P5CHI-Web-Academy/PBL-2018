@@ -1,7 +1,6 @@
 <?php
 
 namespace AdministrationBundle\Repository;
-
 /**
  * SlideRepository
  */
@@ -79,5 +78,28 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
         }
 
         return $slides;
+    }
+
+    public function deleteExpiredSlides(): void
+    {
+        date_default_timezone_set('Europe/Chisinau');
+
+        $query = $this->_em->createQuery('
+            SELECT sl
+            FROM AdministrationBundle:Slide sl
+            WHERE sl.expirationDate < CURRENT_DATE()
+        ');
+
+        foreach($query->getResult() as $slide){
+            $this->_em->createQuery('
+                DELETE AdministrationBundle:Schedule sch
+                WHERE sch.slide = :id
+            ')->setParameter('id', $slide['id'])->execute();
+
+            $this->_em->createQuery('
+                DELETE AdministrationBundle:Slide sl
+                WHERE sl.id = :id
+            ')->setParameter('id', $slide.getId()) ->execute();
+        }
     }
 }
