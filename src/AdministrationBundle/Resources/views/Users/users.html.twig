@@ -45,17 +45,8 @@
                 <a href="{{ path('users_new') }}"><button class="btn btn-primary">Add New User</button></a>
             </div>
         </div>
+        {#<div class="minions-image-div">#}
+            {#<img class="minions-image" src="{{ asset('bundles/administration/img/team.png') }}">#}
+        {#</div>#}
     </div>
-    {#{% for user in users %}#}
-
-        {#usersname: {{ user.username }},#}
-        {#password: {{ user.password }},#}
-        {#isSupervisor: {{ user.isSupervisor }},#}
-        {#<a href="{{ path('user_delete', {'id': user.id}) }}" onclick="return confirm('Are you sure?')">Delete</a>#}
-        {#<br/>#}
-    {#{% endfor %}#}
-
-    {#<br/>#}
-    {#<a href="{{ path('users_new') }}">Add new user</a>#}
-
 {% endblock %}
