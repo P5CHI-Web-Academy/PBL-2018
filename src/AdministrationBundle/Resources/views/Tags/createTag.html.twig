@@ -1,17 +1,46 @@
 {% extends '@Administration/base.html.twig' %}
 
 {% block body %}
-    <h1>Creation of Tag</h1>
+    {#<h1>Creation of Tag</h1>#}
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {#{{ form_start(form) }}#}
+    {#{{ form_widget(form) }}#}
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Create</button>
+    {#<div class="form-group">#}
+        {#<div class="col-sm-offset-2 col-sm-10">#}
+            {#<button type="submit" class="btn btn-default">Create</button>#}
+        {#</div>#}
+    {#</div>#}
+    {#{{ form_end(form) }}#}
+
+    {#<p><a href="{{path('tag.list')}}">Come Back</a></p>#}
+
+    <div class="body main body-location">
+        <div class="title-create-slide">
+            <h3 class="title-create-slide-text">Create Your Tag Here</h3>
+            <ion-icon name="pricetags" class="icon-create-title"></ion-icon>
         </div>
-    </div>
-    {{ form_end(form) }}
+        <div class="line-under-title"></div>
+        <div class="icon-back-div">
+            <a href="{{ path('tag.list') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
+        </div>
 
-    <p><a href="{{path('tag.list')}}">Come Back</a>
+        {{ form_start(form) }}
+        <div class="div-form">
+
+            <div class="div-location-name">
+                <p class="location-name-text">
+                    Tag Name
+                </p>
+                <div class="form-location-name-div">
+                    {{ form_widget(form.Tag, { 'attr': {'class': 'location-form form-control'} }) }}
+                    <small id="name-location-help" class="form-text text-muted">Create a name for your tag</small>
+                </div>
+            </div>
+        </div>
+        <div class="button-add-new-location" style="margin-top: 70px">
+            <a><button class="btn btn-primary" type="submit">Create Tag</button></a>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
