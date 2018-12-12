@@ -1,17 +1,60 @@
 {% extends '@Administration/base.html.twig' %}
 
 {% block title %}Location edit{% endblock %}
-{% block stylesheets %}{% endblock %}
 
 {% block body %}
+    <div class="body main">
+        <div class="title-create-slide">
+            <h3 class="title-create-slide-text">Edit User Info Here</h3>
+            <ion-icon name="pin" class="icon-create-title"></ion-icon>
+        </div>
+        <div class="line-under-title"></div>
+        <div class="icon-back-div">
+            <a href="{{ path('users') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
+        </div>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-        <button type="submit">Submit</button>
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+        <div class="div-form">
 
-    <a href="{{ path('users') }}">Back</a>
-
+            <div class="div-location-name">
+                <h5 class="location-name-text">
+                    User Name
+                </h5>
+                <div class="form-location-name-div form-tags-div">
+                    {{ form_widget(form.username, { 'attr': {'class': 'location-form form-control', 'placeholder': 'e.g. name.surname'} }) }}
+                    <small id="name-location-help" class="form-text text-muted">Update username</small>
+                </div>
+            </div>
+            <div class="div-tags">
+                <p class="location-tags-text">
+                    Update Password
+                </p>
+                <div class="form-tags-div">
+                    {{ form_widget(form.password.first, { 'attr': {'class': 'location-form form-control'}  }) }}
+                    <small id="tags-help" class="form-text text-muted">Create a strong password</small>
+                </div>
+            </div>
+            <div class="div-tags">
+                <p class="location-tags-text">
+                    Confirm Password
+                </p>
+                <div class="form-tags-div">
+                    {{ form_widget(form.password.second, { 'attr': {'class': 'location-form form-control'}  }) }}
+                    <small id="tags-help" class="form-text text-muted">Confirm the password</small>
+                </div>
+            </div>
+            <div class="div-tags supervisor-div">
+                <p class="location-tags-text flex-end-sup">
+                    Supervisor
+                </p>
+                <div class="form-tags-div">
+                    {{ form_widget(form.isSupervisor, { 'attr': {'class': 'custom-control-input checkbox-big'} }) }}
+                </div>
+            </div>
+        </div>
+        <div class="button-add-new-location" style="margin-top: 70px">
+            <a><button class="btn btn-primary" type="submit">Edit User</button></a>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
-
-{% block javascripts %}{% endblock %}
