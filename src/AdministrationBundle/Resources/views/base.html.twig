@@ -19,7 +19,7 @@
     <body>
         {% block navbar %}
             <div class="sidenav">
-                <a href="#" data-toggle="tooltip" data-placement="right" title="My Account"><ion-icon name="contact" class="icons icon-user-info"></ion-icon></a>
+                <a href="{{ path('change_password') }}" data-toggle="tooltip" data-placement="right" title="My Account"><ion-icon name="contact" class="icons icon-user-info"></ion-icon></a>
                 <a href="#" data-toggle="tooltip" data-placement="right" title="Home"><ion-icon name="home" class="icons icon-home"></ion-icon></a>
                 <a href="#" data-toggle="tooltip" data-placement="right" title="Users"><ion-icon name="people" class="icons icon-users"></ion-icon></a>
                 <a href="#" data-toggle="tooltip" data-placement="right" title="Locations"><ion-icon name="globe" class="icons icon-locations"></ion-icon></a>
@@ -29,7 +29,7 @@
                 <a href="#" data-toggle="tooltip" data-placement="right" title="Settings"><ion-icon name="settings" class="icons icon-settings"></ion-icon></a>
             </div>
         <div class="top-bar">
-            <a href="#" onclick="return confirm('Are you sure to logout?');" data-toggle="tooltip" data-placement="bottom" title="Exit"><ion-icon name="exit" class="icons icon-exit"></ion-icon></a>
+            <a href="{{ path('logout') }}" onclick="return confirm('Are you sure to logout?');" data-toggle="tooltip" data-placement="bottom" title="Exit"><ion-icon name="exit" class="icons icon-exit"></ion-icon></a>
         </div>
         {% endblock %}
 
@@ -46,6 +46,7 @@
         <script type="text/javascript" src="https://rawgit.com/select2/select2/master/dist/js/select2.js"></script>
         <script type="text/javascript" src="{{ asset('bundles/administration/js/bootstrap-multiselect.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/administration/js/layout.js') }}"></script>
+
     {% endblock %}
 
     {% block javascript_custom %}

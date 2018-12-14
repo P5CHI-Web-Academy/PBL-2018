@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 <div>
 
     <form action="{{ path('login') }}" method="post" id="myForm"><br/>
+
         <!--Create a container -->
 
 
@@ -31,6 +33,7 @@
         <div class="wrap-input100 validate-input m-b-10" data-validate="Password is required">
             <center><input class="input100" name="_password" type="password" placeholder="Password"/></center>
         </div>
+
         <!--When authentication fails, the browser is redirected to /login?error
                so we can display an error message by detecting if the parameter error is non-null.-->
         {% if error %}
@@ -49,7 +52,7 @@
 
 
             <div class="container-login100-form-btn">
-               <center> <input type="submit" class="btn light-orange btn-rounded" value="Login">
+               <center> <a href="{{ path('users') }}" > <input type="submit" class="btn light-orange btn-rounded" value="Login"></a>
 
                 </center>
             </div>
@@ -57,7 +60,7 @@
 
 
              <div class="forgot">
-                <a href="reset.html">Forgot password?<a>
+                <a href="ChangePassword.html">Forgot password?<a>
              </div>
 
 
