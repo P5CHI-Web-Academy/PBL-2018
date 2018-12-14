@@ -14,7 +14,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
                 JOIN s.tags t
                 JOIN t.locations l
                 JOIN s.schedule sch
-            WHERE l.location = :location and s.enabled = 1
+            WHERE l.location = :location and s.enabled = 1 and s.expirationDate > CURRENT_DATE()
         ')->setParameter('location', $location);
 
         return $query->getArrayResult();
@@ -85,7 +85,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
         date_default_timezone_set('Europe/Chisinau');
 
         $query = $this->_em->createQuery('
-            SELECT sl
+            SELECT sl.id
             FROM AdministrationBundle:Slide sl
             WHERE sl.expirationDate < CURRENT_DATE()
         ');
@@ -99,7 +99,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
             $this->_em->createQuery('
                 DELETE AdministrationBundle:Slide sl
                 WHERE sl.id = :id
-            ')->setParameter('id', $slide.getId()) ->execute();
+            ')->setParameter('id', $slide['id']) ->execute();
         }
     }
 }
