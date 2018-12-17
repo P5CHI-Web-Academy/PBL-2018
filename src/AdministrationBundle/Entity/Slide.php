@@ -3,15 +3,14 @@
 namespace AdministrationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Time;
 
 /**
  * Slide
  *
  * @ORM\Table(name="slide", indexes={@ORM\Index(name="fk_updated_by_idx", columns={"updated_by"}), @ORM\Index(name="fk_created_by_idx", columns={"created_by"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\AdministrationBundle\Repository\SlideRepository")
  */
-class Slide
+class Slide implements \JsonSerializable
 {
     /**
      * @var integer
@@ -30,18 +29,25 @@ class Slide
     private $name;
 
     /**
-     * @var \DateTime
+     * @var integer
      *
-     * @ORM\Column(name="period_of_validity", type="datetime", nullable=false)
+     * @ORM\Column(name="period_of_validity", type="integer", nullable=false)
      */
     private $periodOfValidity;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expiration_date", type="datetime", nullable=false)
+     * @ORM\Column(name="start_date", type="datetime", nullable=false)
      */
-    private $expirationDate;
+    private $startDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="datetime", nullable=false)
+     */
+    private $endDate;
 
     /**
      * @var boolean
@@ -164,18 +170,18 @@ class Slide
     }
 
     /**
-     * @return \DateTime
+     * @return integer
      */
-    public function getPeriodOfValidity(): \DateTime
+    public function getPeriodOfValidity(): int
     {
         return $this->periodOfValidity;
     }
 
     /**
-     * @param \DateTime $periodOfValidity
+     * @param integer $periodOfValidity
      * @return Slide
      */
-    public function setPeriodOfValidity(\DateTime $periodOfValidity): Slide
+    public function setPeriodOfValidity($periodOfValidity): Slide
     {
         $this->periodOfValidity = $periodOfValidity;
 
@@ -183,22 +189,41 @@ class Slide
     }
 
     /**
-     * @return \DateTime
+     * @param \DateTime $startDate
+     * @return Slide
      */
-    public function getExpirationDate(): \DateTime
+    public function setStartDate(\DateTime $startDate): Slide
     {
-        return $this->expirationDate;
+        $this->startDate = $startDate;
+
+        return $this;
     }
 
     /**
-     * @param \DateTime $expirationDate
+     * @return \DateTime
+     */
+    public function getStartDate(): \DateTime
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param \DateTime $endDate
      * @return Slide
      */
-    public function setExpirationDate(\DateTime $expirationDate): Slide
+    public function setEndDate(\DateTime $endDate): Slide
     {
-        $this->expirationDate = $expirationDate;
+        $this->endDate = $endDate;
 
         return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEndDate(): \DateTime
+    {
+        return $this->endDate;
     }
 
     /**
@@ -362,11 +387,11 @@ class Slide
     }
 
     /**
-     * @param Time $active_time_start
+     * @param \DateTime $active_time_start
      *
      * @return Slide
      */
-    public function setActiveTimeStart(Time $active_time_start): Slide
+    public function setActiveTimeStart(\DateTime $active_time_start): Slide
     {
         $this->activeTimeStart = $active_time_start;
 
@@ -382,11 +407,11 @@ class Slide
     }
 
     /**
-     * @param Time $active_time_end
+     * @param \DateTime $active_time_end
      *
      * @return Slide
      */
-    public function setActiveTimeEnd(Time $active_time_end): Slide
+    public function setActiveTimeEnd(\DateTime $active_time_end): Slide
     {
         $this->activeTimeStart = $active_time_end;
 
@@ -410,5 +435,12 @@ class Slide
         $this->schedule = $schedule;
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'content' => $this->content
+        ];
     }
 }

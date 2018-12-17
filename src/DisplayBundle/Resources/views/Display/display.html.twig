@@ -1,0 +1,48 @@
+<div id="list_of_slides">
+    List of slides  ....
+</div>
+
+<div id="slide_content">
+    Current slide content ....
+</div>
+
+
+<script>
+
+    function setSlideContent(slide){
+        document.getElementById('slide_content').innerText = slide['content'];
+
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('Success');
+            }, slide['periodOfValidity']);
+        });
+    }
+
+    function setSlidesList(slides){
+        document.getElementById('list_of_slides').innerHTML = '';
+
+        slides.forEach((slide) => {
+            document.getElementById('list_of_slides').innerHTML += slide['id'] + ' ';
+        });
+
+        return new Promise((resolve, reject) => {
+            resolve('Success');
+        });
+    }
+
+    async function loop(){
+        while(true) {
+            let response = await fetch('{{ path('fetch', {'location' : location}) }}');
+            let slides = await response.json();
+
+            await setSlidesList(slides);
+
+            for(let i = 0; i < slides.length; i++){
+                await setSlideContent(slides[i]);
+            }
+        }
+    }
+
+    loop();
+</script>
