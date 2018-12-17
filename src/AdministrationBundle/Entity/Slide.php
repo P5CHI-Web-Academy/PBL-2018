@@ -38,9 +38,16 @@ class Slide implements \JsonSerializable
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="expiration_date", type="datetime", nullable=false)
+     * @ORM\Column(name="start_date", type="datetime", nullable=false)
      */
-    private $expirationDate;
+    private $startDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="datetime", nullable=false)
+     */
+    private $endDate;
 
     /**
      * @var boolean
@@ -182,22 +189,41 @@ class Slide implements \JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @param \DateTime $startDate
+     * @return Slide
      */
-    public function getExpirationDate(): \DateTime
+    public function setStartDate(\DateTime $startDate): Slide
     {
-        return $this->expirationDate;
+        $this->startDate = $startDate;
+
+        return $this;
     }
 
     /**
-     * @param \DateTime $expirationDate
+     * @return \DateTime
+     */
+    public function getStartDate(): \DateTime
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @param \DateTime $endDate
      * @return Slide
      */
-    public function setExpirationDate(\DateTime $expirationDate): Slide
+    public function setEndDate(\DateTime $endDate): Slide
     {
-        $this->expirationDate = $expirationDate;
+        $this->endDate = $endDate;
 
         return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEndDate(): \DateTime
+    {
+        return $this->endDate;
     }
 
     /**

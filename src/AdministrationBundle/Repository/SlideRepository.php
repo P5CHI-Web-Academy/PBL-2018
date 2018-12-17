@@ -8,13 +8,16 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getEnabledSlidesByLocationName($location): array
     {
+        date_default_timezone_set('Europe/Chisinau');
+
         $query = $this->_em->createQuery('
             SELECT s, sch, t, l
             FROM AdministrationBundle:Slide s
                 JOIN s.tags t
                 JOIN t.locations l
                 JOIN s.schedule sch
-            WHERE l.location = :location and s.enabled = 1 and s.expirationDate > CURRENT_DATE()
+            WHERE l.location = :location and s.enabled = 1 
+                and ( s.startDate <= CURRENT_DATE() and s.endDate > CURRENT_DATE() )
         ')->setParameter('location', $location);
 
         return $query->getArrayResult();
@@ -87,7 +90,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->_em->createQuery('
             SELECT sl.id
             FROM AdministrationBundle:Slide sl
-            WHERE sl.expirationDate < CURRENT_DATE()
+            WHERE sl.endDate < CURRENT_DATE()
         ');
 
         foreach($query->getResult() as $slide){
