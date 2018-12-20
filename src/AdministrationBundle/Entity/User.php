@@ -51,6 +51,13 @@ class User implements UserInterface
     private $isSupervisor;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_deleted", type="boolean", nullable=false, options={"default" : 0})
+     */
+    private $isDeleted;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -111,6 +118,25 @@ class User implements UserInterface
     public function setIsSupervisor(bool $isSupervisor): User
     {
         $this->isSupervisor = $isSupervisor;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    /**
+     * @param bool $isDeleted
+     * @return User
+     */
+    public function setIsDeleted(bool $isDeleted): User
+    {
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }

@@ -50,3 +50,10 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+
+security:
+    firewalls:
+        main:
+            pattern: ^/
+            user_checker: AdministrationBundle\Security\UserChecker

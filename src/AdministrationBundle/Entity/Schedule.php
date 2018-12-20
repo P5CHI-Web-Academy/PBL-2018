@@ -39,20 +39,6 @@ class Schedule
     /**
      * @var int
      *
-     * @ORM\Column(name="week", type="integer", nullable=true)
-     */
-    private $week;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="month", type="integer", nullable=true)
-     */
-    private $month;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="day", type="integer", nullable=true)
      */
     private $day;
@@ -109,54 +95,6 @@ class Schedule
     public function getType() : int
     {
         return $this->type;
-    }
-
-    /**
-     * Set week
-     *
-     * @param integer $week
-     *
-     * @return Schedule
-     */
-    public function setWeek($week) : Schedule
-    {
-        $this->week = $week;
-
-        return $this;
-    }
-
-    /**
-     * Get week
-     *
-     * @return int
-     */
-    public function getWeek() : int
-    {
-        return $this->week;
-    }
-
-    /**
-     * Set month
-     *
-     * @param integer $month
-     *
-     * @return Schedule
-     */
-    public function setMonth($month) : Schedule
-    {
-        $this->month = $month;
-
-        return $this;
-    }
-
-    /**
-     * Get month
-     *
-     * @return int
-     */
-    public function getMonth() : int
-    {
-        return $this->month;
     }
 
     /**
