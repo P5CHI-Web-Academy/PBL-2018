@@ -20,7 +20,9 @@ class UsersController extends Controller
     public function listUsers(): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $users =  $entityManager->getRepository(User::class)->findAll();
+        $users =  $entityManager->getRepository(User::class)->findBy(
+            array('isDeleted' => 0)
+        );
 
         if(!$users){
             throw new \RuntimeException('error while fetching users');
@@ -47,9 +49,9 @@ class UsersController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            $user->setIsDeleted(false);
             $em->persist($user);
             $em->flush();
-
             return $this->redirectToRoute('users');
         }
 
@@ -84,7 +86,7 @@ class UsersController extends Controller
             'form' => $form->createView()
         ));
     }
-    
+
     /**
      * @Route("/admin/users/deletion/{id}", name="user_delete")
      * @param $id
@@ -98,7 +100,11 @@ class UsersController extends Controller
             ->getRepository(User::class)
             ->find($id);
 
-        $entityManager->remove($user);
+        if($user) {
+            $user->setIsDeleted(true);
+        }
+
+        $entityManager->persist($user);
         $entityManager->flush();
 
         return $this->redirectToRoute('users');

@@ -11,8 +11,10 @@ class SecurityController extends Controller
 {
     /**
      * @Route("/login", name="login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginAction(AuthenticationUtils $authenticationUtils)
+    public function loginAction(AuthenticationUtils $authenticationUtils): \Symfony\Component\HttpFoundation\Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -29,14 +31,16 @@ class SecurityController extends Controller
         );
     }
 
-    public function checkAction()
+    public function checkAction(): void
     {
-        throw new \RuntimeException('You must configure the check path to be handled by the firewall using login_form in your security firewall configuration.');
+        throw new \RuntimeException('You must configure the check path to be handled
+        by the firewall using login_form in your security firewall configuration.');
     }
 
-    public function logoutAction()
+    public function logoutAction(): void
     {
-        throw new \RuntimeException('You must activate the logout in your security firewall configuration.');
+        throw new \RuntimeException('You must activate the logout in your
+        security firewall configuration.');
     }
 }
 
