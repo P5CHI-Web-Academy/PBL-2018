@@ -1,0 +1,67 @@
+{% extends '@Administration/base.html.twig' %}
+
+{% block body %}
+    <div class="body main">
+        <div class="title-create-slide">
+            <h3 class="title-create-slide-text">Slides Info</h3>
+        </div>
+        <div class="line-under-title"></div>
+        <div class="icon-back-div">
+            <a href="{{ path('slide.list') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
+        </div>
+        <div class="table-locations-div">
+            <table class="table table-locations">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Period of validity</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">End date</th>
+                    <th scope="col">Enabled</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Created by</th>
+                    <th scope="col">Updated at</th>
+                    <th scope="col">Updated by</th>
+                    <th scope="col">Content of slide</th>
+                    <th scope="col">Active time start</th>
+                    <th scope="col">Active time end</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col">Step (in ms)</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <th scope="row">{{ someSlide.id }}</th>
+                    <td>{{ someSlide.name }}</td>
+                    <td>{{ someSlide.periodOfValidity }}</td>
+                    <td>{{ someSlide.startDate|date("Y-m-d H:i:s") }}</td>
+                    <td>{{ someSlide.endDate|date("Y-m-d H:i:s") }}</td>
+                    <td>
+                        {% if someSlide.enabled == 1 %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </td>
+                    <td>{{ someSlide.createdAt|date("Y-m-d H:i:s") }}</td>
+                    <td>{{ someSlide.createdBy.username }}</td>
+                    <td>{{ someSlide.updatedAt|date("Y-m-d H:i:s") }}</td>
+                    <td>{{ someSlide.updatedBy.username }}</td>
+                    <td>{{ someSlide.content }}
+                    <td>{{ someSlide.activeTimeStart|date("H:i:s") }}</td>
+                    <td>{{ someSlide.activeTimeEnd|date("H:i:s") }}</td>
+                    <td>
+                        {% for tags in someSlide.tags %}
+                            {{ tags.tag }}
+                        {% endfor %}
+                    </td>
+                    <td>{{ someSlide.step }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -145,7 +145,7 @@ class Slide implements \JsonSerializable
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -153,7 +153,7 @@ class Slide implements \JsonSerializable
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -172,7 +172,7 @@ class Slide implements \JsonSerializable
     /**
      * @return integer
      */
-    public function getPeriodOfValidity(): int
+    public function getPeriodOfValidity(): ?int
     {
         return $this->periodOfValidity;
     }
@@ -202,7 +202,7 @@ class Slide implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getStartDate(): \DateTime
+    public function getStartDate(): ?\DateTime
     {
         return $this->startDate;
     }
@@ -221,7 +221,7 @@ class Slide implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getEndDate(): \DateTime
+    public function getEndDate(): ?\DateTime
     {
         return $this->endDate;
     }
@@ -229,7 +229,7 @@ class Slide implements \JsonSerializable
     /**
      * @return bool
      */
-    public function isEnabled(): bool
+    public function isEnabled(): ?bool
     {
         return $this->enabled;
     }
@@ -248,7 +248,7 @@ class Slide implements \JsonSerializable
     /**
      * @return string
      */
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
@@ -267,7 +267,7 @@ class Slide implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
@@ -286,7 +286,7 @@ class Slide implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -361,7 +361,7 @@ class Slide implements \JsonSerializable
     /**
      * @return int
      */
-    public function getStep(): int
+    public function getStep(): ?int
     {
         return $this->step;
     }
@@ -381,7 +381,7 @@ class Slide implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getActiveTimeStart(): \DateTime
+    public function getActiveTimeStart(): ?\DateTime
     {
         return $this->activeTimeStart;
     }
@@ -401,7 +401,7 @@ class Slide implements \JsonSerializable
     /**
      * @return \DateTime
      */
-    public function getActiveTimeEnd(): \DateTime
+    public function getActiveTimeEnd(): ?\DateTime
     {
         return $this->activeTimeEnd;
     }
@@ -413,7 +413,7 @@ class Slide implements \JsonSerializable
      */
     public function setActiveTimeEnd(\DateTime $active_time_end): Slide
     {
-        $this->activeTimeStart = $active_time_end;
+        $this->activeTimeEnd = $active_time_end;
 
         return $this;
     }

@@ -27,3 +27,33 @@ PHP message: PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www
 PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:68
 PHP message: PHP   5. DisplayBundle\Controller\DisplayController->displaySlides() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:151
 PHP message: PHP   6. AdministrationBundle\Repository\SlideRepository->deleteExpiredSlides() /var/www/src/DisplayBundle/Controller/DisplayController.php:20" while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "GET /app_dev.php/display/Chisinau HTTP/1.1", upstream: "fastcgi://172.21
+2018/12/20 14:34:21 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET /app_dev.php/admin HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/12/20 14:34:25 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET /app_dev.php/admin HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/12/20 14:34:26 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET /app_dev.php/admin HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/12/20 14:35:44 [error] 8#8: *7 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET /app_dev.php/admin HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
+2018/12/20 14:36:15 [error] 8#8: *9 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/web/../vendor/autoload.php' (include_path='.:/usr/local/lib/php') in /var/www/web/app_dev.php on line 21
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0" while reading response header from upstream, client: 172.19.0.1, server: slides.local, request: "GET /app_dev.php/admin HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "slides.local"
