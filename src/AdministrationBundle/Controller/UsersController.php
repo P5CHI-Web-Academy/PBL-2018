@@ -30,7 +30,7 @@ class UsersController extends Controller
 
         return $this->render(
             '@Administration/Users/users.html.twig',
-            array('users' => $users)
+            array('users' => $users, 'logged_in_user' => $this->getUser())
         );
     }
 
