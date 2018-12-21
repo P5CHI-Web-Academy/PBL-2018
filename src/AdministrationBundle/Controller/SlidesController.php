@@ -4,9 +4,12 @@ namespace AdministrationBundle\Controller;
 
 use AdministrationBundle\AdministrationBundle;
 use AdministrationBundle\Entity\Location;
+use AdministrationBundle\Entity\Schedule;
 use AdministrationBundle\Entity\Slide;
 use AdministrationBundle\Entity\Tag;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SlidesController extends Controller
@@ -82,32 +85,31 @@ class SlidesController extends Controller
 
     /**
      * @Route("/admin/slides/deletion/{id}", name="slide_delete")
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function deleteSlide($id){
-        $entityManaget = $this->getDoctrine()->getManager();
+    public function deleteSlide($id, Request $request){
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $schedule_array = $this->getDoctrine()
+            ->getRepository(Schedule::class)
+            ->findBy(
+                array('slide' => $id)
+            );
+
+        foreach($schedule_array as $schedule){
+            $entityManager->remove($schedule);
+            $entityManager->flush();
+        }
 
         $slide = $this->getDoctrine()
             ->getRepository(Slide::class)
             ->find($id);
 
-        $entityManaget->remove($slide);
-        $entityManaget->flush();
+        $entityManager->remove($slide);
+        $entityManager->flush();
 
-        return $this->redirectToRoute("slides");
+        return $this->redirect($request->headers->all()['referer'][0]);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
