@@ -27,3 +27,19 @@ PHP message: PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www
 PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:68
 PHP message: PHP   5. DisplayBundle\Controller\DisplayController->displaySlides() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:151
 PHP message: PHP   6. AdministrationBundle\Repository\SlideRepository->deleteExpiredSlides() /var/www/src/DisplayBundle/Controller/DisplayController.php:20" while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "GET /app_dev.php/display/Chisinau HTTP/1.1", upstream: "fastcgi://172.21
+2018/12/21 12:46:14 [error] 10#10: *46 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 266342400 bytes) in /var/www/src/AdministrationBundle/Controller/AccountController.php on line 27
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP   2. AppKernel->handle() /var/www/web/app_dev.php:29
+PHP message: PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:200
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:68
+PHP message: PHP   5. AdministrationBundle\Controller\AccountController->account() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:151
+PHP message: PHP   6. print_r() /var/www/src/AdministrationBundle/Controller/AccountController.php:27" while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "GET /app_dev.php/admin/account HTTP/1.1", upstream: "fastcgi://172.21.0.4:9000", host: "slides.local"
+2018/12/21 12:48:23 [error] 10#10: *62 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 201306112 bytes) in /var/www/src/AdministrationBundle/Controller/AccountController.php on line 27
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/web/app_dev.php:0
+PHP message: PHP   2. AppKernel->handle() /var/www/web/app_dev.php:29
+PHP message: PHP   3. Symfony\Component\HttpKernel\HttpKernel->handle() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:200
+PHP message: PHP   4. Symfony\Component\HttpKernel\HttpKernel->handleRaw() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:68
+PHP message: PHP   5. AdministrationBundle\Controller\AccountController->account() /var/www/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/HttpKernel.php:151
+PHP message: PHP   6. print_r() /var/www/src/AdministrationBundle/Controller/AccountController.php:27" while reading response header from upstream, client: 172.21.0.1, server: slides.local, request: "GET /app_dev.php/admin/account HTTP/1.1", upstream: "fastcgi://172.21.0.4:9000", host: "slides.local"
