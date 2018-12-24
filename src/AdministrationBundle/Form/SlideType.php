@@ -8,6 +8,7 @@
 
 namespace AdministrationBundle\Form;
 
+use AdministrationBundle\Entity\Schedule;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -62,6 +63,21 @@ class SlideType extends AbstractType {
             ))
             -> add('activeTimeEnd', TimeType::class, array(
                 'input' => 'datetime'
+            ))
+            ->add('typeOfSchedule', ChoiceType::class, [
+                'choices' => [
+                    'Every week' => 0,
+                    'First week of month' => 1,
+                    'Second week of month' => 2,
+                    'Third week of month' => 3,
+                    'Fourth week of month' => 4,
+                    'Specified days of month' => 5,
+                ]
+            ])
+            ->add('schedule', EntityType::class, array(
+                'class' => Schedule::class,
+                'choice_label' => 'day',
+                'multiple' => true,
             ));
     }
 

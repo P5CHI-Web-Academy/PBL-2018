@@ -19,7 +19,7 @@ class SlidesController extends Controller
     /**
      * List all slides in system
      *
-     * @Route("/admin/slide/list", name = "slide.list")
+     * @Route("/admin/slides", name = "slide.list")
      *
      * @return Response
      */
@@ -34,7 +34,7 @@ class SlidesController extends Controller
     /**
      * Shows slide
      *
-     * @Route("/admin/slide/{id}/show", name = "slide.show")
+     * @Route("/admin/slides/show/{id}", name = "slide.show")
      *
      * @param Slide $someSlide
      *
@@ -49,7 +49,7 @@ class SlidesController extends Controller
     /**
      * Create new slide in the system
      *
-     * @Route("/admin/slide/create", name = "slide.create", methods = {"GET", "POST"})
+     * @Route("/admin/slides/new", name = "slide.create", methods = {"GET", "POST"})
      *
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -82,7 +82,7 @@ class SlidesController extends Controller
     /**
      * Edit slide
      *
-     * @Route("/admin/slide/{id}/edit", name = "slide.edit", methods = {"GET", "POST"})
+     * @Route("/admin/slide/edit/{id}", name = "slide.edit", methods = {"GET", "POST"})
      *
      * @param Request $request
      * @param Slide $slide
@@ -110,7 +110,7 @@ class SlidesController extends Controller
     /**
      * Delete slide functionality
      *
-     * @Route("/admin/slide/{id}/delete", name = "slide.delete", methods = {"GET", "POST"})
+     * @Route("/admin/slide/delete/{id}", name = "slide.delete", methods = {"GET", "POST"})
      *
      * @param Request $request
      * @param Slide $slide

@@ -5,36 +5,29 @@ namespace AdministrationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * schedule
+ * Schedule
  *
- * @ORM\Table(name="schedule")
+ * @ORM\Table(name="schedule", uniqueConstraints={@ORM\UniqueConstraint(name="day_UNIQUE", columns={"day"})})
  * @ORM\Entity
  */
 class Schedule
 {
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var Slide
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToOne(targetEntity="Slide", inversedBy="schedule")
-     * @ORM\JoinColumn(name="slide_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Slide", mappedBy="schedule")
      */
-    private $slide;
+    private $slides;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="type", type="integer")
-     */
-    private $type;
 
     /**
      * @var int
@@ -55,46 +48,22 @@ class Schedule
     }
 
     /**
-     * @return Slide
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getSlide(): Slide
+    public function getSlides(): Slide
     {
-        return $this->slide;
+        return $this->slides;
     }
 
     /**
-     * @param Slide $slide
+     * @param \Doctrine\Common\Collections\Collection $slide
      * @return Schedule
      */
-    public function setSlide(Slide $slide): Schedule
+    public function setSlides(Slide $slide): Schedule
     {
-        $this->slide = $slide;
+        $this->slides = $slide;
 
         return $this;
-    }
-
-    /**
-     * Set type
-     *
-     * @param integer $type
-     *
-     * @return Schedule
-     */
-    public function setType($type) : Schedule
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return int
-     */
-    public function getType() : int
-    {
-        return $this->type;
     }
 
     /**

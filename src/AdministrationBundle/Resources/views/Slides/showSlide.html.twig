@@ -28,6 +28,8 @@
                     <th scope="col">Active time end</th>
                     <th scope="col">Tags</th>
                     <th scope="col">Step (in ms)</th>
+                    <th scope="col">Type of Schedule</th>
+                    <th scope="col">Schedule</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,6 +60,12 @@
                         {% endfor %}
                     </td>
                     <td>{{ someSlide.step }}</td>
+                    <td>{{ someSlide.typeOfSchedule }}</td>
+                    <td>
+                        {% for schedule in someSlide.schedule %}
+                            {{ schedule.day }}
+                        {% endfor %}
+                    </td>
                 </tr>
 
                 </tbody>

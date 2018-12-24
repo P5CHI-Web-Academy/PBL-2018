@@ -129,10 +129,17 @@ class Slide implements \JsonSerializable
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="slide")
+     * @ORM\ManyToMany(targetEntity="Schedule", inversedBy="slides")
+     * @ORM\JoinTable(name="slides_schedule")
      */
     private $schedule;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="typeOfSchedule", type="integer", nullable=false)
+     */
+    private $typeOfSchedule;
     /**
      * Constructor
      */
@@ -435,6 +442,27 @@ class Slide implements \JsonSerializable
         $this->schedule = $schedule;
 
         return $this;
+    }
+
+    /**
+     * @param int $typeOfSchedule
+     *
+     * @return Slide
+     */
+    public function setTypeOfSchedule(int $typeOfSchedule): Slide
+    {
+        $this->typeOfSchedule = $typeOfSchedule;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @return int
+     */
+    public function getTypeOfSchedule(): ?int
+    {
+        return $this->typeOfSchedule;
     }
 
     public function jsonSerialize()
