@@ -354,9 +354,8 @@ a:hover {
 }
 
 .ckeditor {
-    width: 85%;
-    height: 600px;
-    background-color: white;
+    width: auto;
+    height: auto;
     margin: 30px 2% 0 0;
 }
 
