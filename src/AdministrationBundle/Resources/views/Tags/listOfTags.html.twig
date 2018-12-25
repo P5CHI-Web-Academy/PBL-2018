@@ -1,36 +1,6 @@
 {% extends '@Administration/base.html.twig' %}
 
 {% block body %}
-    {#dima's code#}
-
-    {#<table class="table text-center">#}
-        {#<tr>#}
-            {#<th class="active text-center">ID</th>#}
-            {#<th class="active text-center">Tag</th>#}
-            {#<th class="active text-center">Slides</th>#}
-        {#</tr>#}
-
-        {#{% for tag in tags %}#}
-            {#<tr>#}
-                {#<td>{{ tag.id }}</td>#}
-                {#<td>#}
-                    {#<a href="{{ path('tag.show', {id: tag.id}) }}">#}
-                        {#{{ tag.tag }}#}
-                    {#</a>#}
-                {#</td>#}
-                {#<td>#}
-                    {#{% for sl in tag.slides %}#}
-                        {#{{ sl.name }}#}
-                    {#{% endfor %}#}
-                {#</td>#}
-            {#</tr>#}
-        {#{% endfor %}#}
-    {#</table>#}
-
-    {#<p><a href="{{path('tag.create')}}">Create</a></p>#}
-
-
-
 
     <div class="body main">
         <div class="title-create-slide">
@@ -54,7 +24,7 @@
                     <tr>
                         <th scope="row">{{ tag.id }}</th>
                         <td>
-                            <a href="{{ path('tag.show', {id: tag.id}) }}" class="no-decoration-tags"><button class="tag-id-list-locations" id="{{ tag.id }}">{{ tag.tag }}</button></a>
+                            <button class="tag-id-list-locations" id="{{ tag.id }}">{{ tag.tag }}</button></a>
                         </td>
                         <td>
                             {% for sl in tag.slides %}
@@ -62,11 +32,8 @@
                             {% endfor %}
                         </td>
                         <td>
-                            <a href="{{ path('tag.edit', {'id': tag.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
-                            {#{{ form_start(deleteForm, {'attr': {'class': 'navbar-form navbar-left'}})  }}#}
-                                {#{{ form_widget(deleteForm) }}#}
+                            <a href="{{ path('tag_edit', {'id': tag.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
                                 <a onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
-                            {#{{ form_end(deleteForm) }}#}
                         </td>
                     </tr>
                 {% endfor %}
@@ -74,7 +41,7 @@
                 </tbody>
             </table>
             <div class="button-add-new-location">
-                <a href="{{ path('tag.create') }}"><button class="btn btn-primary">Add New Tag</button></a>
+                <a href="{{ path('tag_new') }}"><button class="btn btn-primary">Add New Tag</button></a>
             </div>
         </div>
     </div>

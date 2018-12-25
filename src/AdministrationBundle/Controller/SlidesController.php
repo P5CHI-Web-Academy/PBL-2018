@@ -19,7 +19,7 @@ class SlidesController extends Controller
     /**
      * List all slides in system
      *
-     * @Route("/admin/slides", name = "slide.list")
+     * @Route("/admin/slides", name = "slides")
      *
      * @return Response
      */
@@ -34,7 +34,7 @@ class SlidesController extends Controller
     /**
      * Shows slide
      *
-     * @Route("/admin/slides/show/{id}", name = "slide.show")
+     * @Route("/admin/slides/show/{id}", name = "slide_show")
      *
      * @param Slide $someSlide
      *
@@ -49,7 +49,7 @@ class SlidesController extends Controller
     /**
      * Create new slide in the system
      *
-     * @Route("/admin/slides/new", name = "slide.create", methods = {"GET", "POST"})
+     * @Route("/admin/slides/new", name = "slide_new", methods = {"GET", "POST"})
      *
      * @param Request $request
      * @param EntityManagerInterface $em
@@ -71,7 +71,7 @@ class SlidesController extends Controller
             $em->persist($slide);
             $em->flush();
 
-            return $this->redirectToRoute('slide.list');
+            return $this->redirectToRoute('slides');
         }
 
         return $this->render('@Administration/Slides/createSlide.html.twig', [
@@ -82,7 +82,7 @@ class SlidesController extends Controller
     /**
      * Edit slide
      *
-     * @Route("/admin/slide/edit/{id}", name = "slide.edit", methods = {"GET", "POST"})
+     * @Route("/admin/slide/edit/{id}", name = "slide_edit", methods = {"GET", "POST"})
      *
      * @param Request $request
      * @param Slide $slide
@@ -110,7 +110,7 @@ class SlidesController extends Controller
     /**
      * Delete slide functionality
      *
-     * @Route("/admin/slide/delete/{id}", name = "slide.delete", methods = {"GET", "POST"})
+     * @Route("/admin/slide/delete/{id}", name = "slide_delete", methods = {"GET", "POST"})
      *
      * @param Request $request
      * @param Slide $slide
@@ -121,14 +121,14 @@ class SlidesController extends Controller
 
     public function delete(Request $request, Slide $slide, EntityManagerInterface $em) : Response{
         if(!$slide){
-            throw $this->createNotFoundException("No tag was found!");
+            throw $this->createNotFoundException("No slide was found!");
         }
 
         $em = $this->getDoctrine()->getEntityManager();
         $em->remove($slide);
         $em->flush();
 
-        return $this->redirectToRoute('slide.list');
+        return $this->redirectToRoute('slides');
     }
 
 }

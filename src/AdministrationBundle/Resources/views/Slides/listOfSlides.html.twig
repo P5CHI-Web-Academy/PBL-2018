@@ -33,7 +33,7 @@
                     <tr>
                         <th scope="row">{{ slide.id }}</th>
                         <td>
-                            <a href="{{ path('slide.show', {id: slide.id}) }}">
+                            <a href="{{ path('slide_show', {id: slide.id}) }}">
                                 {{ slide.name }}
                             </a>
                         </td>
@@ -60,8 +60,8 @@
                         </td>
                         <td>{{ slide.step }}</td>
                         <td>
-                            <a href="{{ path('slide.edit', {'id': slide.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
-                            <a href="{{ path('slide.delete', {'id': slide.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
+                            <a href="{{ path('slide_edit', {'id': slide.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
+                            <a href="{{ path('slide_delete', {'id': slide.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -70,7 +70,7 @@
             </table>
 
                 <div class="button-add-new-location">
-                    <a href="{{ path('slide.create') }}"><button class="btn btn-primary">Add new slide</button></a>
+                    <a href="{{ path('slide_new') }}"><button class="btn btn-primary">Add new slide</button></a>
                 </div>
         </div>
     </div>

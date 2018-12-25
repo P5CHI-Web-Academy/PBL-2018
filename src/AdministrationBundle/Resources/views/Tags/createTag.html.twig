@@ -1,19 +1,6 @@
 {% extends '@Administration/base.html.twig' %}
 
 {% block body %}
-    {#<h1>Creation of Tag</h1>#}
-
-    {#{{ form_start(form) }}#}
-    {#{{ form_widget(form) }}#}
-
-    {#<div class="form-group">#}
-        {#<div class="col-sm-offset-2 col-sm-10">#}
-            {#<button type="submit" class="btn btn-default">Create</button>#}
-        {#</div>#}
-    {#</div>#}
-    {#{{ form_end(form) }}#}
-
-    {#<p><a href="{{path('tag.list')}}">Come Back</a></p>#}
 
     <div class="body main body-location">
         <div class="title-create-slide">
@@ -22,7 +9,7 @@
         </div>
         <div class="line-under-title"></div>
         <div class="icon-back-div">
-            <a href="{{ path('tag.list') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
+            <a href="{{ path('tags') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
         </div>
 
         {{ form_start(form) }}
