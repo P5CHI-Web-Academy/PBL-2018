@@ -12,6 +12,7 @@ use AdministrationBundle\Entity\Schedule;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -51,7 +52,7 @@ class SlideType extends AbstractType {
                     'No' => false,
                 ]
             ])
-            -> add('content', TextareaType::class, array())
+            -> add('content', CKEditorType::class, array())
             -> add('tags', EntityType :: class, array(
                 'class' => Tag :: class,
                 'choice_label' => 'tag',
