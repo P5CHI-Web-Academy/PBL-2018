@@ -2,114 +2,144 @@
 
 namespace AdministrationBundle\Controller;
 
-use AdministrationBundle\AdministrationBundle;
-use AdministrationBundle\Entity\Location;
-use AdministrationBundle\Entity\Schedule;
 use AdministrationBundle\Entity\Slide;
-use AdministrationBundle\Entity\Tag;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use AdministrationBundle\Form\SlideType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SlidesController extends Controller
 {
     /**
-     * @Route("/admin/slides", name="slides")
-     * @throws \Exception
+     * List all slides in system
+     *
+     * @Route("/admin/slides", name = "slides")
+     *
+     * @return Response
      */
-    public function listSlides()
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $slides =  $entityManager->getRepository(Slide::class)->findAll();
+    public function listSlides() : Response {
+        $slides = $this->getDoctrine()->getRepository(Slide::class)->findAll();
 
-        if(!$slides){
-            throw new \Exception('error while fetching slides');
-        }
-
-        return $this->render(
-            '@Administration/Slides/slides.html.twig',
-            array('slides' => $slides)
-        );
+        return $this->render('@Administration/Slides/listOfSlides.html.twig',[
+            'slides' => $slides,
+        ]);
     }
 
     /**
-     * @Route("/admin/slides/preview/{id}", name="slide_preview")
-     * @throws \Exception
+     * Shows slide
+     *
+     * @Route("/admin/slides/show/{id}", name = "slide_show")
+     *
+     * @param Slide $someSlide
+     *
+     * @return Response
      */
-    public function previewSlide($id){
-        $entityManager = $this->getDoctrine()->getManager();
-        $slide = $entityManager->getRepository(Slide::class)->find($id);
-
-        if(!$slide){
-            throw new \Exception('Slide with this id not found');
-        }
-
-
-        return $this->render(
-            '@Administration/Slides/preview.html.twig',
-            array('slide' => $slide)
-        );
+    public function show(Slide $someSlide) : Response {
+        return $this->render('@Administration/Slides/showSlide.html.twig', [
+            'someSlide' => $someSlide,
+        ]);
     }
 
     /**
-     * @Route("/admin/slides/edit/{id}", name="slide_edit")
-     * @throws \Exception
-     */
-    public function editSlide($id){
-        $entityManager = $this->getDoctrine()->getManager();
-        $slide = $entityManager->getRepository(Slide::class)->find($id);
-
-        if(!$slide){
-            throw new \Exception('Slide with this id not found.');
-        }
-
-        return $this->render(
-            '@Administration/Slides/edit.html.twig',
-            array('slide' => $slide)
-        );
-    }
-
-    /**
-     * @Route("/admin/slides/new", name="slide_new")
-     */
-    public function newSlide(){
-        $entityManaget = $this->getDoctrine()->getManager();
-        $tags = $this->getDoctrine()->getRepository(Tag::class)->findAll();
-
-        return $this->render(
-            '@Administration/Slides/new.html.twig',
-            array('tags' => $tags)
-        );
-    }
-
-    /**
-     * @Route("/admin/slides/deletion/{id}", name="slide_delete")
-     * @param $id
+     * Create new slide in the system
+     *
+     * @Route("/admin/slides/new", name = "slide_new", methods = {"GET", "POST"})
+     *
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @param EntityManagerInterface $em
+     *
+     * @return RedirectResponse|Response
+     * @throws \Exception
      */
-    public function deleteSlide($id, Request $request){
-        $entityManager = $this->getDoctrine()->getManager();
+    public function create(Request $request, EntityManagerInterface $em) : Response {
+        $slide = new Slide();
+        $slide->setCreatedBy($this->getUser());
+        $slide->setUpdatedBy($this->getUser());
+        $slide->setCreatedAt(new \DateTime("now"));
+        $slide->setUpdatedAt(new \DateTime("now"));
+        //create form for setting new slide
+        $form = $this->createForm(SlideType::class, $slide);
+        $form->handleRequest($request);
 
-        $schedule_array = $this->getDoctrine()
-            ->getRepository(Schedule::class)
-            ->findBy(
-                array('slide' => $id)
-            );
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($slide);
+            $em->flush();
 
-        foreach($schedule_array as $schedule){
-            $entityManager->remove($schedule);
-            $entityManager->flush();
+            return $this->redirectToRoute('slides');
         }
 
-        $slide = $this->getDoctrine()
-            ->getRepository(Slide::class)
-            ->find($id);
-
-        $entityManager->remove($slide);
-        $entityManager->flush();
-
-        return $this->redirect($request->headers->all()['referer'][0]);
+        return $this->render('@Administration/Slides/createSlide.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
+
+    /**
+     * Edit slide
+     *
+     * @Route("/admin/slide/edit/{id}", name = "slide_edit", methods = {"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Slide $slide
+     * @param EntityManagerInterface $em
+     *
+     * @return Response
+     */
+    public function edit(Request $request, Slide $slide, EntityManagerInterface $em) : Response {
+        $slide->setUpdatedBy($this->getUser());
+        $slide->setUpdatedAt(new \DateTime("now"));
+
+        $form = $this->createForm(SlideType::class, $slide);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            return $this->redirectToRoute('slide.list');
+        }
+
+        return $this->render('@Administration/Slides/editSlide.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Delete slide functionality
+     *
+     * @Route("/admin/slide/delete/{id}", name = "slide_delete", methods = {"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Slide $slide
+     * @param EntityManagerInterface $em
+     *
+     * @return Response
+     */
+
+    public function delete(Request $request, Slide $slide, EntityManagerInterface $em) : Response{
+        if(!$slide){
+            throw $this->createNotFoundException("No slide was found!");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($slide);
+        $em->flush();
+
+        return $this->redirectToRoute('slides');
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

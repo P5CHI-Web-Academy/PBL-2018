@@ -22,10 +22,6 @@ class LocationsController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $locations =  $entityManager->getRepository(Location::class)->findAll();
 
-        if(!$locations){
-            throw new \RuntimeException('error while fetching locations');
-        }
-
         return $this->render(
             '@Administration/Locations/locations.html.twig',
             array('locations' => $locations)

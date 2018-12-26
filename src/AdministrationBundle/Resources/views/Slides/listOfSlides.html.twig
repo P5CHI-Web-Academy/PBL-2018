@@ -1,0 +1,77 @@
+{% extends '@Administration/base.html.twig' %}
+
+{% block body %}
+    <div class="body main">
+        <div class="title-create-slide">
+            <h3 class="title-create-slide-text">Slides Info</h3>
+        </div>
+        <div class="line-under-title"></div>
+        <div class="table-locations-div">
+            <table class="table table-locations">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Period of validity</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">End date</th>
+                    <th scope="col">Enabled</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Created by</th>
+                    <th scope="col">Updated at</th>
+                    <th scope="col">Updated by</th>
+                    <th scope="col">Active time start</th>
+                    <th scope="col">Active time end</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col">Step (in ms)</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for slide in slides %}
+                    <tr>
+                        <th scope="row">{{ slide.id }}</th>
+                        <td>
+                            <a href="{{ path('slide_show', {id: slide.id}) }}">
+                                {{ slide.name }}
+                            </a>
+                        </td>
+                        <td>{{ slide.periodOfValidity }}</td>
+                        <td>{{ slide.startDate|date("Y-m-d H:i:s") }}</td>
+                        <td>{{ slide.endDate|date("Y-m-d H:i:s") }}</td>
+                        <td>
+                            {% if slide.enabled == 1 %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+                        <td>{{ slide.createdAt|date("Y-m-d H:i:s") }}</td>
+                        <td>{{ slide.createdBy.username }}</td>
+                        <td>{{ slide.updatedAt|date("Y-m-d H:i:s") }}</td>
+                        <td>{{ slide.updatedBy.username }}</td>
+                        <td>{{ slide.activeTimeStart|date("H:i:s") }}</td>
+                        <td>{{ slide.activeTimeEnd|date("H:i:s") }}</td>
+                        <td>
+                            {% for tags in slide.tags %}
+                                {{ tags.tag }}
+                            {% endfor %}
+                        </td>
+                        <td>{{ slide.step }}</td>
+                        <td>
+                            <a href="{{ path('slide_edit', {'id': slide.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
+                            <a href="{{ path('slide_delete', {'id': slide.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+                <div class="button-add-new-location">
+                    <a href="{{ path('slide_new') }}"><button class="btn btn-primary">Add new slide</button></a>
+                </div>
+        </div>
+    </div>
+{% endblock %}

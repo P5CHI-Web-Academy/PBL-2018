@@ -1,17 +1,6 @@
 {% extends '@Administration/base.html.twig' %}
 
 {% block body %}
-    {#<h1>Tag edit</h1>#}
-
-    {#{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
-    {#{{ form_widget(form) }}#}
-
-    {#<div class="form-group">#}
-        {#<div class="col-sm-offset-2 col-sm-10">#}
-            {#<button type="submit" class="btn btn-default">Edit</button>#}
-        {#</div>#}
-    {#</div>#}
-    {#{{ form_end(form) }}#}
 
     <div class="body main body-location">
         <div class="title-create-slide">
@@ -20,7 +9,7 @@
         </div>
         <div class="line-under-title"></div>
         <div class="icon-back-div">
-            <a href="{{ path('tag.list') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
+            <a href="{{ path('tags') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
         </div>
 
         {{ form_start(form) }}
@@ -41,7 +30,4 @@
         </div>
         {{ form_end(form) }}
     </div>
-    {#<div class="map-image-div">#}
-        {#<img class="map-image" src="{{ asset('bundles/administration/img/map-location.png') }}">#}
-    {#</div>#}
 {% endblock %}

@@ -2,10 +2,6 @@
 
 {% block title %}Locations index{% endblock %}
 
-{% block stylesheet_custom %}
-    {#<link rel="stylesheet" href="../../public/ckeditor/samples/css/samples.css">#}
-    {#<link rel="stylesheet" href="../../public/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">#}
-{% endblock %}
 
 {% block body %}
 
@@ -210,9 +206,9 @@
                 {#<h5 id="active_tags_text">Active tags:</h5>#}
                 <div class="list-active-tags" id="active_tags">
                     {#{% for tag_id in slides_tags %}#}
-                        {#{% if slides_tags.slide_id == id.slide %}#}
-                            {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ slides_tags.tag_id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>#}
-                        {#{% endif %}#}
+                    {#{% if slides_tags.slide_id == id.slide %}#}
+                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ slides_tags.tag_id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>#}
+                    {#{% endif %}#}
                     {#{% endfor %}#}
                 </div>
             </div>
@@ -245,5 +241,3 @@
         CKEDITOR.replace( 'editor1' );
     </script>
 {% endblock %}
-
-

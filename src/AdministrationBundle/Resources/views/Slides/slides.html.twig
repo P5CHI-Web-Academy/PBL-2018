@@ -1,4 +1,4 @@
-{% extends '@Administration/base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Locations index{% endblock %}
 {% block stylesheets %}{% endblock %}
@@ -8,7 +8,7 @@
     {% for slide in slides %}
         {{ slide.name }}
 
-        <a href="{{ path('slide_preview', {'id': slide.id}) }}">Preview</a>
+        <a href="{{ path('slide_show', {'id': slide.id}) }}">Preview</a>
         <a href="{{ path('slide_edit', {'id': slide.id}) }}">Edit</a>
         <a href="{{ path('slide_delete', {'id': slide.id}) }}">Delete</a>
 
