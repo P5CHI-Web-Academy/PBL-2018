@@ -3,6 +3,7 @@
 namespace AdministrationBundle\Controller;
 
 use AdministrationBundle\Entity\User;
+use AdministrationBundle\Form\ChangePassword;
 use AdministrationBundle\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -10,6 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use \AdministrationBundle\Resources\views\base;
+
 
 class UsersController extends Controller
 {
@@ -113,5 +118,24 @@ class UsersController extends Controller
         $entityManager->flush();
 
         return $this->redirectToRoute('users');
+    }
+
+    /**
+     * @Route("/admin/users/change_password/", name="change_password")
+     * @return Response
+     */
+    public function ChangePasswordAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(ChangePassword::class);
+        $form->setData($user);
+
+        $form->handleRequest($request);
+
+
+        return $this->render('@Administration/Users/change_password.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }
