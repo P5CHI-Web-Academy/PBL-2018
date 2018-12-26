@@ -124,15 +124,20 @@ class UsersController extends Controller
      * @Route("/admin/users/change_password/", name="change_password")
      * @return Response
      */
-    public function ChangePasswordAction(Request $request)
+    public function changePasswordAction(Request $request)
     {
         $user = $this->getUser();
 
         $form = $this->createForm(ChangePassword::class);
-        $form->setData($user);
 
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($form->get('password')->getData());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+        }
 
         return $this->render('@Administration/Users/change_password.html.twig', array(
             'form' => $form->createView(),
