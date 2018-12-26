@@ -14,12 +14,40 @@
             {#<a href="{{ path('locations') }}"><ion-icon name="arrow-round-back"></ion-icon></a>#}
         {#</div>#}
 
-            username: {{ logged_in_user.username }}
-        <br/>
-            <a href="{{ path('change_password') }}">change password</a>
-        <br/>
-        <a href="{{ path('user_edit', {'id': logged_in_user.id}) }}">Edit account</a>
-        <br/><br/>
+
+        <div class="div-form">
+
+            <div class="div-location-name">
+                <h5 class="location-name-text">
+                    User Name: {{ logged_in_user.username }}
+                </h5>
+                {#<div class="form-location-name-div form-tags-div">#}
+                    {##}
+                    {#{{ form_widget(form.username, { 'attr': {'class': 'location-form form-control', 'placeholder': 'e.g. name.surname'} }) }}#}
+                    {#<small id="name-location-help" class="form-text text-muted">Create a unique username</small>#}
+                {#</div>#}
+            </div>
+
+        </div>
+
+
+
+        {#username: {{ logged_in_user.username }}#}
+
+        <div class="button-add-new-location" style="margin-top: 70px">
+            <a href="{{ path('change_password') }}"><button class="btn btn-primary">Change Password</button></a>
+        </div>
+
+        {#<br/>#}
+            {#<a href="{{ path('change_password') }}">change password</a>#}
+        {#<br/>#}
+
+        <div class="button-add-new-location" style="margin-top: 70px">
+            <a href="{{ path('user_edit', {'id': logged_in_user.id}) }}"><button class="btn btn-primary">Edit account</button></a>
+        </div>
+
+        {#<a href="{{ path('user_edit', {'id': logged_in_user.id}) }}">Edit account</a>#}
+        {#<br/><br/>#}
 
         Slides:<br/>
         {% for slide in own_slides %}
@@ -34,7 +62,10 @@
         {% endfor %}
 
         <br/>
-        <a href="{{ path('slide_new') }}">Create new slide</a>
+        <div class="button-add-new-location" style="margin-top: 70px">
+            <a href="{{ path('slide_new') }}"><button class="btn btn-primary">Create New Slide</button></a>
+        </div>
+        {#<a href="{{ path('slide_new') }}">Create new slide</a>#}
     </div>
 
 {% endblock %}
