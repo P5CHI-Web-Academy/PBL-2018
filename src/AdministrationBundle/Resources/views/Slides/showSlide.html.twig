@@ -23,7 +23,6 @@
                     <th scope="col">Created by</th>
                     <th scope="col">Updated at</th>
                     <th scope="col">Updated by</th>
-                    <th scope="col">Content of slide</th>
                     <th scope="col">Active time start</th>
                     <th scope="col">Active time end</th>
                     <th scope="col">Tags</th>
@@ -51,7 +50,6 @@
                     <td>{{ someSlide.createdBy.username }}</td>
                     <td>{{ someSlide.updatedAt|date("Y-m-d H:i:s") }}</td>
                     <td>{{ someSlide.updatedBy.username }}</td>
-                    <td>{{ someSlide.content }}
                     <td>{{ someSlide.activeTimeStart|date("H:i:s") }}</td>
                     <td>{{ someSlide.activeTimeEnd|date("H:i:s") }}</td>
                     <td>
@@ -70,6 +68,10 @@
 
                 </tbody>
             </table>
+
+            <div>
+                {{ someSlide.content|raw }}
+            </div>
         </div>
     </div>
 {% endblock %}
