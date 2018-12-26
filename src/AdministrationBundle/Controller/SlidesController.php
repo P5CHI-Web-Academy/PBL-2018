@@ -2,8 +2,7 @@
 
 namespace AdministrationBundle\Controller;
 
-use AdministrationBundle\AdministrationBundle;
-use AdministrationBundle\Entity\Location;
+use AdministrationBundle\Entity\Schedule;
 use AdministrationBundle\Entity\Slide;
 use AdministrationBundle\Form\SlideType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,6 +11,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SlidesController extends Controller
@@ -23,7 +24,7 @@ class SlidesController extends Controller
      *
      * @return Response
      */
-    public function list() : Response {
+    public function listSlides() : Response {
         $slides = $this->getDoctrine()->getRepository(Slide::class)->findAll();
 
         return $this->render('@Administration/Slides/listOfSlides.html.twig',[

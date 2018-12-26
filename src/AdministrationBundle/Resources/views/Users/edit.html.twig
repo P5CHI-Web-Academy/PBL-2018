@@ -43,14 +43,16 @@
                     <small id="tags-help" class="form-text text-muted">Confirm the password</small>
                 </div>
             </div>
-            <div class="div-tags supervisor-div">
-                <p class="location-tags-text flex-end-sup">
-                    Supervisor
-                </p>
-                <div class="form-tags-div">
-                    {{ form_widget(form.isSupervisor, { 'attr': {'class': 'custom-control-input checkbox-big'} }) }}
+            {% if logged_in_user.isSupervisor %}
+                <div class="div-tags supervisor-div">
+                    <p class="location-tags-text flex-end-sup">
+                        Supervisor
+                    </p>
+                    <div class="form-tags-div">
+                        {{ form_widget(form.isSupervisor, { 'attr': {'class': 'custom-control-input checkbox-big'} }) }}
+                    </div>
                 </div>
-            </div>
+            {%  endif %}
         </div>
         <div class="button-add-new-location" style="margin-top: 70px">
             <a><button class="btn btn-primary" type="submit">Edit User</button></a>

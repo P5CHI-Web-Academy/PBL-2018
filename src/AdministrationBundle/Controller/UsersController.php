@@ -30,7 +30,7 @@ class UsersController extends Controller
 
         return $this->render(
             '@Administration/Users/users.html.twig',
-            array('users' => $users)
+            array('users' => $users, 'logged_in_user' => $this->getUser())
         );
     }
 
@@ -73,17 +73,22 @@ class UsersController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class,
+            $user,
+            array('logged_in_user' => $this->getUser())
+        );
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
 //            $entityManager->persist($location);
             $entityManager->flush();
-            return $this->redirectToRoute('users');
+            return $this->redirectToRoute('account');
         }
 
         return $this->render('@Administration/Users/edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'logged_in_user' => $this->getUser()
         ));
     }
 

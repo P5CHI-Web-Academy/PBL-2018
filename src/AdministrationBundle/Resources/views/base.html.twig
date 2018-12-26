@@ -19,7 +19,7 @@
     <body>
         {% block navbar %}
             <div class="sidenav">
-                <a href="#" data-toggle="tooltip" data-placement="right" title="My Account"><ion-icon name="contact" class="icons icon-user-info"></ion-icon></a>
+                <a href="{{ path('account') }}" data-toggle="tooltip" data-placement="right" title="My Account"><ion-icon name="contact" class="icons icon-user-info"></ion-icon></a>
                 <a href="{{ path('homepage') }}" data-toggle="tooltip" data-placement="right" title="Home"><ion-icon name="home" class="icons icon-home"></ion-icon></a>
                 <a href="{{ path('users') }}" data-toggle="tooltip" data-placement="right" title="Users"><ion-icon name="people" class="icons icon-users"></ion-icon></a>
                 <a href="{{ path('locations') }}" data-toggle="tooltip" data-placement="right" title="Locations"><ion-icon name="globe" class="icons icon-locations"></ion-icon></a>
