@@ -2,17 +2,13 @@
 
 namespace AdministrationBundle\Controller;
 
-use AdministrationBundle\Entity\Schedule;
 use AdministrationBundle\Entity\Slide;
 use AdministrationBundle\Form\SlideType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SlidesController extends Controller
@@ -125,7 +121,7 @@ class SlidesController extends Controller
             throw $this->createNotFoundException("No slide was found!");
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->remove($slide);
         $em->flush();
 
