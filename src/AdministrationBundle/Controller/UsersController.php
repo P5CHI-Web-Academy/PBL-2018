@@ -49,6 +49,10 @@ class UsersController extends Controller
      */
     public function newUser(Request $request, EntityManagerInterface $em) : Response
     {
+        if(!$this->getUser()->isSupervisor()){
+            return $this->redirectToRoute('homepage');
+        }
+
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -86,9 +90,8 @@ class UsersController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-//            $entityManager->persist($location);
             $entityManager->flush();
-            return $this->redirectToRoute('account');
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->render('@Administration/Users/edit.html.twig', array(
