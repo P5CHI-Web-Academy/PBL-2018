@@ -5,7 +5,7 @@
 
 <script>
     function setSlideContent(slide){
-        document.getElementById('slide_content').innerText = slide['content'];
+        document.getElementById('slide_content').innerHTML = slide['content'];
 
         return new Promise((resolve, reject) => {
             setTimeout(() => {
