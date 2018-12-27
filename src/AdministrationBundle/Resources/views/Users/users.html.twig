@@ -45,9 +45,11 @@
 
                 </tbody>
             </table>
-            <div class="button-add-new-location">
-                <a href="{{ path('users_new') }}"><button class="btn btn-primary">Add New User</button></a>
-            </div>
+            {% if logged_in_user.isSupervisor %}
+                <div class="button-add-new-location">
+                    <a href="{{ path('users_new') }}"><button class="btn btn-primary">Add New User</button></a>
+                </div>
+            {% endif %}
         </div>
         {#<div class="minions-image-div">#}
             {#<img class="minions-image" src="{{ asset('bundles/administration/img/team.png') }}">#}

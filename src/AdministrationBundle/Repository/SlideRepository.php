@@ -37,7 +37,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
                 continue;
             }
 
-            $type = $slides[$i]['schedule'][0]['type'];
+            $type = $slides[$i]['typeOfSchedule'];
             $step = $slides[$i]['step'];
             $createdAtDate = $slides[$i]['createdAt'];
             $timeDiff = $currentDate->diff($createdAtDate);
