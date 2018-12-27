@@ -1,0 +1,18 @@
+.account-container {
+    /*background-color: #fff;*/
+    /*width: auto;*/
+    /*height: auto;*/
+}
+
+.account-option {
+    justify-content: space-between;
+    flex: 1 1 33%;
+    align-items: center;
+    align-content: center;
+    box-sizing: border-box;
+}
+
+.button-create {
+    width: 150px!important;
+
+}
