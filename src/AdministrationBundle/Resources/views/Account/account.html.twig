@@ -4,68 +4,110 @@
 
 {% block body %}
     <div class="body main">
+
         <div class="title-create-slide">
-            <h3 class="title-create-slide-text">My Account</h3>
+
             <ion-icon name="person" class="icon-create-title"></ion-icon>
+            <h3 class="title-create-slide-text" style="margin-left: 30px">Hello, {{ logged_in_user.username }}!</h3>
+
         </div>
 
         <div class="line-under-title"></div>
-        {#<div class="icon-back-div">#}
-            {#<a href="{{ path('locations') }}"><ion-icon name="arrow-round-back"></ion-icon></a>#}
-        {#</div>#}
+
+        <br/>
+        <br/>
 
 
-        <div class="div-form">
 
-            <div class="div-location-name">
-                <h5 class="location-name-text">
-                    User Name: {{ logged_in_user.username }}
-                </h5>
-                {#<div class="form-location-name-div form-tags-div">#}
-                    {##}
-                    {#{{ form_widget(form.username, { 'attr': {'class': 'location-form form-control', 'placeholder': 'e.g. name.surname'} }) }}#}
-                    {#<small id="name-location-help" class="form-text text-muted">Create a unique username</small>#}
+        <div class="slide-options-container">
+            <div class="account-option">
+
+                {#<div class="div-location-name">#}
+                    {#<h5 class="location-name-text">#}
+                        {#Username: {{ logged_in_user.username }}#}
+                    {#</h5>#}
                 {#</div>#}
             </div>
 
+            <div class="account-option" style="box-sizing: border-box; width: 100%">
+                <div class="button-create">
+                    <a href="{{ path('change_password') }}"><button type="button" class="btn btn-primary">Change Password</button></a>
+                </div>
+            </div>
+
+            <div class="account-option" style="box-sizing: border-box">
+                <div class="button-create">
+                    <a href="{{ path('user_edit', {'id': logged_in_user.id}) }}"><button class="btn btn-primary">Edit account</button></a>
+                </div>
+            </div>
         </div>
 
 
 
-        {#username: {{ logged_in_user.username }}#}
 
-        <div class="button-add-new-location" style="margin-top: 70px">
-            <a href="{{ path('change_password') }}"><button class="btn btn-primary">Change Password</button></a>
-        </div>
 
-        {#<br/>#}
-            {#<a href="{{ path('change_password') }}">change password</a>#}
-        {#<br/>#}
 
-        <div class="button-add-new-location" style="margin-top: 70px">
-            <a href="{{ path('user_edit', {'id': logged_in_user.id}) }}"><button class="btn btn-primary">Edit account</button></a>
-        </div>
 
-        {#<a href="{{ path('user_edit', {'id': logged_in_user.id}) }}">Edit account</a>#}
-        {#<br/><br/>#}
 
-        Slides:<br/>
-        {% for slide in own_slides %}
-            {{ slide.name }}
+        <h4 style="margin-top: 100px">Your Created Slides:</h4>
+        <table class="table" style="margin-top: 30px">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Slide Name</th>
+                <th scope="col">Preview</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for slide in own_slides %}
+                <tr>
+                    <th scope="row">{{ slide.id }}</th>
+                    <td>{{ slide.name }}</td>
+                    <td>
+                        <a href="{{ path('slide_preview', {'id': slide.id}) }}" class="icon-preview-a" title="Preview Slide"><ion-icon name="eye" class="icons icon-preview"></ion-icon></a>
 
-            <a href="{{ path('slide_preview', {'id': slide.id}) }}">Preview</a>
-            <a href="{{ path('slide_edit', {'id': slide.id}) }}">Edit</a>
-            <a href="{{ path('slide_delete', {'id': slide.id}) }}">Delete</a>
+                    </td>
 
-            <br/>
+                    <td>
+                        <a href="{{ path('slide_edit', {'id': slide.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
+                        {#<a href="{{ path('slide_edit', {'id': slide.id}) }}">Edit</a>#}
+                        {#<a href="{{ path('slide_delete', {'id': slide.id}) }}">Delete</a>#}
+                        <a href="{{ path('slide_delete', {'id': slide.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-        {% endfor %}
-
-        <br/>
-        <div class="button-add-new-location" style="margin-top: 70px">
-            <a href="{{ path('slide_new') }}"><button class="btn btn-primary">Create New Slide</button></a>
-        </div>
-        {#<a href="{{ path('slide_new') }}">Create new slide</a>#}
     </div>
 
 {% endblock %}
+
+
+
+{#<a href="{{ path('user_edit', {'id': logged_in_user.id}) }}">Edit account</a>#}
+                    {#<br/><br/>#}
+
+{#Slides:<br/>#}
+{#{% for slide in own_slides %}#}
+    {#{{ slide.name }}#}
+    {#<a href="{{ path('slide_preview', {'id': slide.id}) }}" class="icon-preview-a" data-toggle="tooltip" data-placement="top" title="Preview Slide"><ion-icon name="eye" class="icons icon-preview"></ion-icon></a>#}
+
+    {#<a href="{{ path('slide_preview', {'id': slide.id}) }}">Preview</a>#}
+
+    {#<a href="{{ path('slide_edit', {'id': slide.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>#}
+    {#<a href="{{ path('slide_edit', {'id': slide.id}) }}">Edit</a>#}
+    {#<a href="{{ path('slide_delete', {'id': slide.id}) }}">Delete</a>#}
+    {#<a href="{{ path('slide_delete', {'id': slide.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>#}
+
+    {#<br/>#}
+
+{#{% endfor %}#}
+
+{#<br/>#}
+{#<div class="button-add-new-location" style="margin-top: 70px">#}
+    {#<a href="{{ path('slide_new') }}"><button class="btn btn-primary">Create New Slide</button></a>#}
+{#</div>#}
+{#<a href="{{ path('slide_new') }}">Create new slide</a>#}
+
