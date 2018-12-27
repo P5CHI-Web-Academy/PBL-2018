@@ -57,7 +57,7 @@ class TagsController extends Controller
             $em->persist($tag);
             $em->flush();
 
-            return $this->redirectToRoute('tag.list');
+            return $this->redirectToRoute('tags');
         }
 
         return $this->render('@Administration/Tags/createTag.html.twig', [
@@ -84,7 +84,7 @@ class TagsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
 
-            return $this->redirectToRoute('tag.list');
+            return $this->redirectToRoute('tags');
         }
 
         return $this->render('@Administration/Tags/editTag.html.twig', [
