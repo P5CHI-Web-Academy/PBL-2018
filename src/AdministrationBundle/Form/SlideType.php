@@ -67,12 +67,9 @@ class SlideType extends AbstractType {
             ))
             ->add('typeOfSchedule', ChoiceType::class, [
                 'choices' => [
-                    'Every week' => 0,
-                    'First week of month' => 1,
-                    'Second week of month' => 2,
-                    'Third week of month' => 3,
-                    'Fourth week of month' => 4,
-                    'Specified days of month' => 5,
+                    'Day' => 1,
+                    'Week' => 2,
+                    'Month' => 3,
                 ]
             ])
             ->add('schedule', EntityType::class, array(

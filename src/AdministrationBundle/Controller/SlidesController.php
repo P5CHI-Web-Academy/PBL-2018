@@ -96,7 +96,7 @@ class SlidesController extends Controller
 
         if($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            return $this->redirectToRoute('slide.list');
+            return $this->redirectToRoute('slides');
         }
 
         return $this->render('@Administration/Slides/editSlide.html.twig', [
