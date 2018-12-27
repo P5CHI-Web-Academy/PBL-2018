@@ -2,6 +2,7 @@
 
 namespace DisplayBundle\Controller;
 
+use AdministrationBundle\Entity\Slide;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -34,7 +35,7 @@ class DisplayController extends Controller
     public function fetchSlides($location): \Symfony\Component\HttpFoundation\JsonResponse
     {
         $slideRepository =  $this->getDoctrine()->getManager()
-            ->getRepository('AdministrationBundle:Slide');
+            ->getRepository(Slide::class);
 
         $slides = $slideRepository->getEnabledSlidesByLocationName($location);
         $slides = $slideRepository->filterSlides($slides);

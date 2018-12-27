@@ -9,7 +9,7 @@
 namespace AdministrationBundle\Form;
 
 use AdministrationBundle\Entity\Schedule;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -40,10 +40,10 @@ class SlideType extends AbstractType {
                 ]
             ])
             ->add('periodOfValidity', IntegerType::class, array())
-            ->add('startDate', DateTimeType::class, array(
+            ->add('startDate', DateType::class, array(
                 'input' => 'datetime',
             ))
-            ->add('endDate', DateTimeType::class, array(
+            ->add('endDate', DateType::class, array(
                 'input' => 'datetime',
             ))
             ->add('enabled', ChoiceType::class, [

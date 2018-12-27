@@ -48,9 +48,10 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
                     unset($slides[$i]);
                 }
             }
+
             // every # week
             else if($type === 2) {
-                if(($timeDiff->days / 7 + 1) % $step !== 0){
+                if(($timeDiff->days / 7) % $step !== 0){
                     unset($slides[$i]);
                 }
                 $actual = false;
@@ -63,6 +64,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
                     unset($slides[$i]);
                 }
             }
+
             // every # month
             else if($type === 3) {
                 if($timeDiff->m % $step !== 0){

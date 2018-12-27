@@ -33,7 +33,7 @@ security:
         default_target_path: /admin
       logout:
         path:   /logout
-        target: /
+        target: /login
 
 
 
