@@ -109,7 +109,7 @@ class TagsController extends Controller
             throw $this->createNotFoundException("No tag was found!");
         }
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $em->remove($tag);
         $em->flush();
 

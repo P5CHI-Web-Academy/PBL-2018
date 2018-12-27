@@ -33,7 +33,7 @@
                         </td>
                         <td>
                             <a href="{{ path('tag_edit', {'id': tag.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
-                                <a  onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
+                                <a href="{{ path('tag_delete', {'id': tag.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
                         </td>
                     </tr>
                 {% endfor %}
