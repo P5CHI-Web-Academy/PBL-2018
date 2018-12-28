@@ -53,6 +53,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
             else if($type === 2) {
                 if(($timeDiff->days / 7) % $step !== 0){
                     unset($slides[$i]);
+                    continue;
                 }
                 $actual = false;
                 foreach($slides[$i]['schedule'] as $schedule){
@@ -69,6 +70,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
             else if($type === 3) {
                 if($timeDiff->m % $step !== 0){
                     unset($slides[$i]);
+                    continue;
                 }
                 $actual = false;
                 foreach($slides[$i]['schedule'] as $schedule){
