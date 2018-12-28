@@ -86,6 +86,7 @@ class SlidesController extends Controller
      * @param EntityManagerInterface $em
      *
      * @return Response
+     * @throws \Exception
      */
     public function edit(Request $request, Slide $slide, EntityManagerInterface $em) : Response {
         $slide->setUpdatedBy($this->getUser());
@@ -107,39 +108,27 @@ class SlidesController extends Controller
     /**
      * Delete slide functionality
      *
-     * @Route("/admin/slide/delete/{id}", name = "slide_delete", methods = {"GET", "POST"})
+     * @Route("/admin/slide/delete/{id}", name = "slide_delete")
      *
      * @param Request $request
-     * @param Slide $slide
-     * @param EntityManagerInterface $em
-     *
+     * @param $id
      * @return Response
      */
+    public function delete(Request $request, $id) : Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
 
-    public function delete(Request $request, Slide $slide, EntityManagerInterface $em) : Response{
+        $slide = $this->getDoctrine()
+            ->getRepository(Slide::class)
+            ->find($id);
+
         if(!$slide){
-            throw $this->createNotFoundException("No slide was found!");
+            throw $this->createNotFoundException('No slide was found!');
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($slide);
-        $em->flush();
+        $entityManager->remove($slide);
+        $entityManager->flush();
 
-        return $this->redirectToRoute('slides');
+        return $this->redirect($request->headers->get('referer'));
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
