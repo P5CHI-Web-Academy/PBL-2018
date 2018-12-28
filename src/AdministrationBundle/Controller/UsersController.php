@@ -124,10 +124,11 @@ class UsersController extends Controller
     }
 
     /**
-     * @Route("/admin/users/change_password/", name="change_password")
+     * @Route("/admin/users/change_password", name="change_password")
+     * @param Request $request
      * @return Response
      */
-    public function changePasswordAction(Request $request)
+    public function changePasswordAction(Request $request): Response
     {
         $user = $this->getUser();
 
@@ -140,6 +141,8 @@ class UsersController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+            return $this->redirectToRoute('account');
         }
 
         return $this->render('@Administration/Users/change_password.html.twig', array(
