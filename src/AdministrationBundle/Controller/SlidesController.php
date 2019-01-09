@@ -27,7 +27,7 @@ class SlidesController extends Controller
             'slides' => $slides,
         ]);
     }
-
+    
     /**
      * Shows slide
      *
@@ -58,8 +58,8 @@ class SlidesController extends Controller
         $slide = new Slide();
         $slide->setCreatedBy($this->getUser());
         $slide->setUpdatedBy($this->getUser());
-        $slide->setCreatedAt(new \DateTime("now"));
-        $slide->setUpdatedAt(new \DateTime("now"));
+        $slide->setCreatedAt(new \DateTime('now'));
+        $slide->setUpdatedAt(new \DateTime('now'));
         //create form for setting new slide
         $form = $this->createForm(SlideType::class, $slide);
         $form->handleRequest($request);
@@ -90,7 +90,7 @@ class SlidesController extends Controller
      */
     public function edit(Request $request, Slide $slide, EntityManagerInterface $em) : Response {
         $slide->setUpdatedBy($this->getUser());
-        $slide->setUpdatedAt(new \DateTime("now"));
+        $slide->setUpdatedAt(new \DateTime('now'));
 
         $form = $this->createForm(SlideType::class, $slide);
         $form->handleRequest($request);

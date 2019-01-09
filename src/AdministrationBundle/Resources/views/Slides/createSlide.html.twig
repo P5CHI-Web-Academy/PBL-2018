@@ -5,131 +5,453 @@
 {% block body %}
     <div class="body main">
         <div class="title-create-slide">
-            <h3 class="title-create-slide-text">Add new slide</h3>
-            <ion-icon name="pin" class="icon-create-title"></ion-icon>
+            <h3 class="title-create-slide-text">Create Your Slide Here</h3>
+            <ion-icon name="create" class="icon-create-title"></ion-icon>
         </div>
         <div class="line-under-title"></div>
-        <div class="icon-back-div">
-            <a href="{{ path('slides') }}"><ion-icon name="arrow-round-back"></ion-icon></a>
-        </div>
-
         {{ form_start(form) }}
         {% form_theme form 'bootstrap_4_layout.html.twig'%}
-            <div class="div-form">
+
+        {#{{ form_widget(form.typeOfSchedule) }}#}
+        {#, {'attr': {'onchange': 'testfunction'}}#}
+
+        <div class="slide-options-container" id="slide_options">
+            {{ form_widget(form.name, { 'attr': {'class': 'form-control slide-option slide-title-form', 'placeholder': 'Insert Slide Name'} }) }}
+            {#<input type="text" class="form-control slide-option slide-title-form" placeholder="Insert Slide Name" id="slide-edit-title-form">#}
+            <div class="dropdown slide-option slide-dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    <div class="button-title">
+                        <h6 class="text-dropdown">Pick Tags</h6>
+                        <span class="caret"></span>
+                    </div>
+                </button>
+                <ul class="dropdown-menu mydropdown-menu-tags">
+                    {{ form_widget(form.tags, { 'attr': {'class': 'tags-form select2'} }) }}
+                    {#{% for tag in tags %}#}
+                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ tag.id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>#}
+                    {#{% endfor %}#}
+
+                    {#here some examples/ clear when done#}
+                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id2" onclick="selectTag(this.id)">Name Tag</button></a>#}
+                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id3" onclick="selectTag(this.id)">Name Tag</button></a>#}
+                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id4" onclick="selectTag(this.id)">Name Tag Long Here</button></a>#}
+                </ul>
+            </div>
+            <div class="dropdown slide-option schedule-dropdown slide-dropdown">
+                <button class="btn btn-default dropdown-toggle btn-drop" type="button" data-toggle="dropdown">
+                    <div class="button-title">
+                        <h6 class="text-dropdown">Schedule</h6>
+                        <span class="caret"></span>
+                    </div>
+                </button>
+                <div id="container-schedule-drop" class="dropdown-menu mydropdown-menu">
+                    {#here icon check violet#}
+                    <div class="icon-check-div">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#565464" d="M186.301 339.893L96 249.461l-32 30.507L186.301 402 448 140.506 416 110z"/></svg>
+                    </div>
+                    <div class="dropdown-tags drop-schedule-first-line">
+                        <h5 class="text-schedule text-start-date" style="margin-right: 85px" id="startdate_text">Start Date</h5>
+                        <div id="div_checkbox" class="div-checkbox">
+                            <input type="checkbox" class="form-check-input checkbox-datepicker" id="checkbox_datepicker">
+
+                        </div>
+                        <h5 class="text-schedule text-end-date opacity-datepicker" id="enddate_text">End Date</h5>
+                    </div>
+                    <div class="dropdown-tags drop-schedule-line">
+                        {#<div class="input-group date ex1" style="margin-right: 17px" id="picker" data-provide="datepicker">#}
+                        {{ form_widget(form.startDate) }}
+
+                            {#<input type="text" placeholder="Start date" class="form-control" id="startdate_datepicker">#}
+                            {#<div class="input-group-addon">#}
+                                {#<span class="glyphicon glyphicon-th"></span>#}
+                            {#</div>#}
+                        {#</div>#}
+                        <div class="space-between-start-end">
+                        </div>
+                        {{ form_widget(form.endDate, { 'attr': {'onclick': 'endDateOnclick()', 'class': 'opacity-datepicker'} }) }}
+
+                        {#<div class="input-group date ex1 datepicker-disable" id="picker2" data-provide="datepicker" onclick="endDateOnclick()">#}
+                            {#<input type="text" placeholder="End date" class="form-control opacity-datepicker" id="end_datepicker_input">#}
+                            {#<div class="input-group-addon opacity-datepicker" onclick="endDateOnclick()">#}
+                                {#<span class="glyphicon glyphicon-th"></span>#}
+                            {#</div>#}
+                        {#</div>#}
+                    </div>
+                    <div class="dropdown-schedule drop-schedule-line">
+                        <h5 class="text-schedule">occurs</h5>
+                        <h5 class="text-schedule">every</h5>
+
+                        {{ form_widget(form.step, { 'attr': {'style': 'width: 60px'}}) }}
+                        {#<select name="sel-count" class="form-control counter-drop" id="sel2">#}
+                            {#<option value="d">1</option>#}
+                            {#<option value="s">2</option>#}
+                            {#<option value="s">3</option>#}
+                            {#<option value="s">4</option>#}
+                            {#<option value="s">5</option>#}
+                            {#<option value="s">6</option>#}
+                            {#<option value="s">7</option>#}
+                            {#<option value="s">8</option>#}
+                            {#<option value="s">9</option>#}
+                            {#<option value="s">10</option>#}
+                        {#</select>#}
+
+                        {{ form_widget(form.typeOfSchedule, {'attr': {'onchange': 'testfunction()'}}) }}
+                        {#, {'attr': {'id': 'select_day_week_month'}}#}
+                        {#<select name="sel-dayweek" class="form-control frequency-drop" id="sel1">#}
+                            {#<option class="day" value="day">day</option>#}
+                            {#<option class="week" value="week">week</option>#}
+                            {#<option class="month" value="month">month</option>#}
+                        {#</select>#}
+                    </div>
+                    {#{{ dump(form.typeOfSchedule.vars.choice_value)  }}#}
+                    {#{% if dump(form.typeOfSchedule.vars.choices[1].value) == "3" %}#}
+
+                    <div class="dropdown-tags drop-schedule-line">
+                        {#<div class="custom-div" id="custom_div">#}
+                            <h5 class="text-schedule select-days-text" id="select_days_text">Select days:</h5>
+                            <div id="datemonth_div">
+                                {{ form_widget(form.schedule, { 'attr': {'class': 'tags-form select2', 'style': 'width: 70px'} }) }}
+                                {#<select id="datemonth" multiple="multiple" class="datemonth">#}
+                                    {#<option>1</option>#}
+                                    {#<option>2</option>#}
+                                    {#<option>3</option>#}
+                                    {#<option>4</option>#}
+                                    {#<option>5</option>#}
+                                    {#<option>6</option>#}
+                                    {#<option>7</option>#}
+                                    {#<option>8</option>#}
+                                    {#<option>9</option>#}
+                                    {#<option>10</option>#}
+                                    {#<option>11</option>#}
+                                    {#<option>12</option>#}
+                                    {#<option>13</option>#}
+                                    {#<option>14</option>#}
+                                    {#<option>15</option>#}
+                                    {#<option>16</option>#}
+                                    {#<option>17</option>#}
+                                    {#<option>18</option>#}
+                                    {#<option>19</option>#}
+                                    {#<option>20</option>#}
+                                    {#<option>21</option>#}
+                                    {#<option>22</option>#}
+                                    {#<option>23</option>#}
+                                    {#<option>24</option>#}
+                                    {#<option>25</option>#}
+                                    {#<option>26</option>#}
+                                    {#<option>27</option>#}
+                                    {#<option>28</option>#}
+                                    {#<option>29</option>#}
+                                    {#<option>30</option>#}
+                                    {#<option>31</option>#}
+                                {#</select>#}
+                            </div>
+
+                        {#</div>#}
+                    </div>
+                    <div class="dropdown-tags drop-schedule-line">
+                        <h6>* for week (1-5: Mo-Fri), for month (1-31: date of month)</h6>
+                    </div>
+
+                    {#{% endif%}#}
+                    <div class="dropdown-tags drop-schedule-line drop-hidden-line-when-days">
+                        {#week/ month#}
+                        <h5 class="text-schedule texton" id="texton">on</h5>
+                        {#week#}
+                        <div id="daysweek_div">
+                            <select id="daysweek" multiple="multiple" class="daysweek">
+                                <option value="Mo">Monday</option>
+                                <option value="Tu">Tuesday</option>
+                                <option value="We">Wednesday</option>
+                                <option value="Th">Thursday</option>
+                                <option value="Fr">Friday</option>
+                            </select>
+                        </div>
+                        {#month#}
+                        <div class="month-div" id="month_div">
+                            <select name="custom-defined" class="form-control frequency-drop" id="select_custom_def">
+                                <option value="custom-select">selected</option>
+                                <option value="pre-defined-select">pre-defined</option>
+                            </select>
+                            <h5 class="text-schedule texton" id="datemonth_text" style="margin-left: 6px">day(s) of month:</h5>
+                        </div>
+                    </div>
+                    <div class="dropdown-tags drop-schedule-line drop-hidden-line-when-days">
+                        <div class="defined-div" id="defined_div">
+                            <select name="month-custom-first-last" class="form-control frequency-drop" id="select_custom">
+                                <option value="custom-select">the first</option>
+                                <option value="pre-defined-select">the last</option>
+                            </select>
+
+                            <select name="sel-count-2" class="form-control counter-drop" style="margin-left: 6px;" id="sel2_month_count">
+                                <option value="d">1</option>
+                                <option value="s">2</option>
+                                <option value="s">3</option>
+                                <option value="s">4</option>
+                                <option value="s">5</option>
+                            </select>
+
+                            <h5 class="text-schedule business-text" id="business_text">business</h5>
+
+                            <select name="month-custom-days-weeks" class="form-control frequency-drop" id="sel1-days-weeks">
+                                <option class="day" value="days">days</option>
+                                <option class="week" value="weeks">weeks</option>
+                            </select>
+                        </div>
 
 
-                <div class="form-row">
-                    <div class="div-location-name">
-                        <h5 class="location-name-text">
-                            Slide name
-                        </h5>
-                        <div class="form-location-name-div form-tags-div">
-                            {{ form_widget(form.name) }}
-                            <small id="name-location-help" class="form-text text-muted">Create a unique name for slide</small>
+                        <div class="custom-div" id="custom_div">
+                            <h5 class="text-schedule select-days-text" id="select_days_text">Select days:</h5>
+                            <div id="datemonth_div">
+                                <select id="datemonth" multiple="multiple" class="datemonth">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                    <option>13</option>
+                                    <option>14</option>
+                                    <option>15</option>
+                                    <option>16</option>
+                                    <option>17</option>
+                                    <option>18</option>
+                                    <option>19</option>
+                                    <option>20</option>
+                                    <option>21</option>
+                                    <option>22</option>
+                                    <option>23</option>
+                                    <option>24</option>
+                                    <option>25</option>
+                                    <option>26</option>
+                                    <option>27</option>
+                                    <option>28</option>
+                                    <option>29</option>
+                                    <option>30</option>
+                                    <option>31</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="div-tags">
-                        <p class="location-tags-text">
-                            Period of validity (in ms)
-                        </p>
-                        <div class="form-tags-div">
-                            {{ form_widget(form.periodOfValidity) }}
-                        </div>
+                    <div class="dropdown-tags drop-schedule-line">
+                        <h5 class="text-schedule">from</h5>
+                        {{ form_widget(form.activeTimeStart) }}
+                        {#<input type="time" id="appt" name="appt" value="09:00" required>#}
+                        <h5 class="text-schedule" style="margin-left: 10px">to</h5>
+                        {{ form_widget(form.activeTimeEnd) }}
+                        {#<input type="time" id="appt" name="appt" value="18:00" required>#}
+                        {#<a href="#" data-toggle="tooltip" data-placement="right" title="time"><ion-icon name="time" class="icons icon-time"></ion-icon></a>#}
                     </div>
+                    <div class="dropdown-tags drop-schedule-line">
+                        <h5 style="margin-right: 20px"> Slide show switch time (ms): </h5>
+                        {{ form_widget(form.periodOfValidity, {'attr': {'style': 'width: 100px'}}) }}
+                    </div>
+                    <br/>
                 </div>
+            </div>
+            <div class="save-emergency emergency-checkbox-text">
+                <div style="width: 90px">
+                    {{ form_widget(form.enabled, {'attr': {'style': 'width: 90px'}}) }}
+                    {#<input type="checkbox" class="form-check-input" id="checkbox_datepicker">#}
+                </div>
+                {#<a href="#" data-toggle="tooltip" data-placement="top" class="emergency-text-tooltip" title="Emergency Slide discards all others and will appear alone until is deleted or Emergency label is removed">#}
+                    {#<h5>Emergency</h5>#}
+                {#</a>#}
 
-                <div class="form-row">
-                    <div class="div-tags">
-                        <p class="location-tags-text">
-                            Start date
-                        </p>
-                        <div class="form-tags-div">
-                            {{ form_widget(form.startDate) }}
-                        </div>
-                    </div>
-                    <div class="div-tags">
-                        <p class="location-tags-text">
-                            End date
-                        </p>
-                        <div class="form-tags-div">
-                            {{ form_widget(form.endDate) }}
-                        </div>
-                    </div>
-                    <div class="div-tags supervisor-div">
-                        <p class="location-tags-text flex-end-sup">
-                            Enabled
-                        </p>
-                        <div class="form-tags-div">
-                            {{ form_widget(form.enabled) }}
-                        </div>
-                    </div>
-                </div>
+                {#<a href="#" class="icon-preview-a" data-toggle="tooltip" data-placement="top" title="Preview Slide" id="preview_icon"><ion-icon name="eye" class="icons icon-preview"></ion-icon></a>#}
+                <button type="submit" class="btn btn-success btn-save-slide">Save</button>
 
-                <div class="div-tags">
-                    <p class="location-tags-text">
-                        Content
-                    </p>
-                    <div class="form-tags-div">
-                        {{ form_widget(form.content) }}
-                    </div>
-                </div>
-                <div class="div-tags">
-                    <p class="location-tags-text">
-                        Tags
-                    </p>
-                    <div class="form-tags-div">
-                        {{ form_widget(form.tags) }}
-                    </div>
-                </div>
-                <div class="div-tags">
-                    <p class="location-tags-text">
-                        Step
-                    </p>
-                    <div class="form-tags-div">
-                        {{ form_widget(form.step) }}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="div-tags">
-                        <p class="location-tags-text">
-                            Active time start
-                        </p>
-                        <div class="form-tags-div">
-                            {{ form_widget(form.activeTimeStart) }}
-                        </div>
-                    </div>
-                    <div class="div-tags">
-                        <p class="location-tags-text">
-                            Active time end
-                        </p>
-                        <div class="form-tags-div">
-                            {{ form_widget(form.activeTimeEnd) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="div-tags">
-                        <p class="location-tags-text">
-                            Type of schedule for slide
-                        </p>
-                        <div class="form-tags-div">
-                            {{ form_widget(form.typeOfSchedule) }}
-                        </div>
-                    </div>
-                    <div class="div-tags">
-                        <p class="location-tags-text">
-                            Schedule of slide
-                        </p>
-                        <div class="form-tags-div">
-                            {{ form_widget(form.schedule) }}
-                        </div>
+            </div>
+        </div>
+
+        <br/>
+        <br/>
+        <div class="editor-tags-block">
+            {{ form_widget(form.content) }}
+        </div>
+        <div id="myModal" class="modal">
+            <span class="close">&times;</span>
+            <div class="container modal-container">
+                <div class="slide-modal-content" id="slide-template-modal">
+                    <div style="height: 600px; width: 800px; background-color: white">
+                        {#{{ slide.content }}#}
                     </div>
                 </div>
 
             </div>
-            <div class="button-add-new-location" style="margin-top: 70px">
-                <a><button class="btn btn-primary" type="submit">Add new slide</button></a>
+            {#{{ form_end(form) }}#}
         </div>
-        {{ form_end(form) }}
-    </div>
+
+
+{{ form_end(form) }}
+
+
+
+
+
+{#-------------------------------------------------------------------------------------------------------#}
+
+{#DIMA#}
+
+
+
+
+
+
+        {#<div class="title-create-slide">#}
+            {#<h3 class="title-create-slide-text">Add new slide</h3>#}
+            {#<ion-icon name="pin" class="icon-create-title"></ion-icon>#}
+        {#</div>#}
+        {#<div class="line-under-title"></div>#}
+        {#<div class="icon-back-div">#}
+            {#<a href="{{ path('slides') }}"><ion-icon name="arrow-round-back"></ion-icon></a>#}
+        {#</div>#}
+
+        {#{{ form_start(form) }}#}
+        {#{% form_theme form 'bootstrap_4_layout.html.twig'%}#}
+            {#<div class="div-form">#}
+
+
+                {#<div class="form-row">#}
+                    {#<div class="div-location-name">#}
+                        {#<h5 class="location-name-text">#}
+                            {#Slide name#}
+                        {#</h5>#}
+                        {#<div class="form-location-name-div form-tags-div">#}
+                            {#{{ form_widget(form.name) }}#}
+                            {#<small id="name-location-help" class="form-text text-muted">Create a unique name for slide</small>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="div-tags">#}
+                        {#<p class="location-tags-text">#}
+                            {#Period of validity (in ms)#}
+                        {#</p>#}
+                        {#<div class="form-tags-div">#}
+                            {#{{ form_widget(form.periodOfValidity) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+
+                {#<div class="form-row">#}
+                    {#<div class="div-tags">#}
+                        {#<p class="location-tags-text">#}
+                            {#Start date#}
+                        {#</p>#}
+                        {#<div class="form-tags-div">#}
+                            {#{{ form_widget(form.startDate) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="div-tags">#}
+                        {#<p class="location-tags-text">#}
+                            {#End date#}
+                        {#</p>#}
+                        {#<div class="form-tags-div">#}
+                            {#{{ form_widget(form.endDate) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="div-tags supervisor-div">#}
+                        {#<p class="location-tags-text flex-end-sup">#}
+                            {#Enabled#}
+                        {#</p>#}
+                        {#<div class="form-tags-div">#}
+                            {#{{ form_widget(form.enabled) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+
+                {#<div class="div-tags">#}
+                    {#<p class="location-tags-text">#}
+                        {#Content#}
+                    {#</p>#}
+                    {#<div class="form-tags-div">#}
+                        {#{{ form_widget(form.content) }}#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="div-tags">#}
+                    {#<p class="location-tags-text">#}
+                        {#Tags#}
+                    {#</p>#}
+                    {#<div class="form-tags-div">#}
+                        {#{{ form_widget(form.tags) }}#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="div-tags">#}
+                    {#<p class="location-tags-text">#}
+                        {#Step#}
+                    {#</p>#}
+                    {#<div class="form-tags-div">#}
+                        {#{{ form_widget(form.step) }}#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="form-row">#}
+                    {#<div class="div-tags">#}
+                        {#<p class="location-tags-text">#}
+                            {#Active time start#}
+                        {#</p>#}
+                        {#<div class="form-tags-div">#}
+                            {#{{ form_widget(form.activeTimeStart) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="div-tags">#}
+                        {#<p class="location-tags-text">#}
+                            {#Active time end#}
+                        {#</p>#}
+                        {#<div class="form-tags-div">#}
+                            {#{{ form_widget(form.activeTimeEnd) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="form-row">#}
+                    {#<div class="div-tags">#}
+                        {#<p class="location-tags-text">#}
+                            {#Type of schedule for slide#}
+                        {#</p>#}
+                        {#<div class="form-tags-div">#}
+                            {#{{ form_widget(form.typeOfSchedule) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="div-tags">#}
+                        {#<p class="location-tags-text">#}
+                            {#Schedule of slide#}
+                        {#</p>#}
+                        {#<div class="form-tags-div">#}
+                            {#{{ form_widget(form.schedule) }}#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
+
+            {#</div>#}
+            {#<div class="button-add-new-location" style="margin-top: 70px">#}
+                {#<a><button class="btn btn-primary" type="submit">Add new slide</button></a>#}
+        {#</div>#}
+        {#{{ form_end(form) }}#}
+    {#</div>#}
+{% endblock %}
+
+
+
+
+{% block javascript_custom %}
+    <script type="text/javascript" src="{{ asset('bundles/administration/js/edit-slide.js') }}"></script>
+    {#<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>#}
+    {#<script src="https://cdn.ckeditor.com/[version.number]/[distribution]/ckeditor.js"></script>#}
+
+    {#<script src="../../public/ckeditor/ckeditor.js"></script>#}
+    {#<script src="../../public/ckeditor/samples/js/sample.js"></script>#}
+    {#<script>#}
+        {#// Replace the <textarea id="editor1"> with a CKEditor#}
+        {#// instance, using default configuration.#}
+        {#CKEDITOR.replace( 'editor1' );#}
+    {#</script>#}
+
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
 {% endblock %}
