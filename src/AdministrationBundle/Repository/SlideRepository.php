@@ -8,8 +8,6 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getEnabledSlidesByLocationName($location): array
     {
-        date_default_timezone_set('Europe/Chisinau');
-
         $query = $this->_em->createQuery('
             SELECT s, sch, t, l
             FROM AdministrationBundle:Slide s
@@ -26,6 +24,7 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
     public function filterSlides($slides) : array
     {
         date_default_timezone_set('Europe/Chisinau');
+
         $currentTime = date('H:i');
         $currentDate = new \DateTime(date('Y-m-d'));
 
@@ -89,8 +88,6 @@ class SlideRepository extends \Doctrine\ORM\EntityRepository
 
     public function deleteExpiredSlides(): void
     {
-        date_default_timezone_set('Europe/Chisinau');
-
         $query = $this->_em->createQuery('
             SELECT sl.id
             FROM AdministrationBundle:Slide sl
