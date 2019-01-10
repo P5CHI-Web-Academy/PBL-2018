@@ -1,0 +1,3 @@
+0026:err:ntdll:RtlpWaitForCriticalSection section 0x7bd017c0 "loader.c: loader_section" wait timed out in thread 0026, blocked by 0027, retrying (60 sec)
+001a:err:ntdll:RtlpWaitForCriticalSection section 0x7bd017c0 "loader.c: loader_section" wait timed out in thread 001a, blocked by 001b, retrying (60 sec)
+0019:err:ntdll:RtlpWaitForCriticalSection section 0x7bd017c0 "loader.c: loader_section" wait timed out in thread 0019, blocked by 001b, retrying (60 sec)
