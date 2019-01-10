@@ -19,11 +19,15 @@
             let response = await fetch('{{ path('fetch', {'location' : location}) }}');
             let slides = await response.json();
 
-            for(let i = 0; i < slides.length; i++){
-                await setSlideContent(slides[i]);
+            for(let key in slides){
+                if(slides.hasOwnProperty(key)){
+                    console.log(key + " -> " + slides[key]);
+                    await setSlideContent(slides[key]);
+                }
             }
+
         }
     }
-
+    
     loop();
 </script>

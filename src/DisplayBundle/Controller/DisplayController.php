@@ -3,6 +3,7 @@
 namespace DisplayBundle\Controller;
 
 use AdministrationBundle\Entity\Slide;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -30,9 +31,9 @@ class DisplayController extends Controller
     /**
      * @Route("/fetch/{location}", name="fetch")
      * @param $location
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return JsonResponse
      */
-    public function fetchSlides($location): \Symfony\Component\HttpFoundation\JsonResponse
+    public function fetchSlides($location): JsonResponse
     {
         $slideRepository =  $this->getDoctrine()->getManager()
             ->getRepository(Slide::class);
@@ -40,6 +41,8 @@ class DisplayController extends Controller
         $slides = $slideRepository->getEnabledSlidesByLocationName($location);
         $slides = $slideRepository->filterSlides($slides);
 
-        return $this->json($slides);
+        $response = new JsonResponse($slides);
+
+        return $response;
     }
 }
