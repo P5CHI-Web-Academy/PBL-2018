@@ -24,11 +24,10 @@ class SlidesController extends Controller
         $slides = $this->getDoctrine()->getRepository(Slide::class)->findAll();
 
         $logged_in_user = $this->getUser();
-        $logged_in_user_id = $logged_in_user->getId();
 
         return $this->render('@Administration/Slides/listOfSlides.html.twig',[
             'slides' => $slides,
-            'logged_in_user_id' => $logged_in_user_id
+            'logged_in_user' => $logged_in_user
         ]);
     }
     
