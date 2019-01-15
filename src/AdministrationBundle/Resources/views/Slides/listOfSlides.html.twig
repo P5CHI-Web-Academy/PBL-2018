@@ -61,7 +61,7 @@
                         <td>{{ slide.step }}</td>
                         <td>
                             <a href="{{ path('slide_edit', {'id': slide.id}) }}"><ion-icon name="create" class="icons icons-edit-delete icon-edit"></ion-icon></a>
-                            {% if slide.createdBy.id == logged_in_user_id %}
+                            {% if logged_in_user.isSupervisor or slide.createdBy.id == logged_in_user.id %}
                                 <a href="{{ path('slide_delete', {'id': slide.id}) }}" onclick="return confirm('Are you sure?')"><ion-icon name="trash" class="icons icons-edit-delete icon-trash"></ion-icon></a>
                             {% endif %}
                         </td>
