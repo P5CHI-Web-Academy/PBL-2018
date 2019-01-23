@@ -12,12 +12,11 @@
         {{ form_start(form) }}
         {% form_theme form 'bootstrap_4_layout.html.twig'%}
 
-        {#{{ form_widget(form.typeOfSchedule) }}#}
-        {#, {'attr': {'onchange': 'testfunction'}}#}
+
 
         <div class="slide-options-container" id="slide_options">
             {{ form_widget(form.name, { 'attr': {'class': 'form-control slide-option slide-title-form', 'placeholder': 'Insert Slide Name'} }) }}
-            {#<input type="text" class="form-control slide-option slide-title-form" placeholder="Insert Slide Name" id="slide-edit-title-form">#}
+
             <div class="dropdown slide-option slide-dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                     <div class="button-title">
@@ -27,14 +26,7 @@
                 </button>
                 <ul class="dropdown-menu mydropdown-menu-tags">
                     {{ form_widget(form.tags, { 'attr': {'class': 'tags-form select2'} }) }}
-                    {#{% for tag in tags %}#}
-                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="{{ tag.id }}" onclick="selectTag(this.id)">{{ tag.tag }}</button></a>#}
-                    {#{% endfor %}#}
 
-                    {#here some examples/ clear when done#}
-                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id2" onclick="selectTag(this.id)">Name Tag</button></a>#}
-                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id3" onclick="selectTag(this.id)">Name Tag</button></a>#}
-                    {#<a href="#" class="no-decoration-tags"><button class="tag-id" id="tag_id4" onclick="selectTag(this.id)">Name Tag Long Here</button></a>#}
                 </ul>
             </div>
             <div class="dropdown slide-option schedule-dropdown slide-dropdown">
@@ -58,14 +50,10 @@
                         <h5 class="text-schedule text-end-date opacity-datepicker" id="enddate_text">End Date</h5>
                     </div>
                     <div class="dropdown-tags drop-schedule-line">
-                        {#<div class="input-group date ex1" style="margin-right: 17px" id="picker" data-provide="datepicker">#}
+
                         {{ form_widget(form.startDate) }}
 
-                            {#<input type="text" placeholder="Start date" class="form-control" id="startdate_datepicker">#}
-                            {#<div class="input-group-addon">#}
-                                {#<span class="glyphicon glyphicon-th"></span>#}
-                            {#</div>#}
-                        {#</div>#}
+
                         <div class="space-between-start-end">
                         </div>
                         {{ form_widget(form.endDate, { 'attr': {'onclick': 'endDateOnclick()', 'class': 'opacity-datepicker'} }) }}
@@ -82,71 +70,21 @@
                         <h5 class="text-schedule">every</h5>
 
                         {{ form_widget(form.step, { 'attr': {'style': 'width: 60px'}}) }}
-                        {#<select name="sel-count" class="form-control counter-drop" id="sel2">#}
-                            {#<option value="d">1</option>#}
-                            {#<option value="s">2</option>#}
-                            {#<option value="s">3</option>#}
-                            {#<option value="s">4</option>#}
-                            {#<option value="s">5</option>#}
-                            {#<option value="s">6</option>#}
-                            {#<option value="s">7</option>#}
-                            {#<option value="s">8</option>#}
-                            {#<option value="s">9</option>#}
-                            {#<option value="s">10</option>#}
-                        {#</select>#}
 
-                        {{ form_widget(form.typeOfSchedule, {'attr': {'onchange': 'testfunction()'}}) }}
-                        {#, {'attr': {'id': 'select_day_week_month'}}#}
-                        {#<select name="sel-dayweek" class="form-control frequency-drop" id="sel1">#}
-                            {#<option class="day" value="day">day</option>#}
-                            {#<option class="week" value="week">week</option>#}
-                            {#<option class="month" value="month">month</option>#}
-                        {#</select>#}
+
+                        {{ form_widget(form.typeOfSchedule) }}
+
                     </div>
-                    {#{{ dump(form.typeOfSchedule.vars.choice_value)  }}#}
-                    {#{% if dump(form.typeOfSchedule.vars.choices[1].value) == "3" %}#}
 
                     <div class="dropdown-tags drop-schedule-line">
-                        {#<div class="custom-div" id="custom_div">#}
+
                             <h5 class="text-schedule select-days-text" id="select_days_text">Select days:</h5>
                             <div id="datemonth_div">
                                 {{ form_widget(form.schedule, { 'attr': {'class': 'tags-form select2', 'style': 'width: 70px'} }) }}
-                                {#<select id="datemonth" multiple="multiple" class="datemonth">#}
-                                    {#<option>1</option>#}
-                                    {#<option>2</option>#}
-                                    {#<option>3</option>#}
-                                    {#<option>4</option>#}
-                                    {#<option>5</option>#}
-                                    {#<option>6</option>#}
-                                    {#<option>7</option>#}
-                                    {#<option>8</option>#}
-                                    {#<option>9</option>#}
-                                    {#<option>10</option>#}
-                                    {#<option>11</option>#}
-                                    {#<option>12</option>#}
-                                    {#<option>13</option>#}
-                                    {#<option>14</option>#}
-                                    {#<option>15</option>#}
-                                    {#<option>16</option>#}
-                                    {#<option>17</option>#}
-                                    {#<option>18</option>#}
-                                    {#<option>19</option>#}
-                                    {#<option>20</option>#}
-                                    {#<option>21</option>#}
-                                    {#<option>22</option>#}
-                                    {#<option>23</option>#}
-                                    {#<option>24</option>#}
-                                    {#<option>25</option>#}
-                                    {#<option>26</option>#}
-                                    {#<option>27</option>#}
-                                    {#<option>28</option>#}
-                                    {#<option>29</option>#}
-                                    {#<option>30</option>#}
-                                    {#<option>31</option>#}
-                                {#</select>#}
+
                             </div>
 
-                        {#</div>#}
+
                     </div>
                     <div class="dropdown-tags drop-schedule-line">
                         <h6>* for week (1-5: Mo-Fri), for month (1-31: date of month)</h6>
