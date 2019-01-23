@@ -180,10 +180,10 @@ NGINX_PHP_UPSTREAM_PORT=9000
 
 ### MYSQL #################################################
 
-MYSQL_VERSION=latest
-MYSQL_DATABASE=default
-MYSQL_USER=default
-MYSQL_PASSWORD=secret
+MYSQL_VERSION=5.7
+MYSQL_DATABASE=symfony
+MYSQL_USER=root
+MYSQL_PASSWORD=root
 MYSQL_PORT=3306
 MYSQL_ROOT_PASSWORD=root
 MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d
